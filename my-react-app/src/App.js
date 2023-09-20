@@ -3,6 +3,7 @@ import CreateAccount from './components/CreateAccount/CreateAccount'
 import LoginPage from './components/LoginPage/LoginPage';
 import RegistrationConfirmation from './components/RegistrationConfirmation/RegistrationConfirmation'
 import EditProfile from './components/EditProfile/EditProfile'
+import OrderConfirmation from './components/OrderConfirmation/OrderConfirmation';
 
 import './App.css';
 
@@ -15,6 +16,7 @@ function App() {
       <LoginPage />
       <RegistrationConfirmation />
       <EditProfile />
+      <OrderConfirmation />
     
     </div>
   );
