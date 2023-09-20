@@ -1,34 +1,49 @@
-
-.formg {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px;
+.EditProfile {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #041468;
+  }
+  
+  .profLabel {
+    text-align: center;
   }
   
   h1 {
-    color:#7f1515;
+    margin-bottom: 5px;
+    color: #ccc;
     font-size: 2em;
     line-height: 1.3em;
   }
   
-  .labele {
-    color:#b9b8b8;
-    font-weight: bold;
-    margin-right: 10px;
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
   }
   
-  input[type="text"] {
+  .labele {
+    color: #b9b8b8;
+    font-weight: bold;
+    margin-right: 20px;
+    width: 150px;
+  }
+  
+.input-field  {
+    flex: 1;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 14px;
+    margin-right: 100px;
   }
   
   button[type="submit"] {
     background-color: #7f1515;
     color: #ffffff;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 5px;
     padding: 10px;
     border: none;

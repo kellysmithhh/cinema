@@ -26,16 +26,16 @@ function CreateAccount() {
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
 
                 <label className="label">Payment Info (Optional)</label>
-                <input type="text" placeholder="Card Type" id="cpwd" name="cpwd"></input>
-                <input type="text" placeholder="Card Number" id="cpwd" name="cpwd"></input>
-                <input type="text" placeholder="Expiration Date" id="cpwd" name="cpwd"></input>
-                <input type="text" placeholder="Billing Address" id="cpwd" name="cpwd"></input>
+                <input type="text" placeholder="Card Type" id="ct" name="ct"></input>
+                <input type="text" placeholder="Card Number" id="cn" name="cn"></input>
+                <input type="text" placeholder="Expiration Date" id="ed" name="ed"></input>
+                <input type="text" placeholder="Billing Address" id="ba" name="ba"></input>
 
                 <label className="label">Home Address (Optional)</label>
-                <input type="text" placeholder="Street" id="cpwd" name="cpwd"></input>
-                <input type="text" placeholder="City" id="cpwd" name="cpwd"></input>
-                <input type="text" placeholder="State" id="cpwd" name="cpwd"></input>
-                <input type="text" placeholder="Zip Code" id="cpwd" name="cpwd"></input>
+                <input type="text" placeholder="Street" id="str" name="str"></input>
+                <input type="text" placeholder="City" id="city" name="city"></input>
+                <input type="text" placeholder="State" id="state" name="state"></input>
+                <input type="text" placeholder="Zip Code" id="zip" name="zip"></input>
 
                 <div className="input-container">
                     <button type="submit">Register</button>

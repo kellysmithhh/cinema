@@ -2,78 +2,60 @@ import './EditProfile.css';
 
 function EditProfile() {
     return (
-       <div className="EditProfile">
-             <form-group action="">
-                <div className="profLabel">
-                    <h1>Edit Profile</h1>
-                </div>
-                <div class="formg">
-                    <labele className="labele">First Name: </labele>
-                    <input type="text" id="name" name="name"></input>
-                </div>
-                
-                <div class="formg"> 
-                    <labele className="labele">Last Name: </labele>
-                    <input type="text" id="name1" name="name1"></input>
-                </div>
-
-                <div class="formg">
-                    <labele className="labele">Last Name: </labele>
-                    <input type="text" id="name1" name="name1"></input>
-                </div>
-
-                <div class="formg">
-                    <labele className="labele">Last Name: </labele>
-                    <input type="text" id="name1" name="name1"></input>
-                </div>
-
-
-                <div class="formg">
-                    <labele className="labele">Email Address: </labele>
-                    <input type="text" id="email" name="email"></input>
-                </div>
-
-
-                <div class="formg"> 
-                    <labele className="labele">Phone Number: </labele>
-                    <input type="text" id="phone" name="phone"></input>
-                </div>
-
-
-               
-                <div class="formg"> 
-                    <labele className="labele">Home Address: </labele>
-                    <input type="text" id="address" name="address"></input>
-                </div>
-
-
-                <div class="formg"> 
-                    <labele className="labele">City: </labele>
-                    <input type="text" id="city" name="city"></input>
-                </div>
-
-                
-                <div class="formg"> 
-                    <labele className="labele">State: </labele>
-                    <input type="text" id="state" name="state"></input>
-                </div>
-
-                <div class="formg"> 
-                    <labele className="labele">Zip Code: </labele>
-                    <input type="text" id="zip" name="zip"></input>
-                </div>
-
-               
-                
-
-                
-
-                <div className="input-container">
-                    <button type="submit">Update Information</button>
-                </div>
-             </form-group>
-       </div>
+      <div className="EditProfile">
+        <form action="">
+          <div className="profLabel">
+            <h1>Edit Profile</h1>
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">First Name:</label>
+            <input type="text" clasName="input-field" id="name" name="name" />
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">Last Name:</label>
+            <input type="text" clasName="input-field" id="name1" name="name1" />
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">Email Address:</label>
+            <input type="text" clasName="input-field" id="email" name="email" />
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">Phone Number:</label>
+            <input type="text" clasName="input-field" id="phone" name="phone" />
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">Home Address:</label>
+            <input type="text" clasName="input-field" id="address" name="address" />
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">City:</label>
+            <input type="text" clasName="input-field" id="city" name="city" />
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">State:</label>
+            <input type="text" clasName="input-field" id="state" name="state" />
+          </div>
+  
+          <div className="form-group">
+            <label className="labele">Zip Code:</label>
+            <input type="text" clasName="input-field" id="zip" name="zip" />
+          </div>
+  
+          <div className="input-container">
+            <button type="submit">Update Information</button>
+          </div>
+        </form>
+      </div>
     );
-}
+  }
+  
+  
 
 export default EditProfile;
