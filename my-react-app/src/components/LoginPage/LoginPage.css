@@ -1,33 +1,29 @@
+@import url('https://fonts.google.com/specimen/Play');
 
-.CreateAccount {
+.LoginPage {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    border: 3px solid #ccc;
+    border-radius: 10px;
     background-color: #041468;
   }
   
   h1 {
+    font-family: 'Play';
     color:#7f1515;
-    font-size: 2em;
-    line-height: 1.3em;
+    font-size: 3em;
   }
 
   form {
+    font-family: 'Play';
     display: flex;
     flex-direction: column;
   }
   
   
-  .label {
-    color:#b9b8b8;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
-  
   input[type="text"] {
+    font-family: 'Play';
     padding: 8px;
     border: 1px solid #df0000;;
     border-radius: 5px;
@@ -36,7 +32,7 @@
     margin-bottom: 5px;
   }
   
-  button[type="submit"] {
+  button[type="Sign In"] {
     background-color: #7f1515;
     color: #ffffff;
     margin-top: 5px;
@@ -46,10 +42,10 @@
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
   }
   
-  button[type="submit"]:hover {
+  button[type="Sign In"]:hover {
     background-color: #e98d7b;
   }
   

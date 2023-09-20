@@ -1,11 +1,9 @@
 
-.CreateAccount {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    background-color: #041468;
+.formg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
   }
   
   h1 {
@@ -13,27 +11,18 @@
     font-size: 2em;
     line-height: 1.3em;
   }
-
-  form {
-    display: flex;
-    flex-direction: column;
-  }
   
-  
-  .label {
+  .labele {
     color:#b9b8b8;
     font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-right: 10px;
   }
   
   input[type="text"] {
-    padding: 8px;
-    border: 1px solid #df0000;;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
   }
   
   button[type="submit"] {
