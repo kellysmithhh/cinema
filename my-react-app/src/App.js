@@ -1,4 +1,5 @@
 import NavBar from './components/NavBar/NavBar';
+import CreateAccount from './components/CreateAccount/CreateAccount'
 import './App.css';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <NavBar />
       <NavBar />
+      <CreateAccount />
     
     </div>
   );
