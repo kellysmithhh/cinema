@@ -1,33 +1,23 @@
-import React, {useState, useContext} from 'react';
-import './LoginPage.css'
+import './LoginPage.css';
 
-function LoginPage () {
-
+function LoginPage() {
     return (
         <div className="LoginPage">
-            <h3>Sign in to access more features of our site!</h3>
-   
-            <form>
-                <div className='credentialsbox'>
+        <form action="">
+           <div className="LogIn">
+               <h1>Sign In</h1>
+           </div>
+           <input type="text" placeholder="Email" id="email" name="email"></input>
 
-                <label for = "userEmail">Email: </label> <br/>
-                <input className = "input" type="email"/>
-                
-                <br/>
-                <label for = "userPassword">Password: </label> <br/>
-                <input className = "input" type="password" />
+           <input type="text" placeholder="Password" id="password" name="password"></input>
 
-                </div>
-                <br></br>
-                <div className='look'>
-                    <button className='accessButton' type = "submit">Login</button>
-                </div>
-                <p>Need an accout?</p>
-            
-            </form>
-            
-        </div>
-    );
+           <div className="input-container">
+               <button type="submit">Sign In</button>
+           </div>
+        </form>
+  </div>
+);
+
 }
 
 export default LoginPage;

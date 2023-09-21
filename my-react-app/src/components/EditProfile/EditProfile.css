@@ -1,0 +1,59 @@
+.EditProfile {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #041468;
+  }
+  
+  .profLabel {
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 5px;
+    color: #ccc;
+    font-size: 2em;
+    line-height: 1.3em;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .labele {
+    color: #b9b8b8;
+    font-weight: bold;
+    margin-right: 20px;
+    width: 150px;
+  }
+  
+.input-field  {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-right: 100px;
+  }
+  
+  button[type="submit"] {
+    background-color: #7f1515;
+    color: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #e98d7b;
+  }
+  
