@@ -4,6 +4,7 @@ import LoginPage from './components/LoginPage/LoginPage';
 import RegistrationConfirmation from './components/RegistrationConfirmation/RegistrationConfirmation'
 import EditProfile from './components/EditProfile/EditProfile'
 import OrderConfirmation from './components/OrderConfirmation/OrderConfirmation';
+import OrderSummary from './components/OrderSummary/OrderSummary';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
       <RegistrationConfirmation />
       <EditProfile />
       <OrderConfirmation />
+      <OrderSummary />
     
     </div>
   );

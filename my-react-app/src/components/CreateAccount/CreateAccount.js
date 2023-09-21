@@ -3,10 +3,8 @@ import './CreateAccount.css';
 function CreateAccount() {
     return (
        <div className="CreateAccount">
-             <form action="">
-                <div className="accLabel">
-                    <h1>Register an Account</h1>
-                </div>
+             <form action=""> 
+                <h1>Register an Account</h1>
                 <label className="label">First Name</label>
                 <input type="text" placeholder="Required Field" id="name" name="name"></input>
 
