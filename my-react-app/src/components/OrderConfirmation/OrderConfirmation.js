@@ -14,7 +14,7 @@ function OrderConfirmation(props) {
   return (
     <div className="OrderConfirmation">
       <h1>Thank You for Your Purchase!</h1>
-      <p>Your order has been confirmed with the following details:</p>
+      <p1>Your order has been confirmed with the following details:</p1>
 
       <div className="ConfirmationDetails">
         <p>Confirmation Number: {confirmationNumber}</p>
@@ -25,7 +25,7 @@ function OrderConfirmation(props) {
         <p>Total Cost: ${totalCost.toFixed(2)}</p>
       </div>
 
-      <p>An email receipt has been sent to your email address.</p>
+      <p1>An email receipt has been sent to your email address.</p1>
 
       <button>Confirm</button>
     </div>

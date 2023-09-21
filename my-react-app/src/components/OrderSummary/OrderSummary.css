@@ -1,15 +1,15 @@
 
-.OrderConfirmation {
+.OrderSummary {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 3px solid #ccc;
+    border: 3px solid #ff00008b;
     border-radius: 5px;
-    background-color: #ff00008b;
+    background-color: #000000;
     text-align: center;
   }
   
-  .OrderConfirmation h1 {
+  .OrderSummary h1 {
     font-family: 'Play';
     font-size: 28px;
     color: #ffffff;
@@ -25,14 +25,19 @@
     margin: 10px 0;
   }
   
-  .OrderConfirmation p {
+  .SummaryDetails p {
     font-family: 'Play';
     font-size: 16px;
     color: #000000;
     margin: 10px 0;
   }
+
   
-  .ConfirmationDetails {
+  
+  .SummaryDetails {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
     font-family: 'Play';
     text-align: left;
     margin: 20px 0;
@@ -41,22 +46,30 @@
     border-radius: 5px;
     background-color: #ffffff;
   }
+
+  .Button-Options  {
+    display: flex;
+    justify-content: space-between;
+  }
   
-  .OrderConfirmation button {
+  
+  .Button-Options button {
+    width: 110px;
     font-family: 'Play';
-    background-color: #000000;
+    background-color: #7f1515;
     color: #ffffff;
     border: none;
-    margin-top: 20px;
-    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 20px;
+    padding: 10px 10px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
   
-  .OrderConfirmation button:hover {
-    background-color: #e6aaaae1;
+  .Button-Options button:hover {
+    background-color: #e98d7b;
   }
   

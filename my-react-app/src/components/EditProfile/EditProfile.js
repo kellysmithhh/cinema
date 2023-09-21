@@ -1,12 +1,11 @@
+import React from 'react';
 import './EditProfile.css';
 
 function EditProfile() {
     return (
       <div className="EditProfile">
         <form action="">
-          <div className="profLabel">
             <h1>Edit Profile</h1>
-          </div>
   
           <div className="form-group">
             <label className="labele">First Name:</label>

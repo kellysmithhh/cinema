@@ -3,9 +3,9 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 2px solid #ccc;
+    border: 3px solid #ff00008b;
     border-radius: 5px;
-    background-color: #041468;
+    background-color: #000000;
   }
   
   h1 {
@@ -17,6 +17,7 @@
   form {
     display: flex;
     flex-direction: column;
+    background-color: #000000;
   }
   
   
@@ -29,7 +30,7 @@
   
   input[type="text"] {
     padding: 8px;
-    border: 1px solid #df0000;;
+    border: 1px solid #df0000;
     border-radius: 5px;
     font-size: 16px;
     margin-top: 5px;

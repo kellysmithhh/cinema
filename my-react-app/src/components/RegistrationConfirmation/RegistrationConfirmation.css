@@ -4,9 +4,9 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 3px solid #ccc;
+    border: 3px solid #ff00008b;
     border-radius: 10px;
-    background-color: #041468;
+    background-color: #000000;
   }
   
   h1 {
@@ -25,8 +25,7 @@
     color:#ffffff;
     font-family: 'Play';
     font-weight: bold;
-    margin-bottom: 0px;
-    margin-top: 5px;
+    margin-bottom: 7px;
     padding: 10px;
   }
   
