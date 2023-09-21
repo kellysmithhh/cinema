@@ -1,0 +1,58 @@
+.LoginPage {
+    text-align: center;
+    
+}
+
+.LoginPage h3 {
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+.credentialsbox {
+    display: block;
+    margin: auto;
+    background-color: #D8D8D8;
+    width: 20%;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.credentialsbox {
+    padding: .5em;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.input {
+    border-radius: 15px;
+    border: 0;
+    padding: 0 0 0 0;
+    height: 25px;
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+.look {
+    margin: auto;
+    display: block;
+    background-color: #F45050;
+    width: 10%;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.accessButton {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
+    padding: .75em;
+    background:none;
+    border:none;
+    cursor: pointer;
+    color: white;
+}
+
+.link{
+    text-decoration: none;
+    color:#F45050;
+}
