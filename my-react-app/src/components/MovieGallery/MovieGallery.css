@@ -1,5 +1,7 @@
 .MovieGallery{
     height: 90vh;
     margin: auto;
-    width: 50%;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
 }

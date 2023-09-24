@@ -1,14 +1,14 @@
 import NavBar from '../NavBar/NavBar';
 import MovieGallery from '../MovieGallery/MovieGallery';
 import './HomePage.css';
-import InitialPreview from '../InitialPreview/InitialPreview';
+import InitialPreviewCarousel from '../InitialPreviewCarousel/InitialPreviewCarousel';
 
 function HomePage() {
 
     return (
         <div className="HomePage">
             <NavBar />
-            <InitialPreview />
+            <InitialPreviewCarousel />
             <div className ="Gallery">
                 <h1>Currently Showing</h1>
                 <MovieGallery />

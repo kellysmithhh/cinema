@@ -1,6 +1,6 @@
 import './InitialPreview.css';
 
-function InitialPreview() {
+function InitialPreview({item}) {
 
     return (
         <div className="initialpreview">
