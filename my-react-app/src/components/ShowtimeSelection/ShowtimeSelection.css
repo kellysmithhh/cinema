@@ -1,10 +1,7 @@
-/* ShowtimeSelection.css */
-
 .ShowtimeSelection {
     font-family:'Play';
-    margin: 0 auto;
-    padding: 20px;
-    border: 5px solid #7f1515; /* Add a box around the whole section */
+    border: 5px solid #7f1515; 
+    padding: 0px 0px;
     text-align: center;
     font-size: 2em;
   }
@@ -15,7 +12,7 @@
     width: 100%;
     height: 5px;
     background-color: #7f1515;
-    margin: 10px auto;
+    margin: 20px auto;
   }
   
   .movie-title {
@@ -31,7 +28,7 @@
   }
   
   .showtime-times {
-    display: flex; /* Display showtimes in a row */
+    display: flex; 
     justify-content: center;
   }
   
@@ -40,7 +37,7 @@
   }
 
   .showtime-button {
-    margin: 15px; /* Increased margin for greater separation */
+    margin: 15px; 
     padding: 10px 30px;
     background-color: #7f1515;
     color: #fff;

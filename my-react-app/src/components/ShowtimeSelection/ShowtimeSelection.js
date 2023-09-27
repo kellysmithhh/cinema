@@ -1,12 +1,9 @@
-// ShowtimeSelection.jsx
-
 import React from 'react';
 import './ShowtimeSelection.css';
 
 function ShowtimeSelection() {
   const movieTitle = 'Oppenheimer';
 
-  // Define showtimes for three different dates
   const showtimesByDate = [
     {
       date: 'October 3, 2023',
