@@ -21,7 +21,7 @@ function ShowtimeSelection() {
 
   return (
     <div className="ShowtimeSelection">
-      <h2>Showtimes</h2>
+      <h4>Showtimes</h4>
       <div className="movie-title">{movieTitle}</div>
       {showtimesByDate.map((showtime, index) => (
         <div key={index} className="date-showtimes">
