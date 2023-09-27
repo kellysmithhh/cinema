@@ -1,0 +1,172 @@
+/* CheckoutUI.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #fff; /* White text color */
+  }
+  
+  .CheckoutUI {
+    display: flex;
+    justify-content: space-between;
+   align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .LeftSection,
+  .MiddleSection,
+  .RightSection {
+    flex: 1;
+    padding: 20px;
+    background-color: #ff00008b;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0 10px; /* Space between sections */
+  }
+  
+  
+  .LeftSection h2,
+  .MiddleSection h2,
+  .RightSection h2 {
+    font-family: 'Play';
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .LeftSection p,
+  .MiddleSection label,
+  .RightSection ul {
+    font-family: 'Play';
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .LeftSection input[type="text"],
+  .MiddleSection input[type="text"],
+  .MiddleSection select,
+  .MiddleSection textarea {
+    font-family: 'Play';
+    width: 100%;
+    padding: 1dvh;
+    padding-right: 0px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .MiddleSection {
+    text-align: center;
+  }
+
+  .AddCard {
+    background-color: #ffffff; /* Red background color */
+    color: #000000;
+    font-family: 'Play';
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+  }
+
+  .AddCard:hover {
+    background-color: #e98d7b; 
+  }
+
+
+  .PromotionCodeInput {
+    display: flex;
+    align-items: center;
+  }
+
+  .PromotionCodeInput input[type="text"] {
+    flex: 1; /* Allow the input to take available space */
+    padding: 10px;
+    margin-right: 10px; /* Add spacing between input and button */
+  }
+  
+  .PromotionCodeInput button_1 {
+    font-family: 'Play';
+    background-color: #ffffff; 
+    color: #000000; 
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 10px 20px; 
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+  }  
+
+  button_1:hover {
+    background-color: #e98d7b; 
+  }
+  
+
+  .OrderSummaryList {
+    font-family: 'Play';
+    width: 100%;
+    padding: 1dvh;
+    padding-right: 0px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 2;
+  }
+  
+  .ButtonContainer {
+    display: flex;
+    flex-direction: column; /* Buttons stacked vertically */
+    align-items: center; /* Center horizontally */
+  }
+  
+  .ConfirmButton {
+    font-family: 'Play';
+    /* Confirm Button styling */
+    margin-top: 8px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 0px 40%; /* Increase padding to make it bigger */
+    font-size: 30px; /* Increase font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+
+
+
+  .CancelButton {
+    /* Cancel Button styling */
+    font-family: 'Play';
+    margin-top: 15px;
+    background-color: #333;
+    padding: 10px 10px; /* Increase padding to make it bigger */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 10px; /* Increase font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ConfirmButton:hover {
+    background-color: #e98d7b; 
+  }
+
+  .CancelButton:hover {
+    background-color: #000000;
+  }
+  
