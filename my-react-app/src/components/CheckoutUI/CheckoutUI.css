@@ -1,11 +1,10 @@
-/* CheckoutUI.css */
 
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #000000;
-    color: #fff; /* White text color */
+    color: #fff; 
   }
   
   .CheckoutUI {
@@ -25,7 +24,7 @@ body {
     border: 1px solid #000;
     border-radius: 5px;
     box-sizing: border-box;
-    margin: 0 10px; /* Space between sections */
+    margin: 0 10px; 
   }
   
   
@@ -67,7 +66,7 @@ body {
   }
 
   .AddCard {
-    background-color: #ffffff; /* Red background color */
+    background-color: #ffffff; 
     color: #000000;
     font-family: 'Play';
     border: none;
@@ -90,9 +89,9 @@ body {
   }
 
   .PromotionCodeInput input[type="text"] {
-    flex: 1; /* Allow the input to take available space */
+    flex: 1; 
     padding: 10px;
-    margin-right: 10px; /* Add spacing between input and button */
+    margin-right: 10px; 
   }
   
   .PromotionCodeInput button_1 {
@@ -128,8 +127,8 @@ body {
   
   .ButtonContainer {
     display: flex;
-    flex-direction: column; /* Buttons stacked vertically */
-    align-items: center; /* Center horizontally */
+    flex-direction: column; 
+    align-items: center; 
   }
   
   .ConfirmButton {
@@ -150,15 +149,14 @@ body {
 
 
   .CancelButton {
-    /* Cancel Button styling */
     font-family: 'Play';
     margin-top: 15px;
     background-color: #292929;
-    padding: 12px 12px; /* Increase padding to make it bigger */
+    padding: 12px 12px; 
     color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 10px; /* Increase font size */
+    font-size: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }

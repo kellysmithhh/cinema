@@ -1,5 +1,5 @@
 import React from 'react';
-import './CheckoutUI.css'; // Import your CSS file
+import './CheckoutUI.css'; 
 
 function CheckoutUI() {
   return (
