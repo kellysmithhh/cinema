@@ -13,7 +13,6 @@ function App() {
       <CheckoutUI />
       <TheaterBooking />
       <ShowtimeSelection />
-
     </div>
   );
 }

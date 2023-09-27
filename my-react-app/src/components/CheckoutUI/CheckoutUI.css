@@ -39,8 +39,7 @@ body {
   }
   
   .LeftSection p,
-  .MiddleSection label,
-  .RightSection ul {
+  .MiddleSection label {
     font-family: 'Play';
     font-size: 16px;
     margin-bottom: 10px;
@@ -114,13 +113,11 @@ body {
 
   .OrderSummaryList {
     font-family: 'Play';
-    width: 100%;
+    width: 95%;
     padding: 1dvh;
-    padding-right: 0px;
+    color:#ffffff;
     margin-bottom: 10px;
-    margin-right: 10px;
-    border: 1px solid #000;
-    border-radius: 5px;
+    border: 1.5px solid #000;
     font-size: 16px;
     line-height: 2;
   }
