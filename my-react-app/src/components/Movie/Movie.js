@@ -1,6 +1,21 @@
 import './Movie.css';
+import React from "react"
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function Movie() {
+
+    const[movies,setMovies] = useState([])
+
+
+    useEffect(()=> {
+        fetch("https://localhost:8080/movie/getAll")
+        .then(res=>res.json())
+        .then((result)=>{
+            setMovies(result);
+        }
+        )
+    },[])
 
     return (
         <div className="Movie">
