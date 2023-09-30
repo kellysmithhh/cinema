@@ -1,19 +1,23 @@
 import './App.css';
 import HomePage from './components/HomePage/HomePage';
-import OrderConfirmation from './components/OrderConfirmation/OrderConfirmation'
-import CheckoutUI from './components/CheckoutUI/CheckoutUI';
-import TheaterBooking from './components/TheaterBooking/TheaterBooking';
-import ShowtimeSelection from './components/ShowtimeSelection/ShowtimeSelection';
+import NavBar from './components/NavBar/NavBar';
+import LoginPage from './components/LoginPage/LoginPage'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-      <OrderConfirmation />
-      <CheckoutUI />
-      <TheaterBooking />
-      <ShowtimeSelection />
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar />
+
+        <div className="contents">
+          <Routes>
+            <Route path ="/" element ={<HomePage />}/>
+            <Route path ="/LoginPage" element = {<LoginPage />}/>
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
