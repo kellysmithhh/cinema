@@ -1,6 +1,14 @@
+import {useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 function LoginPage() {
+
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+        let path = `/ManagerView`; 
+        navigate(path);
+    }
+
     return (
         <div className="LoginPage">
         <form action="">
@@ -12,11 +20,12 @@ function LoginPage() {
            <input type="text" placeholder="Password" id="password" name="password"></input>
 
            <div className="input-container">
-               <button type="submit">Sign In</button>
+               <button onClick = {routeChange} type="submit">Sign In</button>
            </div>
         </form>
   </div>
 );
+
 
 }
 

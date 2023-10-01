@@ -11,6 +11,24 @@
   padding-bottom: 22px;
  }
 
+ .left{
+  display: flex;
+  justify-content: space-between;
+ }
+ 
+ button[type="submit"] {
+  background-color: #7f1515;
+  color: #ffffff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
  .navbar-flexbox {
   margin: 0;
   width: 100%;
