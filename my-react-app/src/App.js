@@ -3,6 +3,7 @@ import HomePage from './components/HomePage/HomePage';
 import NavBar from './components/NavBar/NavBar';
 import LoginPage from './components/LoginPage/LoginPage'
 import ManagerView from './components/ManagerView/ManagerView';
+import Browse from './components/Browse/Browse';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path ="/" element ={<HomePage />}/>
             <Route path ="/LoginPage" element = {<LoginPage />}/>
             <Route path ="/ManagerView" element ={<ManagerView />}/>
+            <Route path ="/Browse" element ={<Browse/>}/>
           </Routes>
         </div>
       </div>
