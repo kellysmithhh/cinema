@@ -21,6 +21,12 @@
     height: 72%;
 }
 
+.movieImage img{
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
 
 .movieInfo{
     max-width: 100%;
@@ -43,7 +49,7 @@
     justify-content: space-evenly;
 }
 
-.Movie button {
+.Movie button[type="Submit"] {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background-color: white; /* Set background color */
     color: black; /* Set text color */

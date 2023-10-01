@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage/LoginPage'
 import ManagerView from './components/ManagerView/ManagerView';
 import Browse from './components/Browse/Browse';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import MovieInformation from './components/MovieInformation/MovieInformation';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path ="/LoginPage" element = {<LoginPage />}/>
             <Route path ="/ManagerView" element ={<ManagerView />}/>
             <Route path ="/Browse" element ={<Browse/>}/>
+            <Route path ="/MovieInformation" element ={<MovieInformation/>}/>
           </Routes>
         </div>
       </div>
