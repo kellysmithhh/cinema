@@ -22,6 +22,13 @@ public class MovieServiceImplementation implements MovieService{
     public List<Movie> getAllmovies() {
         return movieRepository.findAll();
     }
+
+    @Override
+    public List<Movie> getMoviesByTitle(String title) {
+        System.out.println(title);
+        return movieRepository.findByTitle(title);
+    }
+    
     
     
 }

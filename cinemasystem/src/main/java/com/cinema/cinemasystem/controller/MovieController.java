@@ -29,4 +29,9 @@ public class MovieController {
     public List<Movie> getAllMovies(){
         return movieService.getAllmovies();
     }
+
+    @GetMapping("/search")
+    public List<Movie> getMoviesByTitle(@RequestBody String title){
+        return movieService.getMoviesByTitle(title);
+    }
 }
