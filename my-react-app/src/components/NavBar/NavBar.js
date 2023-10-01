@@ -10,15 +10,23 @@ function NavBar() {
                     <Link to = "/">
                         <h1>Cinema E-Booking</h1>
                     </Link>
-                    
-                <div className="navbar-buttons">
-                    <ul>
-                        <li>
-                            <Link to = "/LoginPage">Sign In</Link>
-                        </li>
-                      
-                    </ul>
-                </div>
+
+                <div className ="left">
+                    <div className = "searchBar">
+                        <input type='text' placeholder='Movie Name..'/>
+                        <button type='submit'>Search</button>
+                    </div>
+
+                    <div className="navbar-buttons">
+                        <ul>
+                            <li>
+                                <Link to = "/LoginPage">Sign In</Link>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                </div> 
+                
             </div>
         </div>
         </div>
