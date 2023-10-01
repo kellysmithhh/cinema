@@ -1,0 +1,75 @@
+
+.OrderSummary {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid #ff00008b;
+    border-radius: 5px;
+    background-color: #000000;
+    text-align: center;
+  }
+  
+  .OrderSummary h1 {
+    font-family: 'Play';
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 6px;
+    margin-top: 10px;
+  }
+
+
+  p1 {
+    font-family: 'Play';
+    font-size: 16px;
+    color: #ffffff;
+    margin: 10px 0;
+  }
+  
+  .SummaryDetails p {
+    font-family: 'Play';
+    font-size: 16px;
+    color: #000000;
+    margin: 10px 0;
+  }
+
+  
+  
+  .SummaryDetails {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    font-family: 'Play';
+    text-align: left;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+
+  .Button-Options  {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  .Button-Options button {
+    width: 110px;
+    font-family: 'Play';
+    background-color: #7f1515;
+    color: #ffffff;
+    border: none;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  
+  .Button-Options button:hover {
+    background-color: #e98d7b;
+  }
+  

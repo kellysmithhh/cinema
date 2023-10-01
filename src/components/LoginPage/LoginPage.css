@@ -1,0 +1,52 @@
+@import url('https://fonts.google.com/specimen/Play');
+
+.LoginPage {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 3px solid #ff00008b;
+    border-radius: 10px;
+    background-color: #000000;
+  }
+  
+  h1 {
+    font-family: 'Play';
+    color:#ffffff;
+    font-size: 3em;
+  }
+
+  form {
+    font-family: 'Play';
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  input[type="text"] {
+    font-family: 'Play';
+    padding: 8px;
+    border: 1px solid #df0000;;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  button[type="Sign In"] {
+    background-color: #7f1515;
+    color: #ffffff;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  
+  button[type="Sign In"]:hover {
+    background-color: #e98d7b;
+  }
+  
+
