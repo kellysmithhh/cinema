@@ -23,7 +23,13 @@ function AddMovie() {
                 <label className="label">Synopsis</label>
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
 
-                <label className="label">Link to Trailer</label>
+                <label className="label">Reviews</label>
+                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
+
+                <label className="label">Trailer Image URL</label>
+                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
+        
+                <label className="label">Trailer Link URL</label>
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
 
                 <label className="label">Film Rating</label>
@@ -33,6 +39,12 @@ function AddMovie() {
                     <option>PG-13</option>
                     <option>R</option>
                 </select>
+
+                <label className="label">Show Dates</label>
+                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
+
+                <label className="label">Show Times</label>
+                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
 
                 <div className="input-container">
                     <button type="submit">Add Movie</button>
