@@ -1,0 +1,31 @@
+@import url('https://fonts.google.com/specimen/Play');
+
+.RegistrationConfirmation {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid #ff00008b;
+    border-radius: 10px;
+    background-color: #000000;
+  }
+  
+  h1 {
+    font-family: 'Play';
+    color:#7f1515;
+    font-size: 3em;
+  }
+
+  form {
+    font-family: 'Play';
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label1 {
+    color:#ffffff;
+    font-family: 'Play';
+    font-weight: bold;
+    margin-bottom: 7px;
+    padding: 10px;
+  }
+  

@@ -1,0 +1,25 @@
+.ManagerView {
+    display: flex;
+    justify-content: space-between ;
+    background-color: black;
+}
+
+#MVRight{
+    border: 1px;
+    border-color: aliceblue;
+}
+
+
+.middle{
+    border: 1px;
+    border-color: aliceblue;
+}
+.top{
+    text-align: center;
+}
+
+#MVLeft{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}

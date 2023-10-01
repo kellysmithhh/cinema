@@ -1,0 +1,62 @@
+
+.OrderConfirmation {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    background-color: #ff00008b;
+    text-align: center;
+  }
+  
+  .OrderConfirmation h1 {
+    font-family: 'Play';
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 6px;
+    margin-top: 10px;
+  }
+
+
+  p1 {
+    font-family: 'Play';
+    font-size: 16px;
+    color: #ffffff;
+    margin: 10px 0;
+  }
+  
+  .OrderConfirmation p {
+    font-family: 'Play';
+    font-size: 16px;
+    color: #000000;
+    margin: 10px 0;
+  }
+  
+  .ConfirmationDetails {
+    font-family: 'Play';
+    text-align: left;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+  
+  .OrderConfirmation button {
+    font-family: 'Play';
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .OrderConfirmation button:hover {
+    background-color: #e6aaaae1;
+  }
+  
