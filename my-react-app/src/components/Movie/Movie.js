@@ -1,6 +1,13 @@
 import './Movie.css';
+import {useNavigate } from 'react-router-dom';
 
 function Movie() {
+
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+        let path = `/MovieInformation`; 
+        navigate(path);
+    }
 
     return (
         <div className="Movie">
@@ -19,7 +26,7 @@ function Movie() {
                     </div>
                     
                     <div className='button'>
-                        <button>Book Ticket</button>
+                        <button onClick = {routeChange}>Get Info</button>
                     </div>
                     
                 </div>
