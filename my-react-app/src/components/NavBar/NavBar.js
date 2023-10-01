@@ -11,14 +11,12 @@ function NavBar() {
                         <h1>Cinema E-Booking</h1>
                     </Link>
 
-                <div className ="left">
-                    <div className = "searchBar">
-                        <input type='text' placeholder='Movie Name..'/>
-                        <button type='submit'>Search</button>
-                    </div>
-
-                    <div className="navbar-buttons">
+            
+                <div className="navbar-buttons">
                         <ul>
+                        <li>
+                                <Link to = "/Browse">Browse</Link>
+                            </li>
                             <li>
                                 <Link to = "/LoginPage">Sign In</Link>
                             </li>
@@ -28,7 +26,6 @@ function NavBar() {
                 </div> 
                 
             </div>
-        </div>
         </div>
     );
 
