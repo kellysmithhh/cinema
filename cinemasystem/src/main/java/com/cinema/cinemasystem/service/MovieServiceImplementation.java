@@ -25,7 +25,6 @@ public class MovieServiceImplementation implements MovieService{
 
     @Override
     public List<Movie> getMoviesByTitle(String title) {
-        System.out.println(title);
         return movieRepository.findByTitle(title);
     }
     
