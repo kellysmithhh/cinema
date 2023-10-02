@@ -36,6 +36,7 @@
     background-color: #7f1515;
     color: #ffffff;
     margin-top: 5px;
+    margin-left: 15px;
     margin-bottom: 5px;
     padding: 10px;
     border: none;
@@ -43,7 +44,14 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.5s ease;
+    align-items: center;
   }
+
+  .input-container5 {
+    align-self: center;
+  }
+
+  
   
   button[type="Sign In"]:hover {
     background-color: #e98d7b;

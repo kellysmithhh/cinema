@@ -9,7 +9,6 @@
     border-color: aliceblue;
 }
 
-
 .middle{
     border: 1px;
     border-color: aliceblue;
@@ -22,4 +21,20 @@
     display: flex;
     flex-direction: column;
     width: 700px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid red;
+    padding: 8px;
+    text-align: center;
+}
+
+#editInfo{
+    margin-right: 10px;
 }
