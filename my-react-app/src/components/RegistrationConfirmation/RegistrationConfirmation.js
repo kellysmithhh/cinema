@@ -17,7 +17,7 @@ function RegistrationConfirmation() {
            <div className="ThankYou">
                <h1>Thank You!</h1>
            </div>
-           <label1 className="label1">You have successfully registered</label1>
+           <label1 className="label1">You have successfully registered!</label1>
 
            <div className="input-container12">
                <button type="submit" onSubmit={routeChange}>Sign In</button>
