@@ -12,7 +12,7 @@ function CreateAccount() {
     return (
        <div className="CreateAccount">
              <form action=""> 
-                <h1>Register an Account</h1>
+                <h1>Register an Account!</h1>
                 <label className="label">First Name</label>
                 <input type="text" placeholder="Required Field" id="name" name="name"></input>
 
