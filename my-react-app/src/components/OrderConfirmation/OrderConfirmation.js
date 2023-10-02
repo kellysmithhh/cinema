@@ -1,5 +1,6 @@
 import React from 'react';
 import './OrderConfirmation.css';
+import { useNavigate } from 'react-router-dom';
 
 function OrderConfirmation(props) {
   const {
@@ -10,7 +11,12 @@ function OrderConfirmation(props) {
     ticketTypes = [],
     totalCost = 0,
   } = props;
-
+ 
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/`; 
+    navigate(path);
+  }
   return (
     <div className="OrderConfirmation">
       <h1>Thank You for Your Purchase!</h1>
@@ -27,7 +33,7 @@ function OrderConfirmation(props) {
 
       <p1>An email receipt has been sent to your email address.</p1>
 
-      <button>Confirm</button>
+      <button onClick={routeChange}>Confirm</button>
     </div>
   );
 }

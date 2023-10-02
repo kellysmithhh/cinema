@@ -1,5 +1,6 @@
 import React from 'react';
 import './OrderSummary.css';
+import { useNavigate } from 'react-router-dom';
 
 function OrderSummary(props) {
   const {
@@ -12,6 +13,12 @@ function OrderSummary(props) {
     priceOfEachTicket = [],
     totalCost = 0,
   } = props;
+
+  let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `/CheckOut`; 
+      navigate(path);
+    }
 
   return (
     <div className="OrderSummary">
@@ -37,7 +44,7 @@ function OrderSummary(props) {
             <button className="delete-ticket-button">Delete a Ticket</button>
         </div>
         <div className='Button1'>
-            <button className="confirm-order-button">Continue to Checkout</button>
+            <button onClick = {routeChange} className="confirm-order-button">Continue to Checkout</button>
         </div>
        
     </div>

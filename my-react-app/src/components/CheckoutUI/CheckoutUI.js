@@ -1,7 +1,15 @@
 import React from 'react';
 import './CheckoutUI.css'; 
+import { useNavigate } from 'react-router-dom';
 
 function CheckoutUI() {
+
+  let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `/OrderConfirmation`; 
+      navigate(path);
+    }
+
   return (
     <div className="CheckoutUI">
       <div className="LeftSection">
@@ -61,7 +69,7 @@ function CheckoutUI() {
         </div>
 
         <div className="ButtonContainer">
-        <button className="ConfirmButton">Place Order </button>
+        <button onClick = {routeChange} className="ConfirmButton">Place Order </button>
         <button className="CancelButton">Cancel</button>
 
       </div>

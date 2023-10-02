@@ -1,10 +1,18 @@
 import './CreateAccount.css';
+import { useNavigate } from 'react-router-dom';
 
 function CreateAccount() {
+
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+        let path = `/RegisterConfirmation`; 
+        navigate(path);
+    }
+
     return (
        <div className="CreateAccount">
              <form action=""> 
-                <h1>Register an Account</h1>
+                <h1>Register an Account!</h1>
                 <label className="label">First Name</label>
                 <input type="text" placeholder="Required Field" id="name" name="name"></input>
 
@@ -36,7 +44,7 @@ function CreateAccount() {
                 <input type="text" placeholder="Zip Code" id="zip" name="zip"></input>
 
                 <div className="input-container">
-                    <button type="submit">Register</button>
+                    <button onClick = {routeChange} type="submit">Register</button>
                 </div>
              </form>
        </div>

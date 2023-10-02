@@ -11,7 +11,6 @@ function HomePage() {
                 <h1>Currently Showing</h1>
                 <MovieGallery />
                 <h1>Coming Soon</h1>
-                <MovieGallery />
             </div>
         </div>
     );

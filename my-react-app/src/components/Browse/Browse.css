@@ -1,0 +1,26 @@
+.browse{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: max-content;
+    align-items: center;
+}
+
+.Results{
+    background-color: black;
+}
+.searchBar{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.searchBar input{
+    height: 50px;
+    font-size: 35px;
+}
+
+.searchBar button{
+    padding: 16px;
+    font-size: 35px;
+}
+
