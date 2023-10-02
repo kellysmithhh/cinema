@@ -1,5 +1,6 @@
 import React from 'react';
 import './TheaterBooking.css';
+import { useNavigate } from 'react-router-dom';
 
 function TheaterBooking() {
   const rows = ['A', 'B', 'C', 'D', 'E'];
@@ -18,6 +19,12 @@ function TheaterBooking() {
     }
     return seatCheckboxes;
   };
+
+  let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `/OrderSummary`; 
+      navigate(path);
+    }
 
   return (
     <div className="TheaterBooking">
@@ -41,7 +48,7 @@ function TheaterBooking() {
             <input type="number" id="childTickets" name="childTickets" min="0" />
             <label htmlFor="seniorTickets">Senior Tickets ($12.99):</label>
             <input type="number" id="seniorTickets" name="seniorTickets" min="0" />
-            <button>Book Tickets</button>
+            <button onClick={routeChange}>Book Tickets</button>
         </div>
      </div>
 </div>

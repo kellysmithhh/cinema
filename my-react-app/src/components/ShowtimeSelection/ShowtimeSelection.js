@@ -1,8 +1,15 @@
 import React from 'react';
 import './ShowtimeSelection.css';
+import { useNavigate } from 'react-router-dom';
 
 function ShowtimeSelection() {
   const movieTitle = 'Oppenheimer';
+
+  let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `/TheaterBooking`; 
+      navigate(path);
+    }
 
   const showtimesByDate = [
     {
@@ -28,7 +35,7 @@ function ShowtimeSelection() {
           <div className="showtime-date">{showtime.date}</div>
           <div className="showtime-times">
             {showtime.times.map((time, idx) => (
-              <button key={idx} className="showtime-button">
+              <button onClick={routeChange} key={idx} className="showtime-button">
                 {time}
               </button>
             ))}

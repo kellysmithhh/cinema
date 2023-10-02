@@ -9,6 +9,12 @@ function LoginPage() {
         navigate(path);
     }
 
+    let navigateTwo = useNavigate(); 
+    const routeChangeTwo = () =>{ 
+        let path = `/CreateAccount`; 
+        navigateTwo(path);
+    }
+
     return (
         <div className="LoginPage">
         <form action="">
@@ -21,6 +27,7 @@ function LoginPage() {
 
            <div className="input-container">
                <button onClick = {routeChange} type="submit">Sign In</button>
+               <button onClick = {routeChangeTwo} type="submit">Create Account</button>
            </div>
         </form>
   </div>

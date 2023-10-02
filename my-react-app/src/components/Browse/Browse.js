@@ -2,6 +2,7 @@ import './Browse.css';
 import React from "react"
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Movie from '../Movie/Movie';
   
 function Browse() {
 
@@ -26,14 +27,22 @@ function Browse() {
       };
 
     return (
-    
-         <div className = "searchBar">
-            <input type='text' placeholder='Movie Name..' id='input'value={userSearch} onChange={(e)=>setSearch(e.target.value)}/>
-             <button type='submit'onClick={handleClick}>Search</button>
-             {movies.map(movie =>(
-                <h3>{movie.title} {movie.id}</h3>
-             ))}
+      <div className = "browse">
+
+        <div className = "searchBar">
+                    <input type='text' placeholder='Movie Name..' id='input'value={userSearch} onChange={(e)=>setSearch(e.target.value)}/>
+                    <button type='submit'onClick={handleClick}>Search</button>
         </div>
+
+        <div className='Results'>
+            {movies.map(movie =>(
+                <Movie movie = {movie} />
+            ))}
+        </div>
+        
+
+      </div>
+        
 
     );
 
