@@ -6,6 +6,7 @@ public class Customer {
     String password;
     String phone;
     String status; // Type Status
-    int shipping_address_id;
+    int home_address_id;
+    int paymentCard_id;
     
 }
