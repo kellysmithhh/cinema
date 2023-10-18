@@ -14,16 +14,16 @@ public class Movie {
     @Column(name = "title")
     private String title;
     private String category;
-    private String cast; // change to array 
+    private String cast; 
     private String director;
     private String producer;
     private String synopsis;
-    private String reviews; // change to array
+    private String reviews; 
     private String trailer_image;
     private String trailer_link;
-    private String MPAA_rating_code;
-    private String show_dates; // change to array 
-    private String show_times; // change to array
+    private String MPAA_rating_code; // Type: Rating enumerator
+    private String show_dates; 
+    private String show_times;
 
     public int getId() {
         return id;
