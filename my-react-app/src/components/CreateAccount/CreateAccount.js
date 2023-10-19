@@ -10,7 +10,7 @@ function CreateAccount() {
     // Customer
     const[email,setEmail] = useState('')
     const[phoneNum,setPhoneNum] = useState('')
-    const[password,setPassword] = useState('') // don't svae as plain text
+    const[password,setPassword] = useState('') // don't save as plain text
 
     // PaymentCard
     const[cardType,setCardType] = useState('')
@@ -24,13 +24,60 @@ function CreateAccount() {
     const[state,setState] = useState('')
     const[zip,setZip] = useState('')
 
-
-
     let navigate = useNavigate(); 
-    const routeChange = () =>{ 
+    const handleClick = () =>{ 
+
+        const user={first_name,last_name}
+        console.log(user)
+        /*fetch("http://localhost:8080/user/add",{ //route not implemented yet
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(user)
+        }).then(()=>{
+            console.log("New user added.")
+        })
+        */
+
+        const customer={email,phoneNum,password}
+        console.log(customer)
+        /*fetch("http://localhost:8080/customer/add",{ //route not implemented yet
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(customer)
+        }).then(()=>{
+            console.log("New customer added.")
+        })
+        */
+        
+        if ((cardType || cardNum || expiration || billingAddr) !== '') {
+            const paymentCard={cardType,cardNum,expiration,billingAddr}
+            console.log(paymentCard)
+            /*fetch("http://localhost:8080/paymentCard/add",{ //route not implemented yet
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(paymentCard)
+            }).then(()=>{
+                console.log("New paymentCard added.")
+            })
+            */
+        }
+
+        if ((street || city || state || zip) !== '') {
+            const address={street,city,state,zip}
+            console.log(address)
+            /*fetch("http://localhost:8080/address/add",{ //route not implemented yet
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(address)
+            }).then(()=>{
+                console.log("New address added.")
+            })
+            */
+        }
+
         let path = `/RegisterConfirmation`; 
         navigate(path);
-    }
+    } // handleClick
 
     return (
        <div className="CreateAccount">
@@ -67,7 +114,7 @@ function CreateAccount() {
                 <input type="text" placeholder="Zip Code" id="zip" name="zip" value={zip} onChange={(e)=>setZip(e.target.value)}></input>
 
                 <div className="input-container8">
-                    <button onClick = {routeChange} type="submit">Register</button>
+                    <button onClick = {handleClick} type="submit">Register</button>
                 </div>
              </form>
        </div>
