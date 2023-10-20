@@ -18,6 +18,7 @@ public class EmailServiceController {
     @PostMapping("/send/{address}")
     public String send(@PathVariable String address) {
         emailService.sendEmail(address);
+        emailService.getCode();
         return "email sent";
     }
 }

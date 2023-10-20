@@ -76,14 +76,14 @@ function CreateAccount() {
         }
 
         const apiUrl = `http://localhost:8080/email/send/${email}`;
-        /*fetch(apiUrl, {
+        fetch(apiUrl, {
             method:"POST",
             headers:{"Content-Type":"application/json"}})
             .then(()=>{console.log("New email sent.")})
             .catch(error => {
                 console.error('Error fetching data:', error);
               });
-        */
+        
        
         let path = `/RegisterConfirmation`; 
         navigate(path);
