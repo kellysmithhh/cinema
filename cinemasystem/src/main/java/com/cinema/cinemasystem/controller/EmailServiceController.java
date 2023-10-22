@@ -15,10 +15,9 @@ public class EmailServiceController {
     @Autowired
     private EmailService emailService;
 
-    @PostMapping("/send/{address}")
-    public String send(@PathVariable String address) {
-        emailService.sendEmail(address);
-        emailService.getCode();
+    @PostMapping("/send/{address}/{code}")
+    public String send(@PathVariable String address, @PathVariable int code) {
+        emailService.sendEmail(address, code);
         return "email sent";
     }
 }

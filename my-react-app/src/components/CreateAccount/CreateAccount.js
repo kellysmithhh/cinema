@@ -24,6 +24,10 @@ function CreateAccount() {
     const[state,setState] = useState('')
     const[zip,setZip] = useState('')
 
+    function generateCode() {
+        return Math.floor(1000 + Math.random() * 9000);
+    }
+
     let navigate = useNavigate(); 
     const handleClick = () =>{ 
 
@@ -75,7 +79,8 @@ function CreateAccount() {
             */
         }
 
-        const apiUrl = `http://localhost:8080/email/send/${email}`;
+        const verificationCode = generateCode();
+        const apiUrl = `http://localhost:8080/email/send/${email}/${verificationCode}`;
         fetch(apiUrl, {
             method:"POST",
             headers:{"Content-Type":"application/json"}})

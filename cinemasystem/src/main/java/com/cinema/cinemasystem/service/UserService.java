@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public boolean register() {
-
+        return false;
     }
 
     public boolean startSession(Long id) {
@@ -43,7 +43,7 @@ public class UserService {
     }
 
     public boolean closeSession(Long id) {
-
+        return false;
     }
 
 }
