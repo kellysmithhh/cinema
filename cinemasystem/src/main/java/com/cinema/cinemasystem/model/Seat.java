@@ -13,10 +13,10 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer row;
-    private Integer column;
+    private Integer seatRow;
+    private Integer seatColumn;
 
-    @OneToOne(mappedBy = "seat")
+    @OneToOne
     private Ticket ticket;
 
     public Long getId() {
@@ -27,20 +27,20 @@ public class Seat {
         this.id = id;
     }
 
-    public Integer getRow() {
-        return row;
+    public Integer getSeatRow() {
+        return seatRow;
     }
 
-    public void setRow(Integer row) {
-        this.row = row;
+    public void setSeatRow(Integer seatRow) {
+        this.seatRow = seatRow;
     }
 
-    public Integer getColumn() {
-        return column;
+    public Integer getSeatColumn() {
+        return seatColumn;
     }
 
-    public void setColumn(Integer column) {
-        this.column = column;
+    public void setSeatColumn(Integer seatColumn) {
+        this.seatColumn = seatColumn;
     }
 
     public Ticket getTicket() {

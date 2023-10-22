@@ -17,7 +17,7 @@ public class Ticket {
     @ManyToOne
     private Booking booking;
 
-    @OneToOne()
+    @OneToOne(mappedBy = "ticket")
     private Seat seat;
 
     public Long getId() {
