@@ -38,11 +38,13 @@ public class UserController {
             User user = maybeUser.get();
             if (user.getPassword().equals(password)) {
                 return true;
+            } else {
+                return false;
             }
         } else {
             return false;
-        }
-        
+        } 
+            
     }  
     
 }
