@@ -1,35 +1,73 @@
 package com.cinema.cinemasystem.model;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.cinema.cinemasystem.enums.RATING;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Movie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "title")
-    private String title;
-    private String category;
-    private String cast; 
-    private String director;
-    private String producer;
-    private String synopsis;
-    private String reviews; 
-    private String trailer_image;
-    private String trailer_link;
-    private String MPAA_rating_code; // Type: Rating enumerator
-    private String show_dates; 
-    private String show_times;
+    private Long id;
 
-    public int getId() {
+    private String title;
+
+    private String category;
+
+    @ManyToMany
+    @JoinTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movie"), inverseJoinColumns = @JoinColumn(name = "actor"))
+    private Set<Actor> cast = new HashSet<>();
+
+    private String director;
+
+    private String producer;
+
+    private String synopsis;
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new HashSet<>();
+
+    private String trailerImage;
+
+    private String trailerLink;
+
+    @Enumerated(EnumType.STRING)
+    private RATING ratingMPAA;
+
+    @ElementCollection
+    @CollectionTable(name = "show_dates", joinColumns = @JoinColumn(name = "movie"))
+    @Column(name = "show_date")
+    private Set<LocalDateTime> showDates;
+
+    private Integer duration;
+
+    private boolean comingSoon;
+
+    private boolean nowShowing;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,11 +87,11 @@ public class Movie {
         this.category = category;
     }
 
-    public String getCast() {
+    public Set<Actor> getCast() {
         return cast;
     }
 
-    public void setCast(String cast) {
+    public void setCast(Set<Actor> cast) {
         this.cast = cast;
     }
 
@@ -76,45 +114,73 @@ public class Movie {
     public String getSynopsis() {
         return synopsis;
     }
+
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
-    public String getReviews() {
+
+    public Set<Review> getReviews() {
         return reviews;
     }
-    public void setReviews(String reviews) {
+
+    public void setReviews(Set<Review> reviews) {
         this.reviews = reviews;
     }
-    public String getTrailer_image() {
-        return trailer_image;
-    }
-    public void setTrailer_image(String trailer_image) {
-        this.trailer_image = trailer_image;
-    }
-    public String getTrailer_link() {
-        return trailer_link;
-    }
-    public void setTrailer_link(String trailer_link) {
-        this.trailer_link = trailer_link;
-    }
-    public String getMPAA_rating_code() {
-        return MPAA_rating_code;
-    }
-    public void setMPAA_rating_code(String MPAA_rating_code) {
-        this.MPAA_rating_code = MPAA_rating_code;
-    }
-    public String getShow_dates() {
-        return show_dates;
-    }
-    public void setShow_dates(String show_dates) {
-        this.show_dates = show_dates;
-    }
-    public String getShow_times() {
-        return show_times;
-    }
-    public void setShow_times(String show_times) {
-        this.show_times = show_times;
+
+    public String getTrailerImage() {
+        return trailerImage;
     }
 
+    public void setTrailerImage(String trailerImage) {
+        this.trailerImage = trailerImage;
+    }
+
+    public String getTrailerLink() {
+        return trailerLink;
+    }
+
+    public void setTrailerLink(String trailerLink) {
+        this.trailerLink = trailerLink;
+    }
+
+    public RATING getRatingMPAA() {
+        return ratingMPAA;
+    }
+
+    public void setRatingMPAA(RATING ratingMPAA) {
+        this.ratingMPAA = ratingMPAA;
+    }
+
+    public Set<LocalDateTime> getShowDates() {
+        return showDates;
+    }
+
+    public void setShowDates(Set<LocalDateTime> showDates) {
+        this.showDates = showDates;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public boolean isComingSoon() {
+        return comingSoon;
+    }
+
+    public void setComingSoon(boolean comingSoon) {
+        this.comingSoon = comingSoon;
+    }
+
+    public boolean isNowShowing() {
+        return nowShowing;
+    }
+
+    public void setNowShowing(boolean nowShowing) {
+        this.nowShowing = nowShowing;
+    }
 
 }
