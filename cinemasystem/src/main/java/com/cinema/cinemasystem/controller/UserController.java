@@ -1,13 +1,9 @@
 package com.cinema.cinemasystem.controller;
 
-import java.util.List;
 import java.util.Optional;
-
-import javax.swing.text.html.Option;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cinema.cinemasystem.model.User;
 import com.cinema.cinemasystem.service.UserService;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/user")
@@ -27,9 +21,9 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@RequestBody User user) {
-        userService.saveUser(user);
+        userService.register(user);
         return "New user added.";
-    }     
+    }
 
     @PostMapping("/login/{email}/{password}")
     public boolean login(@PathVariable String email, @PathVariable String password) {
@@ -43,8 +37,8 @@ public class UserController {
             }
         } else {
             return false;
-        } 
-            
-    }  
-    
+        }
+
+    }
+
 }
