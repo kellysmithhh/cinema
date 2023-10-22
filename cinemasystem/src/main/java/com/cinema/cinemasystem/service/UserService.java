@@ -25,25 +25,9 @@ public class UserService {
         return repository.findByEmail(email);
     }
 
-    public boolean register() {
-        return false;
-    }
-
-    public boolean startSession(Long id) {
-        Optional<User> maybeUser = repository.findById(id);
-        if (maybeUser.isPresent()) {
-            User user = maybeUser.get();
-            user.setSessionActive(true);
-            repository.save(user);
-            return true;
-        } else {
-            // user with id does not exist
-            return false;
-        }
-    }
-
-    public boolean closeSession(Long id) {
-        return false;
+    public boolean register(User user) {
+        repository.save(user);
+        return true;
     }
 
 }
