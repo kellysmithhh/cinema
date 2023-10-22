@@ -21,18 +21,18 @@ public class MovieController {
     private MovieService movieService;
 
     @PostMapping("/add")
-    public String add(@RequestBody Movie movie){
+    public String add(@RequestBody Movie movie) {
         movieService.saveMovie(movie);
         return "New movie added.";
     }
 
     @GetMapping("/getAll")
-    public List<Movie> getAllMovies(){
-        return movieService.getAllmovies();
+    public List<Movie> getAllMovies() {
+        return movieService.getAllMovies();
     }
 
     @GetMapping("/search/{title}")
-    public List<Movie> getMoviesByTitle(@PathVariable String title){
+    public List<Movie> getMoviesByTitle(@PathVariable String title) {
         return movieService.getMoviesByTitle(title);
     }
 }
