@@ -24,7 +24,7 @@ public class Customer extends User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String phone;
 
     @Column(unique = true, nullable = false)

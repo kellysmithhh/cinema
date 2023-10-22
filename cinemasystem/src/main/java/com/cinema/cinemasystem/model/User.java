@@ -25,9 +25,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    // indicates if the user is currently logged in
-    // @Column(nullable = false)
-    // private Boolean sessionActive;
+    @Column(nullable = true)
+    private String session;
 
     public Long getId() {
         return id;
@@ -59,6 +58,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
     }
 
 }
