@@ -4,29 +4,32 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.cinema.cinemasystem.Repository.CustomerRepository;
 import com.cinema.cinemasystem.Repository.UserRepository;
+import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.User;
 
+@Service
 public class UserService {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public List<User> getAll() {
-        return repository.findAll();
+        return userRepository.findAll();
     }
 
     public Optional<User> getWithId(Long id) {
-        return repository.findById(id);
+        return userRepository.findById(id);
     }
 
-    public Optional<User> getWithEmail(String email) {
-        return repository.findByEmail(email);
-    }
-
-    public boolean register(User user) {
-        repository.save(user);
+    public boolean register(Customer customer) {
+        customerRepository.save(customer);
         return true;
     }
 
