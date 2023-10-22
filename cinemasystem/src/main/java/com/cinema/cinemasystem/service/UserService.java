@@ -39,8 +39,8 @@ public class UserService {
     }
 
     public boolean hasSession(String sessionId) {
-        Optional<String> maybeSession = userRepository.findBySession(sessionId);
-        return maybeSession.isPresent();
+        Optional<User> maybeUser = userRepository.findBySession(sessionId);
+        return maybeUser.isPresent();
     }
 
     public void startSession(Customer customer) {

@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     public Optional<User> findById(Long id);
 
-    public Optional<String> findBySession(String sessionId);
+    public Optional<User> findBySession(String sessionId);
 
     public void deleteBySession(String sessionId);
 }
