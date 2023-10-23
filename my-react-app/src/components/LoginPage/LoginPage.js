@@ -1,14 +1,18 @@
 import {useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import { useState } from 'react';
 
 function LoginPage() {
 
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
 
+    let navigate = useNavigate();
+    let navigateTwo = useNavigate();
+
     const handleSignInClick = () => {
 
-        const api = 'http://localhost:8080/user/login/${email}/${password}'
+        const apiUrl = `http://localhost:8080/user/login/${email}/${password}`
         fetch(apiUrl, {
             method:"POST",
             headers:{"Content-Type":"application/json"}})
@@ -17,19 +21,16 @@ function LoginPage() {
                 console.error('Error fetching data:', error);
               });
 
-        let navigate = useNavigate(); 
-        const routeChange = () =>{ 
+            //change path
             let path = `/ManagerView`; 
             navigate(path);
-        }
+        
     }
 
-    const handleCreateAccountClick = () => {
-        let navigateTwo = useNavigate(); 
-        const routeChangeTwo = () =>{ 
+    const handleCreateAccountClick = () => {  
+            //change route
             let path = `/CreateAccount`; 
             navigateTwo(path);
-        }
     }
 
 
