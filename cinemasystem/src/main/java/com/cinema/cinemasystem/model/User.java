@@ -10,7 +10,7 @@ import jakarta.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +22,11 @@ public abstract class User {
     @Column(nullable = false)
     String lastName;
 
-    @Column(unique = true, nullable = false)
-    private String email;
-
     @Column(nullable = false)
     private String password;
 
-    // indicates if the user is currently logged in
-    @Column(nullable = false)
-    private Boolean sessionActive;
+    @Column(nullable = true)
+    private String session;
 
     public Long getId() {
         return id;
@@ -56,14 +52,6 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -72,12 +60,12 @@ public abstract class User {
         this.password = password;
     }
 
-    public Boolean getSessionActive() {
-        return sessionActive;
+    public String getSession() {
+        return session;
     }
 
-    public void setSessionActive(Boolean sessionActive) {
-        this.sessionActive = sessionActive;
+    public void setSession(String session) {
+        this.session = session;
     }
 
 }
