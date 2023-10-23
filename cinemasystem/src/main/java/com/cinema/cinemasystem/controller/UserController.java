@@ -68,18 +68,14 @@ public class UserController {
     }
 
     @PostMapping("/edit/{email}/{firstName}/{lastName}/{password}/{paymentCard}")
-    public boolean edit(@PathVariable String email, @PathVariable String first, @PathVariable String last,
-            @PathVariable String password, @RequestParam Set<PaymentCard> paymentCard) {
-        Optional<Customer> maybeCustomer = customerService.getWithEmail(email);
-        if (maybeCustomer.isPresent()) {
-            Customer customer = maybeCustomer.get();
-            customer.setFirstName(first);
-            customer.setLastName(last);
-            customer.setPassword(password);
-            customer.setPaymentCards(paymentCard);
-            return true;
-        }
-        return false;
+    public boolean edit(
+        @PathVariable String email,
+        @PathVariable String first,
+        @PathVariable String last,
+        @PathVariable String password,
+        @RequestParam Set<PaymentCard> paymentCards
+    ) {
+        return userService.editProfile(email, first, last, password, paymentCards);
     }
 
 }
