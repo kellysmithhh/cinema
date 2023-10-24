@@ -7,6 +7,10 @@ function LoginPage() {
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
 
+    function generateCode() {
+        return Math.floor(1000 + Math.random() * 9000);
+    }
+
     let navigate = useNavigate();
 
     const handleSignInClick = () => {

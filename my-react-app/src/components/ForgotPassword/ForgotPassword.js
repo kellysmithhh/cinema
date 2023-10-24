@@ -1,11 +1,29 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 
 function ForgotPassword() {
 
     let navigate = useNavigate();
 
+    const[email,setEmail] = useState('')
+
+    function generateCode() {
+        return Math.floor(1000 + Math.random() * 9000);
+    }
+
     const handleSendEmailClick = () => {
+
+        const verificationCode = generateCode();
+        const apiUrl = `http://localhost:8080/email/send/${email}/${verificationCode}`;
+        fetch(apiUrl, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"}})
+            .then(()=>{console.log("New email sent.")})
+            .catch(error => {
+                console.error('Error fetching data:', error);
+              });
+
         let path = `/VerifyCode`; 
         navigate(path);
     }
