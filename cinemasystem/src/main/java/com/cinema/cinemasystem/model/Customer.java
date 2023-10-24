@@ -34,7 +34,7 @@ public class Customer extends User {
 
     // single user can have many payment cards
     // each payment card can only be associated with one user
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PaymentCard> paymentCards;
 
     // users can have only one shipping address
@@ -42,7 +42,7 @@ public class Customer extends User {
     @ManyToOne(cascade = CascadeType.ALL)
     private Address shippingAddress;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     private Set<Booking> bookings;
 
     public Long getId() {
