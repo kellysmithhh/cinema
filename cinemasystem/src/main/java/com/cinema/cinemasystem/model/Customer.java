@@ -24,13 +24,11 @@ public class Customer extends User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String phone;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private STATUS status;
 

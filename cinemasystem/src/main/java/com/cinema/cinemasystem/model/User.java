@@ -1,6 +1,5 @@
 package com.cinema.cinemasystem.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,16 +15,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false)
     String firstName;
 
-    @Column(nullable = false)
     String lastName;
 
-    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = true)
     private String session;
 
     public Long getId() {

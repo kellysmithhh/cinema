@@ -40,16 +40,22 @@ public class UserService {
         return true;
     }
 
-    public boolean editProfile(String email, String first, String last, String password, Set<PaymentCard> paymentCards) {
-        Optional<Customer> maybeCustomer = customerRepository.findByEmail(email);
+    public boolean editProfile(Customer inputCustomer) {
+        Optional<Customer> maybeCustomer = customerRepository.findBySession(inputCustomer.getSession());
         if (maybeCustomer.isPresent()) {
-            Customer customer = maybeCustomer.get();
-            customer.setFirstName(first);
-            customer.setLastName(last);
-            customer.setPassword(password);
-            customer.setPaymentCards(paymentCards);
-            customerRepository.save(customer);
-            return true;
+            Customer realCustomer = maybeCustomer.get();
+            if (inputCustomer.getSession().equals(realCustomer.getSession())) {
+                String firstName = inputCustomer.getFirstName();
+                if (firstName != null) realCustomer.setFirstName(firstName);
+                String lastName = inputCustomer.getLastName();
+                if (lastName != null) realCustomer.setLastName(lastName);
+                String password = inputCustomer.getPassword();
+                if (password != null) realCustomer.setPassword(password);
+                Set<PaymentCard> paymentCards = inputCustomer.getPaymentCards();
+                if (paymentCards != null) realCustomer.setPaymentCards(paymentCards);
+                customerRepository.save(realCustomer);
+                return true;
+            }
         }
         return false;
     }

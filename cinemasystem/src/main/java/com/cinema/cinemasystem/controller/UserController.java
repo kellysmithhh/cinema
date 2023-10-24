@@ -1,7 +1,6 @@
 package com.cinema.cinemasystem.controller;
 
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,11 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinemasystem.model.Customer;
-import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.service.CustomerService;
 import com.cinema.cinemasystem.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,15 +64,20 @@ public class UserController {
         return userService.hasSession(sessionId);
     }
 
-    @PostMapping("/edit/{email}/{firstName}/{lastName}/{password}/{paymentCard}")
-    public boolean edit(
-        @PathVariable String email,
-        @PathVariable String first,
-        @PathVariable String last,
-        @PathVariable String password,
-        @RequestParam Set<PaymentCard> paymentCards
-    ) {
-        return userService.editProfile(email, first, last, password, paymentCards);
+    // @PostMapping("/edit/{email}/{firstName}/{lastName}/{password}/{paymentCard}")
+    // public boolean edit(
+    //     @PathVariable String email,
+    //     @PathVariable String first,
+    //     @PathVariable String last,
+    //     @PathVariable String password,
+    //     @RequestParam Set<PaymentCard> paymentCards
+    // ) {
+    //     return userService.editProfile(email, first, last, password, paymentCards);
+    // }
+
+    @PostMapping("/edit")
+    public boolean editProfile(@RequestBody Customer customer) {
+        return userService.editProfile(customer);
     }
 
 }
