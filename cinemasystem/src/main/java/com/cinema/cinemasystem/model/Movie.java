@@ -55,7 +55,7 @@ public class Movie {
     private String trailerLink;
 
     @Enumerated(EnumType.STRING)
-    private RATING ratingMPAA;
+    private RATING mpaaRatingCode;
 
     // @ElementCollection
     // @CollectionTable(name = "show_dates", joinColumns = @JoinColumn(name = "movie"))
@@ -63,6 +63,8 @@ public class Movie {
     // private Set<LocalDateTime> showDates;
 
     private String showDates;
+
+    private String showTimes;
 
     private Integer duration;
 
@@ -151,19 +153,27 @@ public class Movie {
     }
 
     public RATING getRatingMPAA() {
-        return ratingMPAA;
+        return mpaaRatingCode;
     }
 
-    public void setRatingMPAA(RATING ratingMPAA) {
-        this.ratingMPAA = ratingMPAA;
+    public void setRatingMPAA(RATING mpaaRatingCode) {
+        this.mpaaRatingCode = mpaaRatingCode;
     }
 
     public String getShowDates() {
         return showDates;
     }
 
-    public void setShowDates(String showDates) {
-        this.showDates = showDates;
+    public void setShowDates(String showTimes) {
+        this.showDates = showTimes;
+    }
+
+    public String getShowTimes() {
+        return showTimes;
+    }
+
+    public void setShowTimes(String showTimes) {
+        this.showTimes = showTimes;
     }
 
     public Integer getDuration() {
