@@ -14,11 +14,14 @@ function AddMovie() {
     const[synopsis,setSynopsis] = useState('')
     const[trailer_image,setTrailer_image] = useState('')
     const[trailer_link,setTrailer_link] = useState('')
+    const[comingSoon,setComingSoon] = useState(true)
+    const[nowShowing,setNowShowing] = useState(false)
+    const[duration,setDuration] = useState('')
 
 
     const handleClick=(e)=>{
         e.preventDefault()
-        const movie={mpaa_rating_code,cast,category,director,producer,reviews,show_dates,show_times,synopsis,title,trailer_image,trailer_link}
+        const movie={mpaa_rating_code,cast,category,director,producer,reviews,show_dates,show_times,synopsis,title,trailer_image,trailer_link,comingSoon,nowShowing,duration}
         console.log(movie)
         fetch("http://localhost:8080/movie/add",{
             method:"POST",
@@ -27,6 +30,12 @@ function AddMovie() {
         }).then(()=>{
             console.log("New movie added.")
         })
+    }
+
+    const handleCheck=(e)=>{
+        e.preventDefault();
+        setComingSoon(false);
+        setNowShowing(true);
     }
 
     return (
@@ -68,6 +77,12 @@ function AddMovie() {
 
                 <label className="label">Show Times</label>
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={show_times} onChange={(e)=>setShow_times(e.target.value)}></input>
+
+                <label className="label">Duration</label>
+                <input type="text" placeholder="Required Field" value ={duration} onChange={(e)=>setDuration(e.target.value)}></input>
+
+                <input type="checkbox"/>
+                <label for="scales" onChange={handleCheck}>Now showing?</label>
 
                 <div className="input-container">
                     <button type="submit" onClick={handleClick}>Add Movie</button>
