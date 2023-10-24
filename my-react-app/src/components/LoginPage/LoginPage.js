@@ -11,6 +11,8 @@ function LoginPage() {
 
     const handleSignInClick = () => {
 
+        var sessionId = generateCode();
+        localStorage.setItem('sessionID',sessionId);
         const apiUrl = `http://localhost:8080/user/login/${email}/${password}`
         fetch(apiUrl, {
             method:"POST",

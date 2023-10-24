@@ -17,7 +17,8 @@ import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import VerifyCode from './components/VerifyCode/VerifyCode';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 
-function App() {
+function App() {  
+  localStorage.setItem('sessionID', "");
   return (
     <Router>
       <div className="App">

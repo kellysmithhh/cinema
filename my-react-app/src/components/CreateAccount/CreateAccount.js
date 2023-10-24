@@ -23,24 +23,24 @@ function CreateAccount() {
     const[city,setCity] = useState('')
     const[state,setState] = useState('')
     const[zip,setZip] = useState('')
-
+    
     function generateCode() {
         return Math.floor(1000 + Math.random() * 9000);
     }
 
     let navigate = useNavigate(); 
-    const handleClick = () =>{ 
+    const handleClick = () =>{       
 
-        const user={first_name,last_name}
+        const user={first_name,last_name,password}
         console.log(user)
-        /*fetch("http://localhost:8080/user/add",{ //route not implemented yet
+        fetch("http://localhost:8080/user/register",{ //route not implemented yet
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(user)
         }).then(()=>{
             console.log("New user added.")
         })
-        */
+        
 
         const customer={email,phoneNum,password}
         console.log(customer)

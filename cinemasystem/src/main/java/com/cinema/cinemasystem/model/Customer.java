@@ -29,6 +29,8 @@ public class Customer extends User {
     @Column(unique = true)
     private String email;
 
+    private String password;    
+
     @Enumerated(EnumType.STRING)
     private STATUS status;
 
@@ -102,6 +104,14 @@ public class Customer extends User {
 
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
