@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 function VerifyCode() {
 
     let navigate = useNavigate();
+    const[inputCode,setInputCode] = useState('');
 
     const handleEnterVerifyClick = () => {
         let path = `/ChangePassword`; 
@@ -16,7 +18,7 @@ function VerifyCode() {
         <div className="LogIn">
                <h1>Enter Code</h1>
            </div>
-           <input type="text" placeholder="Email" id="email" name="email" ></input>
+           <input type="text" placeholder="Code" id="code" name="code" value = {inputCode} onChange={(e)=>setInputCode(e.target.value)}></input>
 
            <div className="input-container5">
                <button onClick = {handleEnterVerifyClick} type="submit">Enter</button>

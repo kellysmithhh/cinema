@@ -34,7 +34,7 @@ function ForgotPassword() {
         <div className="LogIn">
                <h1>Enter Email</h1>
            </div>
-           <input type="text" placeholder="Email" id="email" name="email" ></input>
+           <input type="text" placeholder="Email" id="email" name="email" value ={email} onChange={(e)=>setEmail(e.target.value)}></input>
 
            <div className="input-container5">
                <button onClick = {handleSendEmailClick} type="submit">Send Email</button>
