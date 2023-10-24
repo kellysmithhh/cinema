@@ -17,8 +17,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+// import jakarta.persistence.JoinTable;
+// import jakarta.persistence.ManyToMany;
+// import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -32,9 +33,11 @@ public class Movie {
 
     private String category;
 
-    @ManyToMany
-    @JoinTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movie"), inverseJoinColumns = @JoinColumn(name = "actor"))
-    private Set<Actor> cast = new HashSet<>();
+    // @ManyToMany
+    // @JoinTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movie"), inverseJoinColumns = @JoinColumn(name = "actor"))
+    // private Set<Actor> cast = new HashSet<>();
+
+    private String cast;
 
     private String director;
 
@@ -87,11 +90,11 @@ public class Movie {
         this.category = category;
     }
 
-    public Set<Actor> getCast() {
+    public String getCast() {
         return cast;
     }
 
-    public void setCast(Set<Actor> cast) {
+    public void setCast(String cast) {
         this.cast = cast;
     }
 
