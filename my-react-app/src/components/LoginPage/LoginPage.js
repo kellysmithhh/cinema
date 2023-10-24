@@ -8,7 +8,6 @@ function LoginPage() {
     const[password,setPassword] = useState('')
 
     let navigate = useNavigate();
-    let navigateTwo = useNavigate();
 
     const handleSignInClick = () => {
 
@@ -30,7 +29,12 @@ function LoginPage() {
     const handleCreateAccountClick = () => {  
             //change route
             let path = `/CreateAccount`; 
-            navigateTwo(path);
+            navigate(path);
+    }
+
+    const handleForgotPasswordClick = () => {
+        let path = '/ForgotPassword';
+        navigate(path);
     }
 
 
@@ -47,6 +51,7 @@ function LoginPage() {
            <div className="input-container5">
                <button onClick = {handleSignInClick} type="submit">Sign In</button>
                <button onClick = {handleCreateAccountClick} type="submit">Create Account</button>
+               <button onClick = {handleForgotPasswordClick} type="submit">Forgot Password</button>
            </div>
         </form>
   </div>

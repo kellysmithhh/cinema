@@ -13,6 +13,9 @@ import CheckoutUI from './components/CheckoutUI/CheckoutUI';
 import OrderConfirmation from './components/OrderConfirmation/OrderConfirmation'
 import CreateAccount from './components/CreateAccount/CreateAccount';
 import RegisterConfirmation from './components/RegistrationConfirmation/RegistrationConfirmation';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import VerifyCode from './components/VerifyCode/VerifyCode';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
             <Route path ="/OrderConfirmation" element = {<OrderConfirmation/>}/>
             <Route path ="/CreateAccount" element ={<CreateAccount/>}/>
             <Route path = "/RegisterConfirmation" element ={<RegisterConfirmation/>}/>
+            <Route path ="/ForgotPassword" element ={<ForgotPassword/>}/>
+            <Route path = "/VerifyCode" element = {<VerifyCode/>}/>
+            <Route path = "/ChangePassword" element = {<ChangePassword/>}/>
           </Routes>
         </div>
       </div>
