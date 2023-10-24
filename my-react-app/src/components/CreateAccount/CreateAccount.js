@@ -90,7 +90,7 @@ function CreateAccount() {
               });
         
        
-        let path = `/RegisterConfirmation`; 
+        let path = `/VerifyCode`; 
         navigate(path);
     } // handleClick
 
@@ -127,6 +127,15 @@ function CreateAccount() {
                 <input type="text" placeholder="City" id="city" name="city" value={city} onChange={(e)=>setCity(e.target.value)}></input>
                 <input type="text" placeholder="State" id="state" name="state" value={state} onChange={(e)=>setState(e.target.value)}></input>
                 <input type="text" placeholder="Zip Code" id="zip" name="zip" value={zip} onChange={(e)=>setZip(e.target.value)}></input>
+
+                <br></br>
+                <div>
+                    <input type="checkbox" id="Promotional" name="Promotional"/>
+                    <label for="scales">I would like to receive emails about promotional codes.</label>
+                </div>
+
+                <br></br>
+
 
                 <div className="input-container8">
                     <button onClick = {handleClick} type="submit">Register</button>
