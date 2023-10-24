@@ -31,7 +31,7 @@ function CreateAccount() {
     let navigate = useNavigate(); 
     const handleClick = () =>{       
 
-        const user={first_name,last_name,password}
+        const user={first_name,last_name,password,phoneNum}
         console.log(user)
         fetch("http://localhost:8080/user/register",{ //route not implemented yet
             method:"POST",
