@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.cinema.cinemasystem.Repository.AddressRepository;
 import com.cinema.cinemasystem.Repository.CustomerRepository;
-import com.cinema.cinemasystem.Repository.PaymentRepository;
 import com.cinema.cinemasystem.Repository.UserRepository;
 import com.cinema.cinemasystem.model.Address;
 import com.cinema.cinemasystem.model.Customer;
@@ -28,9 +27,6 @@ public class UserService {
 
     @Autowired
     private CustomerRepository customerRepository;
-
-    @Autowired
-    private PaymentRepository paymentRepository;
 
     @Autowired
     private AddressRepository addressRepository;
