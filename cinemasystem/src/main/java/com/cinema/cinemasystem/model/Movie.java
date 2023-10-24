@@ -1,26 +1,26 @@
 package com.cinema.cinemasystem.model;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+// import java.time.LocalDateTime;
+// import java.util.HashSet;
+// import java.util.Set;
 
 import com.cinema.cinemasystem.enums.RATING;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+// import jakarta.persistence.CascadeType;
+// import jakarta.persistence.CollectionTable;
+// import jakarta.persistence.Column;
+// import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.JoinColumn;
 // import jakarta.persistence.JoinTable;
 // import jakarta.persistence.ManyToMany;
 // import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+// import jakarta.persistence.OneToMany;
 
 @Entity
 public class Movie {
@@ -45,8 +45,10 @@ public class Movie {
 
     private String synopsis;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Review> reviews = new HashSet<>();
+    // @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    // private Set<Review> reviews = new HashSet<>();
+
+    private String reviews;
 
     private String trailerImage;
 
@@ -55,10 +57,12 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private RATING ratingMPAA;
 
-    @ElementCollection
-    @CollectionTable(name = "show_dates", joinColumns = @JoinColumn(name = "movie"))
-    @Column(name = "show_date")
-    private Set<LocalDateTime> showDates;
+    // @ElementCollection
+    // @CollectionTable(name = "show_dates", joinColumns = @JoinColumn(name = "movie"))
+    // @Column(name = "show_date")
+    // private Set<LocalDateTime> showDates;
+
+    private String showDates;
 
     private Integer duration;
 
@@ -122,11 +126,11 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public Set<Review> getReviews() {
+    public String getReviews() {
         return reviews;
     }
 
-    public void setReviews(Set<Review> reviews) {
+    public void setReviews(String reviews) {
         this.reviews = reviews;
     }
 
@@ -154,11 +158,11 @@ public class Movie {
         this.ratingMPAA = ratingMPAA;
     }
 
-    public Set<LocalDateTime> getShowDates() {
+    public String getShowDates() {
         return showDates;
     }
 
-    public void setShowDates(Set<LocalDateTime> showDates) {
+    public void setShowDates(String showDates) {
         this.showDates = showDates;
     }
 
