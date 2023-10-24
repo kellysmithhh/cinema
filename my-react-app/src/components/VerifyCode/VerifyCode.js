@@ -1,12 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from 'react';
 
 function VerifyCode() {
-
+    const {VerifyCode} = useParams();
     let navigate = useNavigate();
     const[inputCode,setInputCode] = useState('');
 
     const handleEnterVerifyClick = () => {
+
+
+
         let path = `/ChangePassword`; 
         navigate(path);
     }
