@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cinema.cinemasystem.Repository.CustomerRepository;
@@ -23,6 +24,9 @@ public class UserService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private PasswordEncoder security;
+
     private String generateSessionId() {
         return UUID.randomUUID().toString();
     }
@@ -36,26 +40,45 @@ public class UserService {
     }
 
     public boolean register(Customer customer) {
+        customer.setPassword(security.encode(customer.getPassword()));
+        Set<PaymentCard> paymentCards = customer.getPaymentCards();
+        if (paymentCards != null) {
+            // encode card information
+            for (PaymentCard card : paymentCards) {
+                card.setCardName(security.encode(card.getCardName()));
+                card.setCardType(security.encode(card.getCardType()));
+                card.setCardNumber(security.encode(card.getCardNumber()));
+                card.setCardExpiration(security.encode(card.getCardExpiration()));
+                card.setCardCVV(security.encode(card.getCardCVV()));
+            }
+        }
         customerRepository.save(customer);
         return true;
     }
 
-    public boolean editProfile(Customer inputCustomer) {
-        Optional<Customer> maybeCustomer = customerRepository.findBySession(inputCustomer.getSession());
+    public boolean verify(String sessionId, String password) {
+        Optional<Customer> maybeCustomer = customerRepository.findBySession(sessionId);
+        if (maybeCustomer.isPresent()) {
+            Customer customer = maybeCustomer.get();
+            return security.matches(password, customer.getPassword());
+        }
+        return false;
+    }
+
+    public boolean editProfile(Customer editCustomer) {
+        Optional<Customer> maybeCustomer = customerRepository.findBySession(editCustomer.getSession());
         if (maybeCustomer.isPresent()) {
             Customer realCustomer = maybeCustomer.get();
-            if (inputCustomer.getSession().equals(realCustomer.getSession())) {
-                String firstName = inputCustomer.getFirstName();
-                if (firstName != null) realCustomer.setFirstName(firstName);
-                String lastName = inputCustomer.getLastName();
-                if (lastName != null) realCustomer.setLastName(lastName);
-                String password = inputCustomer.getPassword();
-                if (password != null) realCustomer.setPassword(password);
-                Set<PaymentCard> paymentCards = inputCustomer.getPaymentCards();
-                if (paymentCards != null) realCustomer.setPaymentCards(paymentCards);
-                customerRepository.save(realCustomer);
-                return true;
-            }
+            String firstName = editCustomer.getFirstName();
+            if (firstName != null) realCustomer.setFirstName(firstName);
+            String lastName = editCustomer.getLastName();
+            if (lastName != null) realCustomer.setLastName(lastName);
+            String password = editCustomer.getPassword();
+            if (password != null) realCustomer.setPassword(password);
+            Set<PaymentCard> paymentCards = editCustomer.getPaymentCards();
+            if (paymentCards != null) realCustomer.setPaymentCards(paymentCards);
+            customerRepository.save(realCustomer);
+            return true;
         }
         return false;
     }
@@ -65,13 +88,14 @@ public class UserService {
         return maybeUser.isPresent();
     }
 
-    public void startSession(Customer customer) {
+    public String startSession(User user) {
         // generate session id that does not already exist
         // TODO ensure id does not already exist
         String sessionId = generateSessionId();
         // load session id for current customer
-        customer.setSession(sessionId);
-        userRepository.save(customer);
+        user.setSession(sessionId);
+        userRepository.save(user);
+        return sessionId;
     }
 
     public void closeSession(String sessionId) {

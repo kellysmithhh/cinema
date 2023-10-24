@@ -16,14 +16,18 @@ public class PaymentCard {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private Customer user;
 
     private String cardType;
+
+    private String cardName;
 
     @Column(unique = true)
     private String cardNumber;
 
     private String cardExpiration;
+
+    private String cardCVV;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Address billingAddress;
@@ -36,11 +40,11 @@ public class PaymentCard {
         this.id = id;
     }
 
-    public User getUser() {
+    public Customer getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Customer user) {
         this.user = user;
     }
 
@@ -74,6 +78,22 @@ public class PaymentCard {
 
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public String getCardCVV() {
+        return cardCVV;
+    }
+
+    public void setCardCVV(String cardCVV) {
+        this.cardCVV = cardCVV;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
     }
 
 }

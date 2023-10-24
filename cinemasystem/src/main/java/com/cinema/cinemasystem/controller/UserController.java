@@ -3,6 +3,7 @@ package com.cinema.cinemasystem.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cinema.cinemasystem.model.Admin;
 import com.cinema.cinemasystem.model.Customer;
+import com.cinema.cinemasystem.service.AdminService;
 import com.cinema.cinemasystem.service.CustomerService;
 import com.cinema.cinemasystem.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +28,12 @@ public class UserController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private AdminService adminService;
+
+    @Autowired
+    private PasswordEncoder security;
+
     @PostMapping("/register")
     public String register(@RequestBody Customer customer) {
         Optional<Customer> existingCustomer = customerService.getWithEmail(customer.getEmail());
@@ -37,16 +46,27 @@ public class UserController {
     }
 
     @PostMapping("/login/{email}/{password}")
-    public boolean login(@PathVariable String email, @PathVariable String password) {
+    public String login(@PathVariable String email, @PathVariable String password) {
         Optional<Customer> maybeCustomer = customerService.getWithEmail(email);
         if (maybeCustomer.isPresent()) {
             Customer customer = maybeCustomer.get();
-            if (customer.getPassword().equals(password)) {
-                userService.startSession(customer);
-                return true;
+            if (security.matches(password, customer.getPassword())) {
+                return userService.startSession(customer);
             }
         }
-        return false;
+        return null;
+    }
+
+    @PostMapping("/login/admin/{adminId}/{password}")
+    public String loginAdmin(@PathVariable String adminId, @PathVariable String password) {
+        Optional<Admin> maybeAdmin = adminService.getWithCode(adminId);
+        if (maybeAdmin.isPresent()) {
+            Admin admin = maybeAdmin.get();
+            if (security.matches(password, admin.getPassword())) {
+                return userService.startSession(admin);
+            }
+        }
+        return null;
     }
 
     @PostMapping("/logout/{sessionId}")
@@ -59,21 +79,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("/verify/{sessionId}/{password}")
+    public boolean verify(@PathVariable String sessionId, @PathVariable String password) {
+        return userService.verify(sessionId, password);
+    }
+
     @GetMapping("/auth/{sessionId}")
     public boolean authenticate(@PathVariable String sessionId) {
         return userService.hasSession(sessionId);
     }
-
-    // @PostMapping("/edit/{email}/{firstName}/{lastName}/{password}/{paymentCard}")
-    // public boolean edit(
-    //     @PathVariable String email,
-    //     @PathVariable String first,
-    //     @PathVariable String last,
-    //     @PathVariable String password,
-    //     @RequestParam Set<PaymentCard> paymentCards
-    // ) {
-    //     return userService.editProfile(email, first, last, password, paymentCards);
-    // }
 
     @PostMapping("/edit")
     public boolean editProfile(@RequestBody Customer customer) {
