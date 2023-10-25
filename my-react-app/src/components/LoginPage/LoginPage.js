@@ -22,7 +22,7 @@ function LoginPage() {
                         let path = `/`;
                         navigate(path);
                     } else {
-                        alert("Email or password incorrect. Pleas try again.")
+                        alert("Email or password incorrect. Please try again.")
                     }
                 })
                 .catch(error => {
@@ -40,7 +40,7 @@ function LoginPage() {
                         let path = `/ManagerView`; 
                         navigate(path);
                     } else {
-                        alert("Id or password incorrect. Pleas try again.")
+                        alert("Id or password incorrect. Please try again.")
                     }
                 }) 
                 .catch(error => {

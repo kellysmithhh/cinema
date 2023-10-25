@@ -48,11 +48,16 @@
 .navbar-body h1 {
   color: hsla(0, 100%, 50%, 0.545
   );
-  font-size: 3.5em;
+  font-size: 1.9em;
   text-align: left;
   font-weight: bold;
   margin: 0;
   padding: 0 0.75em;
+}
+
+.navbar-body h1 a {
+  text-decoration: none;
+  color: white;
 }
 
 .navbar-buttons ul {

@@ -9,10 +9,9 @@ function ManagerView() {
             <div id ="MVLeft">
                 <div className ="top">
                     <h1>Promotions</h1>
-                    <input type="text" placeholder="Promotion Name" id="cpwd" name="cpwd"></input>
-                    <input type="text" placeholder="Promotion Percentage" id="cpwd" name="cpwd"></input>
-                    <button type ="submit">Submit</button>
-
+                        <input type="text" placeholder="Promotion Name" id="cpwd" name="cpwd"></input>
+                        <input type="text" placeholder="Promotion Percentage" id="cpwd" name="cpwd"></input>
+                        <button type="submit">Submit</button>
                 </div>
                 <div className ="middle">
                     <h1>Manage Users</h1>

@@ -7,9 +7,12 @@ function NavBar() {
         <div className="NavBar">
             <div className="navbar-flexbox">
                 <div className="navbar-body">
-                    <Link to = "/">
-                        <h1>Cinema E-Booking</h1>
-                    </Link>
+                    <h1>
+                        <Link to = "/">
+                            <h1>Cinema E-Booking</h1>
+                        </Link>
+                    </h1>
+                    
 
             
                 <div className="navbar-buttons">

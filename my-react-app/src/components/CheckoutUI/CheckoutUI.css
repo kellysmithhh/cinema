@@ -10,7 +10,7 @@ body {
   .CheckoutUI {
     display: flex;
     justify-content: space-between;
-   align-items: flex-start;
+    align-items: flex-start;
     padding: 20px;
     box-sizing: border-box;
   }
@@ -55,15 +55,12 @@ body {
     padding-right: 0px;
     margin-bottom: 10px;
     margin-right: 10px;
-    border: 1px solid #000;
     border-radius: 5px;
+    border: 1px solid #000;
     font-size: 16px;
   }
 
-  .MiddleSection {
-    text-align: center;
-  }
-
+  
   .AddCard {
     background-color: #ffffff; 
     color: #000000;
@@ -165,4 +162,10 @@ body {
   .CancelButton:hover {
     background-color: #000000;
   }
+
+
+  
+  
+  
+  
   

@@ -7,6 +7,7 @@
     border: 3px solid #ff00008b;
     border-radius: 10px;
     background-color: #000000;
+    margin-top: 20px;
   }
   
   h1 {
@@ -32,7 +33,7 @@
     margin-bottom: 5px;
   }
   
-  button[type="Sign In"] {
+  button[type="submit"] {
     background-color: #7f1515;
     color: #ffffff;
     margin-top: 5px;

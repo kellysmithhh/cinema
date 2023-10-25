@@ -1,11 +1,14 @@
 
 .addMovie {
-    width: 700px;
+    width: 650px;
     margin: 0px;
     padding: 20px;
     border: 3px solid #ff00008b;
     border-radius: 5px;
     background-color: #000000;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
   }
   
   h1 {
@@ -37,6 +40,10 @@
     margin-bottom: 5px;
   }
 
+  input[type="checkbox"] {
+   margin-right: 400px;
+  }
+
   select{
     padding: 8px;
     border: 1px solid #df0000;
@@ -45,8 +52,25 @@
     margin-top: 5px;
     margin-bottom: 5px;
   }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+  }
   
-  button[type="submit"] {
+  .checkbox-label label {
+    margin-left: -390px; 
+    color:#b9b8b8;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    vertical-align: middle; 
+    margin-top: 12px;
+  }
+  
+  .input-container button[type="submit"] {
     background-color: #7f1515;
     color: #ffffff;
     margin-top: 5px;
@@ -57,6 +81,9 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 290px;
+    font-size: 14px;
+
   }
   
   button[type="submit"]:hover {

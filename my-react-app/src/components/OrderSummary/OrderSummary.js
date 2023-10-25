@@ -26,7 +26,7 @@ function OrderSummary(props) {
       <p1>Your order has been confirmed with the following details:</p1>
 
       <div className="SummaryDetails">
-        <p>Tickets for {movieName}</p>
+        <p>Tickets for: {movieName}</p>
         <p>Date: {date}</p>
         <p>Time: {time}</p>
         <p>Selected Seats: {selectedSeats.join(', ')}</p>

@@ -137,7 +137,7 @@ function CreateAccount() {
                 <input type="text" placeholder="Zip Code" id="zip" name="zip" value={zipCode} onChange={(e)=>setZip(e.target.value)}></input>
 
                 <br></br>
-                <div>
+                <div class="checkbox-label2">
                     <input type="checkbox" id="Promotional" name="Promotional"/>
                     <label for="scales">I would like to receive emails about promotional codes.</label>
                 </div>

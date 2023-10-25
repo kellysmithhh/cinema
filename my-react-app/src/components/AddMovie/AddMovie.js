@@ -81,9 +81,12 @@ function AddMovie() {
                 <label className="label">Duration</label>
                 <input type="text" placeholder="Required Field" value ={duration} onChange={(e)=>setDuration(e.target.value)}></input>
 
-                <input type="checkbox"/>
-                <label for="scales" onChange={handleCheck}>Now showing?</label>
+                <div class="checkbox-label">
+                    <input type="checkbox" id="scales" name="scales"/>
+                    <label for="scales" onChange={handleCheck}>Now showing?</label>
+                </div>
 
+                
                 <div className="input-container">
                     <button type="submit" onClick={handleClick}>Add Movie</button>
                 </div>

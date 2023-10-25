@@ -30,7 +30,7 @@ function Browse() {
       <div className = "browse">
 
         <div className = "searchBar">
-                    <input type='text' placeholder='Movie Name..' id='input'value={userSearch} onChange={(e)=>setSearch(e.target.value)}/>
+                    <input type='text' placeholder='Movie Title..' id='input'value={userSearch} onChange={(e)=>setSearch(e.target.value)}/>
                     <button type='submit'onClick={handleClick}>Search</button>
         </div>
 

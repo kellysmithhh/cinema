@@ -6,6 +6,7 @@
     border: 3px solid #ff00008b;
     border-radius: 5px;
     background-color: #000000;
+    margin-top: 20px;
   }
   
   h1 {
@@ -35,6 +36,20 @@
     font-size: 16px;
     margin-top: 5px;
     margin-bottom: 5px;
+  }
+
+  .checkbox-label2 {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox-label2 label {
+    margin-left: -390px;
+  }
+  
+  .checkbox-label2 input[type="checkbox"] {
+    vertical-align: middle; 
+    margin-top: 6px;
   }
   
   button[type="submit"] {

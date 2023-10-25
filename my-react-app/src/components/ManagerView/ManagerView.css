@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between ;
     background-color: black;
+    margin-left: 20px;
+
 }
 
 #MVRight{
@@ -13,8 +15,29 @@
     border: 1px;
     border-color: aliceblue;
 }
+
+
+
+
 .top{
     text-align: center;
+    margin-left: 0px;
+}
+
+.top input[type="text"] {
+    margin-right: 10px; /* Add right margin to space out the inputs */
+  }
+
+.top button[type="submit"] {
+    margin-left: 0px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Play';
 }
 
 #MVLeft{
@@ -33,6 +56,7 @@ th, td {
     border: 1px solid red;
     padding: 8px;
     text-align: center;
+    font-size: 14px;
 }
 
 #editInfo{

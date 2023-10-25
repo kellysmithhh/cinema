@@ -15,7 +15,8 @@
     padding-bottom: 20px;
 }
 .searchBar input{
-    height: 50px;
+    height: 40px;
+    width: 200px;
     font-size: 35px;
 }
 
