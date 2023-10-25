@@ -14,9 +14,11 @@ function CreateAccount() {
 
     // PaymentCard
     const[cardType,setCardType] = useState('')
-    const[cardNum,setCardNum] = useState('')
-    const[expiration,setExperation] = useState('')
-    const[billingAddr,setBillingAddr] = useState('')
+    const[cardNumber,setCardNum] = useState('')
+    const[cardExperation,setExperation] = useState('')
+    const[cardCVV,setCardCVV] = useState('')
+    const[cardName,setCardName] = useState('')
+    const[billingAddress,setBillingAddr] = useState('')
 
     //Address
     const[street,setStreet] = useState('')
@@ -30,19 +32,20 @@ function CreateAccount() {
 
     let navigate = useNavigate(); 
     const handleClick = () =>{
-        var paymentCard;
-        if ((cardType || cardNum || expiration || billingAddr) !== '') {
-            paymentCard={cardType,cardNum,expiration,billingAddr}
-            console.log(paymentCard)   
-        }
-
-        var billingAddress;
+        var shippingAddress;
         if ((street || city || state || zipCode) !== '') {
-            billingAddress={street,city,state,zipCode}
-            console.log(billingAddress)
-        }     
+            shippingAddress={street,city,state,zipCode}
+            console.log(shippingAddress)
+        } 
+        
+        var paymentCards;      
+        if ((cardType || cardNumber || cardExperation || billingAddress) !== '') {
+            
+            paymentCards = {cardNumber,cardExperation,cardName,cardCVV,cardType,billingAddress}
+            console.log(paymentCards)   
+        }       
 
-        const user={firstName,lastName,email,password,phone,cardType,billingAddress}
+        const user={firstName,lastName,email,password,phone,shippingAddress}
         console.log(user)
         fetch("http://localhost:8080/user/register",{ //route not implemented yet
             method:"POST",
@@ -103,11 +106,13 @@ function CreateAccount() {
 
                 <label className="label">Payment Info (Optional)</label>
                 <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
-                <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNum} onChange={(e)=>setCardNum(e.target.value)}></input>
-                <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={expiration} onChange={(e)=>setExperation(e.target.value)}></input>
-                <input type="text" placeholder="Billing Address" id="ba" name="ba" value={billingAddr} onChange={(e)=>setBillingAddr(e.target.value)}></input>
+                <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
+                <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExperation} onChange={(e)=>setExperation(e.target.value)}></input>
+                <input type="text" placeholder="Card Name" id="ed" name="ed" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
+                <input type="text" placeholder="Card CVV" id="ed" name="ed" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
+                <input type="text" placeholder="Billing Address" id="ba" name="ba" value={billingAddress} onChange={(e)=>setBillingAddr(e.target.value)}></input>
 
-                <label className="label">Home Address (Optional)</label>
+                <label className="label">Shipping Address (Optional)</label>
                 <input type="text" placeholder="Street" id="str" name="str" value={street} onChange={(e)=>setStreet(e.target.value)}></input>
                 <input type="text" placeholder="City" id="city" name="city" value={city} onChange={(e)=>setCity(e.target.value)}></input>
                 <input type="text" placeholder="State" id="state" name="state" value={state} onChange={(e)=>setState(e.target.value)}></input>
