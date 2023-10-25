@@ -2,16 +2,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from 'react';
 
 function VerifyCode() {
-    const {VerifyCode} = useParams();
+    const {verificationCode} = useParams();
     let navigate = useNavigate();
     const[inputCode,setInputCode] = useState('');
 
-    const handleEnterVerifyClick = () => {
-
-
-
-        let path = `/ChangePassword`; 
-        navigate(path);
+    const handleEnterVerifyClick = (e) => {
+        e.preventDefault();
+        if (inputCode === verificationCode) {
+            let path = `/ChangePassword`; 
+            navigate(path);
+        } else {
+            alert("Incorrect code. Please try again.");
+        }
     }
 
     return (
