@@ -50,6 +50,7 @@ public class UserController {
         Optional<Customer> maybeCustomer = customerService.getWithEmail(email);
         if (maybeCustomer.isPresent()) {
             Customer customer = maybeCustomer.get();
+            // TODO check if user session already exists
             if (security.matches(password, customer.getPassword())) {
                 return userService.startSession(customer);
             }
@@ -62,6 +63,7 @@ public class UserController {
         Optional<Admin> maybeAdmin = adminService.getWithCode(adminId);
         if (maybeAdmin.isPresent()) {
             Admin admin = maybeAdmin.get();
+            // TODO check if user session already exists
             if (security.matches(password, admin.getPassword())) {
                 return userService.startSession(admin);
             }
@@ -93,5 +95,8 @@ public class UserController {
     public boolean editProfile(@RequestBody Customer customer) {
         return customerService.editProfile(customer);
     }
+
+    // @PostMapping("/register/verify/{email}")
+    // public String registerVerify(@PathVariable String email) {}
 
 }
