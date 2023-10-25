@@ -91,7 +91,7 @@ public class UserController {
 
     @PostMapping("/edit")
     public boolean editProfile(@RequestBody Customer customer) {
-        return userService.editProfile(customer);
+        return customerService.editProfile(customer);
     }
 
 }

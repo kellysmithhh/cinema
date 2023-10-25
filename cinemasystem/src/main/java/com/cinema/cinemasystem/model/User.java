@@ -15,9 +15,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String first_name;
+    String firstName;
 
-    String last_name; 
+    String lastName;
+
+    private String password;
 
     private String session;
 
@@ -30,19 +32,27 @@ public class User {
     }
 
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.first_name = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.last_name = lastName;
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSession() {
@@ -52,5 +62,6 @@ public class User {
     public void setSession(String session) {
         this.session = session;
     }
+
 
 }
