@@ -9,15 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.cinema.cinemasystem.Repository.AddressRepository;
 import com.cinema.cinemasystem.Repository.CustomerRepository;
 import com.cinema.cinemasystem.Repository.UserRepository;
-import com.cinema.cinemasystem.model.Address;
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.User;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
@@ -27,9 +23,6 @@ public class UserService {
 
     @Autowired
     private CustomerRepository customerRepository;
-
-    @Autowired
-    private AddressRepository addressRepository;
 
     @Autowired
     private PasswordEncoder security;
@@ -68,44 +61,6 @@ public class UserService {
         if (maybeCustomer.isPresent()) {
             Customer customer = maybeCustomer.get();
             return security.matches(password, customer.getPassword());
-        }
-        return false;
-    }
-
-    @Transactional
-    public boolean editProfile(Customer editCustomer) {
-        Optional<Customer> maybeCustomer = customerRepository.findBySession(editCustomer.getSession());
-        if (maybeCustomer.isPresent()) {
-            Customer realCustomer = maybeCustomer.get();
-            String firstName = editCustomer.getFirstName();
-            if (firstName != null) realCustomer.setFirstName(firstName);
-            String lastName = editCustomer.getLastName();
-            if (lastName != null) realCustomer.setLastName(lastName);
-            String password = editCustomer.getPassword();
-            if (password != null) realCustomer.setPassword(password);
-            Address shippingAddress = editCustomer.getShippingAddress();
-            if (shippingAddress != null) {
-                Address oldAddress = realCustomer.getShippingAddress();
-                if (oldAddress != null) {
-                    addressRepository.delete(oldAddress);
-                }
-                realCustomer.setShippingAddress(shippingAddress);
-            }
-            Set<PaymentCard> paymentCards = editCustomer.getPaymentCards();
-            if (paymentCards != null) {
-                realCustomer.getPaymentCards().clear();
-                for (PaymentCard card : paymentCards) {
-                    card.setCardName(security.encode(card.getCardName()));
-                    card.setCardType(security.encode(card.getCardType()));
-                    card.setCardNumber(security.encode(card.getCardNumber()));
-                    card.setCardExpiration(security.encode(card.getCardExpiration()));
-                    card.setCardCVV(security.encode(card.getCardCVV()));
-                    realCustomer.getPaymentCards().add(card);
-                    card.setUser(realCustomer);
-                }
-            }
-            customerRepository.save(realCustomer);
-            return true;
         }
         return false;
     }

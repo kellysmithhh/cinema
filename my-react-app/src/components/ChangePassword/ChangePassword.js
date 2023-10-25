@@ -1,13 +1,25 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ChangePassword() {
 
     let navigate = useNavigate();
+    const[newPassword,setNewPassword] = useState('');
 
-    const handleEnterClick = () => {
-         //change path
-         let path = `/`; 
-         navigate(path);
+    const handleEnterClick = (e) => {
+        e.preventDefault();
+        const password={newPassword}
+        fetch("http://localhost:8080/user/edit",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(password)
+        }).then(()=>{
+            console.log("Password changed.")
+
+            //change path
+            let path = `/`; 
+            navigate(path);
+        })
     }
     return (
         <div className="LoginPage">
@@ -15,8 +27,7 @@ function ChangePassword() {
         <div className="LogIn">
                <h1>Change Password</h1>
            </div>
-           <input type="text" placeholder="New Password" id="email" name="email" ></input>
-           <input type="text" placeholder="Confirm New Password" id="email" name="email" ></input>
+           <input type="text" placeholder="New Password" value = {newPassword} onChange={(e)=>setNewPassword(e.target.value)}></input>
            <div className="input-container5">
                <button onClick = {handleEnterClick} type="submit">Enter</button>
            </div>
