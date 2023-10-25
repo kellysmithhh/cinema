@@ -18,7 +18,12 @@ function CreateAccount() {
     const[cardExperation,setExperation] = useState('')
     const[cardCVV,setCardCVV] = useState('')
     const[cardName,setCardName] = useState('')
-    const[billingAddress,setBillingAddr] = useState('')
+
+    // Billing Address
+    const[billingStreet,setBillingStreet] = useState('')
+    const[billingCity,setBillingCity] = useState('')
+    const[billingState,setBillingState] = useState('')
+    const[billingZip,setBillingZip] = useState('')
 
     //Address
     const[street,setStreet] = useState('')
@@ -37,10 +42,16 @@ function CreateAccount() {
             shippingAddress={street,city,state,zipCode}
             console.log(shippingAddress)
         } 
+        //let billingStreet = {street: billingStreet}
+        //let billingState = {state: billingState}
+        //let billingCity = {city: billingCity}
+        //let billingZip = {zipCode: billingZip}
+        var billingAddress = {billingStreet, billingState, billingCity, billingZip}
+
+        //var billingAddress  
         
         var paymentCards;      
-        if ((cardType || cardNumber || cardExperation || billingAddress) !== '') {
-            
+        if ((cardType || cardNumber || cardExperation) !== '') {            
             paymentCards = {cardNumber,cardExperation,cardName,cardCVV,cardType,billingAddress}
             console.log(paymentCards)   
         }       
@@ -108,9 +119,14 @@ function CreateAccount() {
                 <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
                 <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
                 <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExperation} onChange={(e)=>setExperation(e.target.value)}></input>
-                <input type="text" placeholder="Card Name" id="ed" name="ed" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
-                <input type="text" placeholder="Card CVV" id="ed" name="ed" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
-                <input type="text" placeholder="Billing Address" id="ba" name="ba" value={billingAddress} onChange={(e)=>setBillingAddr(e.target.value)}></input>
+                <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
+                <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
+                
+                <label className="label">Billing Address </label>
+                <input type="text" placeholder="Billing Street" id="bs" name="bs" value={billingStreet} onChange={(e)=>setBillingStreet(e.target.value)}></input>
+                <input type="text" placeholder="Billing City" id="bc" name="bc" value={billingCity} onChange={(e)=>setBillingCity(e.target.value)}></input>
+                <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={billingState} onChange={(e)=>setBillingState(e.target.value)}></input>
+                <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={billingZip} onChange={(e)=>setBillingZip(e.target.value)}></input>
 
                 <label className="label">Shipping Address (Optional)</label>
                 <input type="text" placeholder="Street" id="str" name="str" value={street} onChange={(e)=>setStreet(e.target.value)}></input>
