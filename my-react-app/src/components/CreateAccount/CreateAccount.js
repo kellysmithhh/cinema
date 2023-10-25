@@ -42,11 +42,13 @@ function CreateAccount() {
             shippingAddress={street,city,state,zipCode}
             console.log(shippingAddress)
         } 
-        //let billingStreet = {street: billingStreet}
-        //let billingState = {state: billingState}
-        //let billingCity = {city: billingCity}
-        //let billingZip = {zipCode: billingZip}
-        var billingAddress = {billingStreet, billingState, billingCity, billingZip}
+        
+        var billingAddress = {
+            street: billingStreet,
+            city: billingCity,
+            state: billingState,
+            zipCode: billingZip
+        }
 
         //var billingAddress  
         
