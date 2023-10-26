@@ -86,4 +86,11 @@ public class UserService {
         }
     }
 
+    public void forgotPassword(String email, String password) {
+        Optional<Customer> maybeCustomer = customerRepository.findByEmail(email);
+        Customer customer = maybeCustomer.get();
+        customer.setPassword(security.encode(password));
+        customerRepository.save(customer);
+    }
+
 }

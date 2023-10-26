@@ -11,7 +11,7 @@ function VerifyCode() {
     const handleEnterVerifyClick = (e) => {
         e.preventDefault();
         if (inputCode === verificationCode && page === "forgotPassword") {
-            let path = `/ChangePassword`; 
+            let path = `/ChangePassword/${email}`; 
             navigate(path);
         } else if (inputCode === verificationCode && page === "CreateAccount") {
             const apiUrl = `http://localhost:8080/email/send/confirmation/${email}`;

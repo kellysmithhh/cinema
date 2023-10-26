@@ -44,7 +44,7 @@ function App() {
             <Route path = "/RegisterConfirmation" element ={<RegisterConfirmation/>}/>
             <Route path ="/ForgotPassword" element ={<ForgotPassword/>}/>
             <Route path = "/VerifyCode/:verificationCode/:page/:email" element = {<VerifyCode/>}/>
-            <Route path = "/ChangePassword" element = {<ChangePassword/>}/>
+            <Route path = "/ChangePassword/:email" element = {<ChangePassword/>}/>
             <Route path ="/AddCard" element = {<AddCard/>}/>
           </Routes>
         </div>

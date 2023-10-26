@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ChangePassword() {
 
     let navigate = useNavigate();
     const[newPassword,setNewPassword] = useState('');
+    const {email} = useParams();
 
     const handleEnterClick = (e) => {
         e.preventDefault();
-        const session = JSON.parse(localStorage.getItem('session'));
-        const customer={session,newPassword}
-        fetch("http://localhost:8080/user/edit",{
+        fetch(`http://localhost:8080/user/forgotPassword/${email}/${newPassword}`,{ 
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(customer)
         }).then(()=>{
             console.log("Password changed.")
 

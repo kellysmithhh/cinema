@@ -96,6 +96,11 @@ public class UserController {
         return customerService.editProfile(customer);
     }
 
+    @PostMapping("/forgotPassword/{email}/{password}")
+    public void changePassword(@PathVariable String email, @PathVariable String password) {
+        userService.forgotPassword(email, password);
+    }
+
     // @PostMapping("/register/verify/{email}")
     // public String registerVerify(@PathVariable String email) {}
 
