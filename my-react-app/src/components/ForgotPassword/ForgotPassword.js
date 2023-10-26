@@ -26,7 +26,7 @@ function ForgotPassword() {
                 console.error('Error fetching data:', error);
               });
 
-        let path = `/VerifyCode/${verificationCode}/${page}`; 
+        let path = `/VerifyCode/${verificationCode}/${page}/${email}`; 
         navigate(path);
     }
 

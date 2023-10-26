@@ -93,7 +93,7 @@ function CreateAccount() {
               });
         
        
-        let path = `/VerifyCode/${verificationCode}/${page}`; 
+        let path = `/VerifyCode/${verificationCode}/${page}/${email}`; 
         navigate(path);
     } // handleClick
 
