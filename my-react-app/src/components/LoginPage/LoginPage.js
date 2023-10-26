@@ -19,6 +19,7 @@ function LoginPage() {
                 .then((response)=>response.text())
                 .then((data) => {
                     if (data !== '') {
+                        localStorage.setItem('session', JSON.stringify(data));
                         let path = `/`;
                         navigate(path);
                     } else {
@@ -36,6 +37,7 @@ function LoginPage() {
                 .then((response)=>response.text())
                 .then((data) => {
                     if (data !== '') {
+                        localStorage.setItem('session', JSON.stringify(data));
                         //change path
                         let path = `/ManagerView`; 
                         navigate(path);

@@ -40,7 +40,7 @@ public class CustomerService {
             String lastName = editCustomer.getLastName();
             if (lastName != null) realCustomer.setLastName(lastName);
             String password = editCustomer.getPassword();
-            if (password != null) realCustomer.setPassword(password);
+            if (password != null) realCustomer.setPassword(security.encode(password));
             Address shippingAddress = editCustomer.getShippingAddress();
             if (shippingAddress != null) {
                 Address oldAddress = realCustomer.getShippingAddress();
