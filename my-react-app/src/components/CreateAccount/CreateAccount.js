@@ -30,6 +30,8 @@ function CreateAccount() {
     const[city,setCity] = useState('')
     const[state,setState] = useState('')
     const[zipCode,setZip] = useState('')
+
+    const page = "CreateAccount";
     
     function generateCode() {
         return Math.floor(1000 + Math.random() * 9000);
@@ -91,7 +93,7 @@ function CreateAccount() {
               });
         
        
-        let path = `/VerifyCode`; 
+        let path = `/VerifyCode/${verificationCode}/${page}`; 
         navigate(path);
     } // handleClick
 

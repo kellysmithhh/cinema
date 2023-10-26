@@ -42,7 +42,7 @@ function App() {
             <Route path ="/CreateAccount" element ={<CreateAccount/>}/>
             <Route path = "/RegisterConfirmation" element ={<RegisterConfirmation/>}/>
             <Route path ="/ForgotPassword" element ={<ForgotPassword/>}/>
-            <Route path = "/VerifyCode/:verificationCode" element = {<VerifyCode/>}/>
+            <Route path = "/VerifyCode/:verificationCode/:page" element = {<VerifyCode/>}/>
             <Route path = "/ChangePassword" element = {<ChangePassword/>}/>
           </Routes>
         </div>
