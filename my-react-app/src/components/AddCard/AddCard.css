@@ -1,53 +1,79 @@
 .credit-card-form {
-    background-color: #fff;
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+    border: 3px solid #ff00008b;
+    border-radius: 5px;
+    background-color: #000000;
+    margin-top: 20px;
+  }
+  
+  h1 {
+    color:#7f1515;
+    font-size: 2em;
+    line-height: 1.3em;
+  }
 
-h2 {
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
+  form {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+  }
+  
+  
+  .label {
+    color:#b9b8b8;
     font-weight: bold;
-    display: block;
-}
-
-select,
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    border: 1px solid #df0000;
     border-radius: 5px;
     font-size: 16px;
-}
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 
-.button-group {
+  .checkbox-label2 {
     display: flex;
-    justify-content: space-between;
-}
+    align-items: center;
+  }
 
-.submit-button,
-.done-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
+  .checkbox-label2 label {
+    margin-left: -390px;
+  }
+  
+  .checkbox-label2 input[type="checkbox"] {
+    vertical-align: middle; 
+    margin-top: 6px;
+  }
+  
+  button[type="submit"] {
+    background-color: #7f1515;
+    color: #ffffff;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    flex: 1;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    align-self: center;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
 }
 
-.submit-button:hover,
-.done-button:hover {
-    background-color: #0056b3;
-}
+  .input-container8 {
+    align-self: center;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #e98d7b;
+  }
