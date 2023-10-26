@@ -20,4 +20,10 @@ public class EmailServiceController {
         emailService.sendEmail(address, code);
         return "email sent";
     }
+
+    @PostMapping("/send/confirmation/{address}")
+    public String send(@PathVariable String address) {
+        emailService.sendConfirmation(address);
+        return "email sent";
+    }
 }

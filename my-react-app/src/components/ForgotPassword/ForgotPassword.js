@@ -8,6 +8,8 @@ function ForgotPassword() {
 
     const[email,setEmail] = useState('')
 
+    const page = "forgotPassword";
+
     function generateCode() {
         return Math.floor(1000 + Math.random() * 9000);
     }
@@ -24,7 +26,7 @@ function ForgotPassword() {
                 console.error('Error fetching data:', error);
               });
 
-        let path = `/VerifyCode/${verificationCode}`; 
+        let path = `/VerifyCode/${verificationCode}/${page}/${email}`; 
         navigate(path);
     }
 

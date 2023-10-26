@@ -8,6 +8,7 @@ function ChangePassword() {
 
     const handleEnterClick = (e) => {
         e.preventDefault();
+        const session = JSON.parse(localStorage.getItem('session'));
         const password={newPassword}
         fetch("http://localhost:8080/user/edit",{
             method:"POST",
