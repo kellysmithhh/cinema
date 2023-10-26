@@ -9,11 +9,11 @@ function ChangePassword() {
     const handleEnterClick = (e) => {
         e.preventDefault();
         const session = JSON.parse(localStorage.getItem('session'));
-        const password={newPassword}
+        const customer={session,newPassword}
         fetch("http://localhost:8080/user/edit",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(password)
+            body:JSON.stringify(customer)
         }).then(()=>{
             console.log("Password changed.")
 
