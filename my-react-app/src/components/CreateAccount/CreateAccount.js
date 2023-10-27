@@ -88,6 +88,7 @@ function CreateAccount() {
             shippingAddress={street,city,state,zipCode}
             console.log(shippingAddress)
         } 
+        
 
         const user={email,password,firstName,lastName,phone,shippingAddress,paymentCards}
         fetch("http://localhost:8080/user/register",{ 
