@@ -16,8 +16,6 @@ import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.User;
 
-import ch.qos.logback.core.status.Status;
-
 @Service
 public class UserService {
 
@@ -43,7 +41,6 @@ public class UserService {
     }
 
     public boolean register(Customer customer) {
-        System.out.println("password:" + customer.getPassword());
         customer.setPassword(security.encode(customer.getPassword()));
         customer.setStatus(STATUS.ACTIVE);
         Set<PaymentCard> paymentCards = customer.getPaymentCards();
