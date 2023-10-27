@@ -45,6 +45,8 @@ public class Customer extends User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     private Set<Booking> bookings;
 
+    private boolean promoEmail;
+
     public Long getId() {
         return id;
     }
@@ -102,6 +104,14 @@ public class Customer extends User {
 
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public boolean getPromoEmail() {
+        return promoEmail;
+    }
+
+    public void setPromoEmail(boolean promoEmail) {
+        this.promoEmail = promoEmail;
     }
 
 }

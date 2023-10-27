@@ -101,6 +101,11 @@ public class UserController {
         userService.forgotPassword(email, password);
     }
 
+    @GetMapping("/check/promotions/{sessionId}")
+    public boolean checkPromotionsValue(@PathVariable String sessionId) {
+        return customerService.checkPromotionsValue(sessionId);
+    }
+
     // @PostMapping("/register/verify/{email}")
     // public String registerVerify(@PathVariable String email) {}
 

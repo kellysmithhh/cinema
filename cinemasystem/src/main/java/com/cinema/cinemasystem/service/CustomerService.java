@@ -68,4 +68,16 @@ public class CustomerService {
         return false;
     }
 
+    public boolean checkPromotionsValue(String sessionId) {
+        Optional<Customer> maybeCustomer = customerRepository.findBySession(sessionId);
+        System.out.println("sessionId on backend: " + sessionId);
+        if (maybeCustomer.isPresent()) {
+            Customer customer = maybeCustomer.get();
+            return customer.getPromoEmail();
+        } else {
+            System.out.println("maybe customer not present.");
+            return false;
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './EditProfile.css';
@@ -17,6 +17,35 @@ function EditProfile() {
     const[zipCode,setZip] = useState('')
 
     let navigate = useNavigate(); 
+
+    const[defaultCheck,setDefaultCheck] = useState(false);
+
+    useEffect(() => {
+
+      const sessionId = localStorage.getItem('session');
+      const trimmedSessionId = sessionId.replace(/^"(.*)"$/, '$1');
+      const apiUrl = `http://localhost:8080/user/check/promotions/${trimmedSessionId}`;
+      fetch(apiUrl, {
+        method:"GET",
+        headers:{"Content-Type":"application/json"}})
+        .then((response)=> response.json())
+        .then((data) => {
+          console.log("Data from the fetch:", data);
+          if (data === true) {
+            setDefaultCheck(true);
+          }
+          console.log("defaultCheck: " + defaultCheck)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+      });
+    }, []);
+
+    const handleCheck = (e) => {
+        setDefaultCheck(e.target.checked);
+        console.log("checked: " + defaultCheck) // if starting with checked, value is opposite
+      // reflect changes in db
+    }
 
     const handleFnameclick = (e) => {
       e.preventDefault();
@@ -51,9 +80,10 @@ function EditProfile() {
 
       }
 
-      var session = localStorage.getItem('sessionID')
+      var sessionId = localStorage.getItem('session')
+      const trimmedSessionId = sessionId.replace(/^"(.*)"$/, '$1');
       // dosen't work rn cuz if you dont enter a field it changes the users data to "" instead of keeping old info
-      const user={firstName,lastName,password,phone,shippingAddress,session}
+      const user={firstName,lastName,password,phone,shippingAddress,trimmedSessionId}
       console.log(user)
       fetch("http://localhost:8080/user/edit",{ //route not implemented yet
           method:"POST",
@@ -99,7 +129,13 @@ function EditProfile() {
                 <input type="text" placeholder="City" id="city" name="city" value={city} onChange={(e)=>setCity(e.target.value)}></input>
                 <input type="text" placeholder="State" id="state" name="state" value={state} onChange={(e)=>setState(e.target.value)}></input>
                 <input type="text" placeholder="Zip Code" id="zip" name="zip" value={zipCode} onChange={(e)=>setZip(e.target.value)}></input>
-                <button type="submit" onClick = {handleShippingclick}>Update</button>
+                <button type="submit" onClick = {handleShippingclick}>Update Shipping Address</button>
+
+                <div class="checkbox-label2">
+                    <input type="checkbox" id="Promotional" name="Promotional" onChange={handleCheck} checked={defaultCheck}/>
+                    <label for="scales">I would like to receive emails about promotional codes.</label>
+                </div>
+
           <div className="input-container">
             <button type="submit" onClick = {handleClick}>Update Information</button>
           </div>

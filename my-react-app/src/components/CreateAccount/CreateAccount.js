@@ -33,6 +33,8 @@ function CreateAccount() {
       const[billingState,setBillingState] = useState('')
       const[billingZip,setBillingZip] = useState('')
 
+      const[promoEmail,setPromoEmail] = useState(false)
+
     const page = "CreateAccount";
     
     function generateCode() {
@@ -61,6 +63,10 @@ function CreateAccount() {
         }
     }
 
+    const handleCheck = (e) => {
+        setPromoEmail(e.target.checked);
+    }
+
     var cardCounter = 0;
     const handlePaymentCardSubmit = (e) => {
         e.preventDefault();
@@ -79,7 +85,6 @@ function CreateAccount() {
 
     }
 
-
     const handleClick = (e) =>{
         e.preventDefault();
 
@@ -90,7 +95,7 @@ function CreateAccount() {
             shippingAddress={street,city,state,zipCode}
             console.log(shippingAddress)
 
-            const user={email,password,firstName,lastName,phone,shippingAddress,paymentCards}
+            const user={email,password,firstName,lastName,phone,shippingAddress,paymentCards,promoEmail}
             fetch("http://localhost:8080/user/register",{ 
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
@@ -105,6 +110,7 @@ function CreateAccount() {
             fetch(apiUrl, {
                 method:"POST",
                 headers:{"Content-Type":"application/json"}})
+                .then((response) => {})
                 .then(()=>{console.log("New email sent.")})
                 .catch(error => {
                     console.error('Error fetching data:', error);
@@ -162,7 +168,7 @@ function CreateAccount() {
                 </div>
                 <br></br>
                 <div class="checkbox-label2">
-                    <input type="checkbox" id="Promotional" name="Promotional"/>
+                    <input type="checkbox" id="Promotional" name="Promotional" onChange={handleCheck}/>
                     <label for="scales">I would like to receive emails about promotional codes.</label>
                 </div>
                 <br></br>
