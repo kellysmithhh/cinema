@@ -83,35 +83,36 @@ function CreateAccount() {
     const handleClick = (e) =>{
         e.preventDefault();
 
-        var shippingAddress;
-        if ((street || city || state || zipCode) !== '') {
+        if (firstName === '' || lastName === '' || email === '' || phone === '' || password === '') {
+            alert("Please fill out all required fields.")
+        } else {
+            var shippingAddress;
             shippingAddress={street,city,state,zipCode}
             console.log(shippingAddress)
-        } 
-        
 
-        const user={email,password,firstName,lastName,phone,shippingAddress,paymentCards}
-        fetch("http://localhost:8080/user/register",{ 
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(user)
-        }).then(()=>{
-            console.log("New user added.")
-            console.log(JSON.stringify(user))
-        })
-           
-        const verificationCode = generateCode();
-        const apiUrl = `http://localhost:8080/email/send/${email}/${verificationCode}`;
-        fetch(apiUrl, {
-            method:"POST",
-            headers:{"Content-Type":"application/json"}})
-            .then(()=>{console.log("New email sent.")})
-            .catch(error => {
-                console.error('Error fetching data:', error);
-              });
-       
-        let path = `/VerifyCode/${verificationCode}/${page}/${email}`; 
-        navigate(path);
+            const user={email,password,firstName,lastName,phone,shippingAddress,paymentCards}
+            fetch("http://localhost:8080/user/register",{ 
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(user)
+            }).then(()=>{
+                console.log("New user added.")
+                console.log(JSON.stringify(user))
+            })
+                
+            const verificationCode = generateCode();
+            const apiUrl = `http://localhost:8080/email/send/${email}/${verificationCode}`;
+            fetch(apiUrl, {
+                method:"POST",
+                headers:{"Content-Type":"application/json"}})
+                .then(()=>{console.log("New email sent.")})
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+            
+            let path = `/VerifyCode/${verificationCode}/${page}/${email}`; 
+            navigate(path);
+        } // if
     } // handleClick
 
     return (
