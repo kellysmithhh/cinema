@@ -17,6 +17,7 @@ import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import VerifyCode from './components/VerifyCode/VerifyCode';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 import AddCard from './components/AddCard/AddCard';
+import EditProfile from './components/EditProfile/EditProfile';
 
 function App() { 
   if (localStorage.getItem('sessionID') == null) {
@@ -46,6 +47,7 @@ function App() {
             <Route path = "/VerifyCode/:verificationCode/:page/:email" element = {<VerifyCode/>}/>
             <Route path = "/ChangePassword/:email" element = {<ChangePassword/>}/>
             <Route path ="/AddCard" element = {<AddCard/>}/>
+            <Route path ="/EditProfile" element = {<EditProfile/>}/>
           </Routes>
         </div>
       </div>

@@ -17,6 +17,28 @@ function EditProfile() {
     const[zipCode,setZip] = useState('')
 
     let navigate = useNavigate(); 
+
+    const handleFnameclick = (e) => {
+      e.preventDefault();
+    }
+
+    const handleLnameclick = (e) => {
+      e.preventDefault();
+      
+    }
+
+    const handlePasswordclick = (e) => {
+      e.preventDefault();
+    }
+
+    const handlePhoneclick = (e) => {
+      e.preventDefault();
+    }
+
+    const handleShippingclick = (e) => {
+      e.preventDefault();
+    }
+
     const handleClick = () =>{
       var shippingAddress;
       if ((street || city || state || zipCode) !== '') {
@@ -40,9 +62,6 @@ function EditProfile() {
       }).then(()=>{
           console.log("user edits added.")
       })
-
-
-
     } //handleClick
 
 
@@ -54,24 +73,25 @@ function EditProfile() {
           <div className="form-group">
             <label className="labele">First Name:</label>            
             <input type="text" placeholder="New First Name" id="name" name="name" value={firstName} onChange={(e)=>setFirst_name(e.target.value)}></input>
+            <button type="submit" onClick = {handleFnameclick}>Update</button>
           </div>
   
           <div className="form-group">
             <label className="labele">Last Name:</label>
-           
             <input type="text" placeholder="New Last Name" id="name1" name="name1" value={lastName} onChange={(e)=>setLast_name(e.target.value)}></input>
+            <button type="submit" onClick = {handleLnameclick}>Update</button>
           </div>
   
           <div className="form-group">
             <label className="labele">Password:</label>
-            
             <input type="text" placeholder="New Password" id="pwd" name="pwd" value={password} onChange={(e)=>setPassword(e.target.value)}></input>
+            <button type="submit" onClick = {handlePasswordclick}>Update</button>
           </div>
   
           <div className="form-group">
             <label className="labele">Phone Number:</label>
-            
             <input type="text" placeholder="New Phone" id="phone" name="phone" value={phone} onChange={(e)=>setPhoneNum(e.target.value)}></input>
+            <button type="submit" onClick = {handlePhoneclick}>Update</button>
           </div>
   
           <label className="label"> New Shipping Address </label>
@@ -79,7 +99,7 @@ function EditProfile() {
                 <input type="text" placeholder="City" id="city" name="city" value={city} onChange={(e)=>setCity(e.target.value)}></input>
                 <input type="text" placeholder="State" id="state" name="state" value={state} onChange={(e)=>setState(e.target.value)}></input>
                 <input type="text" placeholder="Zip Code" id="zip" name="zip" value={zipCode} onChange={(e)=>setZip(e.target.value)}></input>
-  
+                <button type="submit" onClick = {handleShippingclick}>Update</button>
           <div className="input-container">
             <button type="submit" onClick = {handleClick}>Update Information</button>
           </div>

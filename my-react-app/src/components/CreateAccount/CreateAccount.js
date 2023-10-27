@@ -21,7 +21,7 @@ function CreateAccount() {
      // PaymentCard
      const[cardType,setCardType] = useState('')
      const[cardNumber,setCardNum] = useState('')
-     const[cardExperation,setExperation] = useState('')
+     const[cardExpiration,setExpiration] = useState('')
      const[cardCVV,setCardCVV] = useState('')
      const[cardName,setCardName] = useState('')
 
@@ -41,6 +41,25 @@ function CreateAccount() {
 
     let navigate = useNavigate(); 
 
+    class billingAddress {
+        constructor(street, city, state, zipCode) {
+            this.street = billingStreet;
+            this.city = billingCity;
+            this.state = billingState;
+            this.zipCode = billingZip;
+        }
+    }
+
+    class paymentCard {
+        constructor(cardNumber, cardExpiration, cardName, cardCVV, cardType, billingAddress) {
+            this.cardNumber = cardNumber;
+            this.cardExpiration = cardExpiration;
+            this.cardName = cardName;
+            this.cardCVV = cardCVV;
+            this.cardType = cardType;
+            this.billingAddress = billingAddress;
+        }
+    }
 
     var cardCounter = 0;
     const handlePaymentCardSubmit = (e) => {
@@ -49,24 +68,20 @@ function CreateAccount() {
             alert("Maximum amount of cards reached");
         } else {
         
-            var billingAddress = {
-                street: billingStreet,
-                city: billingCity,
-                state: billingState,
-                zipCode: billingZip
-            }
-            
-            var paymentCard = {cardNumber,cardExperation,cardName,cardCVV,cardType,billingAddress};
-            const updatedPaymentCards = [...paymentCards, paymentCard];
+            const billingAddr = new billingAddress(billingStreet, billingCity, billingState, billingZip);
+            const newPaymentCard =  new paymentCard(cardNumber,cardExpiration,cardName,cardCVV,cardType,billingAddr);
+            const updatedPaymentCards = [...paymentCards, newPaymentCard];
             setPaymentCards(updatedPaymentCards);
-            console.log(paymentCards)       
-            cardCounter += 1;
+            console.log(updatedPaymentCards)       
+            cardCounter++;
+            console.log("card count: " + cardCounter)
         } // else
 
     }
 
 
-    const handleClick = () =>{
+    const handleClick = (e) =>{
+        e.preventDefault();
 
         var shippingAddress;
         if ((street || city || state || zipCode) !== '') {
@@ -74,14 +89,14 @@ function CreateAccount() {
             console.log(shippingAddress)
         } 
 
-        const user={firstName,lastName,email,password,phone,shippingAddress,paymentCards}
-        console.log(user)
+        const user={email,password,firstName,lastName,phone,shippingAddress,paymentCards}
         fetch("http://localhost:8080/user/register",{ 
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(user)
         }).then(()=>{
             console.log("New user added.")
+            console.log(JSON.stringify(user))
         })
            
         const verificationCode = generateCode();
@@ -129,7 +144,7 @@ function CreateAccount() {
                 <label className="label">Payment Info (Optional)</label>
                 <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
                 <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
-                <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExperation} onChange={(e)=>setExperation(e.target.value)}></input>
+                <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
                 <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
                 <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
                 

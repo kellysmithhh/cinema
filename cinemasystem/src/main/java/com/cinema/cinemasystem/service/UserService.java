@@ -40,6 +40,7 @@ public class UserService {
     }
 
     public boolean register(Customer customer) {
+        System.out.println("password:" + customer.getPassword());
         customer.setPassword(security.encode(customer.getPassword()));
         Set<PaymentCard> paymentCards = customer.getPaymentCards();
         if (paymentCards != null) {
