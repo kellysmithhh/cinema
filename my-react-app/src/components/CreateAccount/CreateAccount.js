@@ -35,7 +35,7 @@ function CreateAccount() {
 
       const[promoEmail,setPromoEmail] = useState(false)
 
-    const page = "CreateAccount";
+    const page = "CreateAccount";    
     
     function generateCode() {
         return Math.floor(1000 + Math.random() * 9000);
@@ -96,6 +96,7 @@ function CreateAccount() {
             console.log(shippingAddress)
 
             const user={email,password,firstName,lastName,phone,shippingAddress,paymentCards,promoEmail}
+            console.log(user);
             fetch("http://localhost:8080/user/register",{ 
                 method:"POST",
                 headers:{"Content-Type":"application/json"},

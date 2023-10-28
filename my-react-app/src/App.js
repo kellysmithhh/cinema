@@ -22,9 +22,9 @@ import SignedInNavBar from './components/SignedInNavBar/SignedInNavBar';
 import { useEffect, useState } from 'react';
 
 function App() { 
- //if (localStorage.getItem('session') == null) {
- //   localStorage.setItem('session', "");
- // }
+ if (localStorage.getItem('session') == null) {
+    localStorage.setItem('session', "");
+  }
 
  const[isSessionNull,setIsSessionNull] = useState(true)
 

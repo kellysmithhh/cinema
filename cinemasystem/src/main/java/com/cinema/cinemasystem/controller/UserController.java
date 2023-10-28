@@ -84,6 +84,7 @@ public class UserController {
 
     @GetMapping("/verify/{sessionId}/{password}")
     public boolean verify(@PathVariable String sessionId, @PathVariable String password) {
+        System.out.println(userService.verify(sessionId, password));
         return userService.verify(sessionId, password);
     }
 
@@ -133,6 +134,12 @@ public class UserController {
         return customer.getPaymentCards();
     }
 
+    @GetMapping("/get/user/{sessionId}")
+    public Customer getCustomer(@PathVariable String sessionId) {
+        Customer customer = customerService.getWithSesssion(sessionId);
+        System.out.println(customer); 
+        return customer;
+    }
 
     // @PostMapping("/register/verify/{email}")
     // public String registerVerify(@PathVariable String email) {}

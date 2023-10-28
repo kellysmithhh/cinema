@@ -22,6 +22,7 @@ function LoginPage() {
                         localStorage.setItem('session', JSON.stringify(data));
                         let path = `/`;
                         navigate(path);
+                        window.location.reload()
                     } else {
                         alert("Email or password incorrect. Please try again.")
                     }
@@ -41,6 +42,7 @@ function LoginPage() {
                         //change path
                         let path = `/ManagerView`; 
                         navigate(path);
+                        window.location.reload()
                     } else {
                         alert("Id or password incorrect. Please try again.")
                     }

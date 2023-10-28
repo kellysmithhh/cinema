@@ -72,9 +72,9 @@ public class UserService {
     public boolean verify(String sessionId, String password) {
         Optional<Customer> maybeCustomer = customerRepository.findBySession(sessionId);
         if (maybeCustomer.isPresent()) {
-            Customer customer = maybeCustomer.get();
+            Customer customer = maybeCustomer.get();                    
             return security.matches(password, customer.getPassword());
-        }
+        }       
         return false;
     }
 
