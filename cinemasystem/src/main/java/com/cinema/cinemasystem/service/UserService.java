@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cinema.cinemasystem.Repository.CustomerRepository;
 import com.cinema.cinemasystem.Repository.UserRepository;
@@ -38,6 +39,16 @@ public class UserService {
 
     public Optional<User> getWithId(Long id) {
         return userRepository.findById(id);
+    }
+
+    public Optional<User> getWithSession(String session) {
+        return userRepository.findBySession(session);
+    }
+
+    public boolean logout(User user) {
+        user.setSession(null);
+        userRepository.save(user);
+        return true;
     }
 
     public boolean register(Customer customer) {
@@ -82,6 +93,7 @@ public class UserService {
         return sessionId;
     }
 
+    @Transactional
     public void closeSession(String sessionId) {
         if (hasSession(sessionId)) {
             userRepository.deleteBySession(sessionId);

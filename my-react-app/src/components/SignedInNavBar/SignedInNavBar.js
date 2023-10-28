@@ -5,7 +5,18 @@ import React from 'react';
 function SignedInNavBar({handleSignOut}) {
 
     const handleSignOutClick = () => {
+        const sessionId = localStorage.getItem('session');
+        const trimmedSessionId = sessionId.replace(/^"(.*)"$/, '$1');
+        const apiUrl = `http://localhost:8080/user/logout/${trimmedSessionId}` // responds with sessionId if found in customer table else null
+            fetch(apiUrl, {
+                method:"POST",
+                headers:{"Content-Type":"application/json"}})
+                .then(()=>{console.log("signed out.")})
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
         handleSignOut()
+
     }
 
     return (

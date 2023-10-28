@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cinema.cinemasystem.model.User;
 import com.cinema.cinemasystem.model.Admin;
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.service.AdminService;
@@ -73,12 +74,9 @@ public class UserController {
 
     @PostMapping("/logout/{sessionId}")
     public boolean logout(@PathVariable String sessionId) {
-        if (userService.hasSession(sessionId)) {
-            userService.closeSession(sessionId);
-            return true;
-        } else {
-            return false;
-        }
+       Optional<User> maybeUser = userService.getWithSession(sessionId);
+       User user = maybeUser.get();
+       return userService.logout(user);
     }
 
     @GetMapping("/verify/{sessionId}/{password}")
