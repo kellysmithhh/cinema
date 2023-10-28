@@ -19,16 +19,30 @@ import ChangePassword from './components/ChangePassword/ChangePassword';
 import AddCard from './components/AddCard/AddCard';
 import EditProfile from './components/EditProfile/EditProfile';
 import SignedInNavBar from './components/SignedInNavBar/SignedInNavBar';
+import { useEffect, useState } from 'react';
 
 function App() { 
-  if (localStorage.getItem('sessionID') == null) {
-    localStorage.setItem('sessionID', "");
-  }
+ //if (localStorage.getItem('session') == null) {
+ //   localStorage.setItem('session', "");
+ // }
+
+ const[isSessionNull,setIsSessionNull] = useState(true)
   
+ useEffect(() => { // have to manualy refresh page to see signed in navbar
+  const session = localStorage.getItem('session');
+  setIsSessionNull(session === '');
+ }, []);
+
+ const handleSignOut = () => {
+  localStorage.setItem('session', '');
+  setIsSessionNull(true);
+  window.location.reload()
+};
+
   return (
     <Router>
       <div className="App">
-        <NavBar />
+      {isSessionNull ? <NavBar /> : <SignedInNavBar handleSignOut={handleSignOut}/>}
 
         <div className="contents">
           <Routes>

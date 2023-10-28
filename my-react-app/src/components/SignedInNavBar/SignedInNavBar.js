@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import './SignedInNavBar.css';
+import React from 'react';
   
-function SignedInNavBar() {
+function SignedInNavBar({handleSignOut}) {
+
+    const handleSignOutClick = () => {
+        handleSignOut()
+    }
 
     return (
         <div className="NavBar">
@@ -22,6 +27,9 @@ function SignedInNavBar() {
                             </li>
                             <li>
                                 <Link to = "/EditProfile">Edit Profile</Link>
+                            </li>
+                            <li>
+                                <Link to="/" onClick={handleSignOutClick}>Sign out</Link>
                             </li>
 
                         
