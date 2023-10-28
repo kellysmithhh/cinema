@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +17,7 @@ public class PaymentCard {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private Customer user;
 
     private String cardType;
@@ -30,6 +32,7 @@ public class PaymentCard {
     private String cardCVV;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Address billingAddress;
 
     public Long getId() {

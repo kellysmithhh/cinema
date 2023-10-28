@@ -1,6 +1,7 @@
 package com.cinema.cinemasystem.controller;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.User;
 import com.cinema.cinemasystem.model.Admin;
 import com.cinema.cinemasystem.model.Customer;
@@ -118,6 +120,19 @@ public class UserController {
         User user = maybeUser.get();
         return user.getLastName();
     }
+
+    @GetMapping("/get/phone/{sessionId}")
+    public String getPhone(@PathVariable String sessionId) {
+        Customer customer = customerService.getWithSesssion(sessionId);
+        return customer.getPhone();
+    }
+
+    @GetMapping("/get/paymentCards/{sessionId}")
+    public Set<PaymentCard> getPaymentCards(@PathVariable String sessionId) {
+        Customer customer = customerService.getWithSesssion(sessionId);
+        return customer.getPaymentCards();
+    }
+
 
     // @PostMapping("/register/verify/{email}")
     // public String registerVerify(@PathVariable String email) {}

@@ -65,6 +65,18 @@ function EditProfile() {
           console.error('Error fetching data:', error);
       });
 
+      const api4Url = `http://localhost:8080/user/get/phone/${trimmedSessionId}`;
+      fetch(api4Url, {
+        method:"GET",
+        headers:{"Content-Type":"application/json"}})
+        .then((response)=> response.text())
+        .then((data) => {
+          setPhoneNum(data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+      });
+
     }, []);
 
     const handleCheck = (e) => {
@@ -147,6 +159,7 @@ function EditProfile() {
           </div>
   
           <div className="form-group">
+          <p>{phone}</p>
             <label className="labele">Phone Number:</label>
             <input type="text" placeholder="New Phone" id="phone" name="phone" value={phone} onChange={(e)=>setPhoneNum(e.target.value)}></input>
             <button type="submit" onClick = {handlePhoneclick}>Update</button>
