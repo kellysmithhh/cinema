@@ -3,6 +3,7 @@ package com.cinema.cinemasystem.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -102,6 +103,20 @@ public class UserController {
     @GetMapping("/check/promotions/{sessionId}")
     public boolean checkPromotionsValue(@PathVariable String sessionId) {
         return customerService.checkPromotionsValue(sessionId);
+    }
+
+    @GetMapping("/get/fname/{sessionId}")
+    public String getFname(@PathVariable String sessionId) {
+        Optional<User> maybeUser = userService.getWithSession(sessionId);
+        User user = maybeUser.get();
+        return user.getFirstName();
+    }
+
+    @GetMapping("/get/lname/{sessionId}")
+    public String getLname(@PathVariable String sessionId) {
+        Optional<User> maybeUser = userService.getWithSession(sessionId);
+        User user = maybeUser.get();
+        return user.getLastName();
     }
 
     // @PostMapping("/register/verify/{email}")

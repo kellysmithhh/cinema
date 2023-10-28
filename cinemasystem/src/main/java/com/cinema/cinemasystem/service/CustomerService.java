@@ -80,4 +80,8 @@ public class CustomerService {
         }
     }
 
+    public Customer getWithSesssion(String sessionId) {
+        return customerRepository.findBySession(sessionId).orElse(null);
+    }
+
 }

@@ -7,7 +7,7 @@ function SignedInNavBar({handleSignOut}) {
     const handleSignOutClick = () => {
         const sessionId = localStorage.getItem('session');
         const trimmedSessionId = sessionId.replace(/^"(.*)"$/, '$1');
-        const apiUrl = `http://localhost:8080/user/logout/${trimmedSessionId}` // responds with sessionId if found in customer table else null
+        const apiUrl = `http://localhost:8080/user/logout/${trimmedSessionId}`
             fetch(apiUrl, {
                 method:"POST",
                 headers:{"Content-Type":"application/json"}})

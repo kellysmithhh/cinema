@@ -39,6 +39,32 @@ function EditProfile() {
         .catch(error => {
           console.error('Error fetching data:', error);
       });
+
+      const api2Url = `http://localhost:8080/user/get/fname/${trimmedSessionId}`;
+      fetch(api2Url, {
+        method:"GET",
+        headers:{"Content-Type":"application/json"}})
+        .then((response)=> response.text())
+        .then((data) => {
+          console.log("fname:" + data)
+          setFirst_name(data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+      });
+
+      const api3Url = `http://localhost:8080/user/get/lname/${trimmedSessionId}`;
+      fetch(api3Url, {
+        method:"GET",
+        headers:{"Content-Type":"application/json"}})
+        .then((response)=> response.text())
+        .then((data) => {
+          setLast_name(data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+      });
+
     }, []);
 
     const handleCheck = (e) => {
@@ -101,14 +127,16 @@ function EditProfile() {
             <h1>Edit Profile</h1>
   
           <div className="form-group">
+            <p>{firstName}</p>
             <label className="labele">First Name:</label>            
-            <input type="text" placeholder="New First Name" id="name" name="name" value={firstName} onChange={(e)=>setFirst_name(e.target.value)}></input>
+            <input type="text" placeholder="New first name" id="name" name="name" value={firstName} onChange={(e)=>setFirst_name(e.target.value)}></input>
             <button type="submit" onClick = {handleFnameclick}>Update</button>
           </div>
   
           <div className="form-group">
-            <label className="labele">Last Name:</label>
-            <input type="text" placeholder="New Last Name" id="name1" name="name1" value={lastName} onChange={(e)=>setLast_name(e.target.value)}></input>
+          <p>{lastName}</p>
+            <label className="label">Last Name:</label>
+            <input type="text" placeholder="New last name" id="name1" name="name1" value={lastName} onChange={(e)=>setLast_name(e.target.value)}></input>
             <button type="submit" onClick = {handleLnameclick}>Update</button>
           </div>
   

@@ -27,7 +27,7 @@ function App() {
  // }
 
  const[isSessionNull,setIsSessionNull] = useState(true)
-  
+
  useEffect(() => { // have to manualy refresh page to see signed in navbar
   const session = localStorage.getItem('session');
   setIsSessionNull(session === '');
