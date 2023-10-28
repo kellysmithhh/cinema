@@ -18,6 +18,7 @@ import VerifyCode from './components/VerifyCode/VerifyCode';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 import AddCard from './components/AddCard/AddCard';
 import EditProfile from './components/EditProfile/EditProfile';
+import SignedInNavBar from './components/SignedInNavBar/SignedInNavBar';
 
 function App() { 
   if (localStorage.getItem('sessionID') == null) {
