@@ -2,6 +2,7 @@ package com.cinema.cinemasystem.controller;
 
 import java.util.Optional;
 import java.util.Set;
+import  java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import com.cinema.cinemasystem.service.AdminService;
 import com.cinema.cinemasystem.service.CustomerService;
 import com.cinema.cinemasystem.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.cinema.cinemasystem.Repository.CustomerRepository;
 
 @RestController
 @RequestMapping("/user")
@@ -38,6 +40,9 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder security;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @PostMapping("/register")
     public String register(@RequestBody Customer customer) {
@@ -140,7 +145,24 @@ public class UserController {
     @GetMapping("/get/user/{sessionId}")
     public Customer getCustomer(@PathVariable String sessionId) {
         Customer customer = customerService.getWithSesssion(sessionId);
-        System.out.println(customer); 
+        Set<PaymentCard> cards = customer.getPaymentCards();
+        for (PaymentCard card : cards) {
+            String cardType = new String (Base64.getDecoder().decode(card.getCardType()));
+            card.setCardType(cardType); 
+            
+            String cardCVV = new String (Base64.getDecoder().decode(card.getCardCVV()));
+            card.setCardCVV(cardCVV); 
+
+            String cardExp = new String (Base64.getDecoder().decode(card.getCardExpiration()));
+            card.setCardExpiration(cardExp); 
+            
+            String cardName = new String (Base64.getDecoder().decode(card.getCardName()));
+            card.setCardName(cardName); 
+
+            String cardNum = new String (Base64.getDecoder().decode(card.getCardNumber()));
+            card.setCardNumber(cardNum); 
+
+        }
         return customer;
     }
 

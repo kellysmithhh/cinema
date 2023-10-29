@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import  java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -59,11 +60,11 @@ public class UserService {
         if (paymentCards != null) {
             // encode card information
             for (PaymentCard card : paymentCards) {
-                card.setCardName(security.encode(card.getCardName()));
-                card.setCardType(security.encode(card.getCardType()));
-                card.setCardNumber(security.encode(card.getCardNumber()));
-                card.setCardExpiration(security.encode(card.getCardExpiration()));
-                card.setCardCVV(security.encode(card.getCardCVV()));
+                card.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
+                card.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
+                card.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
+                card.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
+                card.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
             }
         }
         customerRepository.save(customer);

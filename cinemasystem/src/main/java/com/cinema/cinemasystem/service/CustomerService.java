@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.service;
 
+import java.util.Base64;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -81,19 +82,25 @@ public boolean editProfile(Customer editCustomer) {
                 
                 if (matchingCard != null) {
                     // Modify existing card
-                    matchingCard.setCardName(card.getCardName());
-                    matchingCard.setCardCVV(card.getCardCVV());
-                    matchingCard.setCardNumber(card.getCardNumber());
+                    matchingCard.setCardName(security.encode(card.getCardName()));
+                    matchingCard.setCardCVV(security.encode(card.getCardCVV()));
+                    matchingCard.setCardNumber(security.encode(card.getCardNumber()));
                     matchingCard.setBillingAddress(card.getBillingAddress());
-                    matchingCard.setCardExpiration(card.getCardExpiration());
-                    matchingCard.setCardType(card.getCardType());
+                    matchingCard.setCardExpiration(security.encode(card.getCardExpiration()));
+                    matchingCard.setCardType(security.encode(card.getCardType()));
+
+                    matchingCard.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
+                    matchingCard.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
+                    matchingCard.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
+                    matchingCard.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
+                    matchingCard.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
                 } else if (currentCards.size() != 3) {
                     // Add a new card
-                    card.setCardName(security.encode(card.getCardName()));
-                    card.setCardType(security.encode(card.getCardType()));
-                    card.setCardNumber(security.encode(card.getCardNumber()));
-                    card.setCardExpiration(security.encode(card.getCardExpiration()));
-                    card.setCardCVV(security.encode(card.getCardCVV()));
+                    card.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
+                    card.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
+                    card.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
+                    card.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
+                    card.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
                     realCustomer.getPaymentCards().add(card);
                     card.setUser(realCustomer);
                 } else {
