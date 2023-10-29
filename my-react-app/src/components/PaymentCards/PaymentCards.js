@@ -4,25 +4,49 @@ function PaymentCards(props) {
     const payment = props;
     console.log(payment.cards.billingAddress)
 
-    const[street,setStreet] = useState('')
-    const[city,setCity] = useState('')
-    const[state,setState] = useState('')
-    const[zipCode,setZip] = useState('')
+    const[street,setStreet] = useState(payment.cards.billingAddress.street)
+    const[city,setCity] = useState(payment.cards.billingAddress.city)
+    const[state,setState] = useState(payment.cards.billingAddress.state)
+    const[zipCode,setZip] = useState(payment.cards.billingAddress.zipCode)
 
-    const[cardType,setCardType] = useState('')
-    const[cardNumber,setCardNum] = useState('')
-    const[cardExpiration,setExpiration] = useState('')
-    const[cardCVV,setCardCVV] = useState('')
-    const[cardName,setCardName] = useState('')
+    const[cardType,setCardType] = useState(payment.cards.cardType)
+    const[cardNumber,setCardNum] = useState(payment.cards.cardNumber)
+    const[cardExpiration,setExpiration] = useState(payment.cards.cardExpiration)
+    const[cardCVV,setCardCVV] = useState(payment.cards.cardCVV)
+    const[cardName,setCardName] = useState(payment.cards.cardName)
 
-    const[billingAddress,setBillingAddress] = useState('')
+    //const[billingAddress,setBillingAddress] = useState('')
+
+    class billingAddress {
+        constructor(street, city, state, zipCode) {
+            this.street = street;
+            this.city = city;
+            this.state = state;
+            this.zipCode = zipCode;
+        }
+    }
+
+    class paymentCard {
+        constructor(cardNumber, cardExpiration, cardName, cardCVV, cardType, billingAddress) {
+            this.cardNumber = cardNumber;
+            this.cardExpiration = cardExpiration;
+            this.cardName = cardName;
+            this.cardCVV = cardCVV;
+            this.cardType = cardType;
+            this.billingAddress = billingAddress;
+        }
+    }
 
     const handleClick = (e) => {
         e.preventDefault();
         var session = localStorage.getItem("session");
         session = session.replace(/^"(.*)"$/, '$1');
-        var user = {}
-        fetch("http://localhost:8080/user/edit",{ //route not implemented yet
+        const billingAddr = new billingAddress(street, city, state, zipCode);
+        const newPaymentCard =  new paymentCard(cardNumber,cardExpiration,cardName,cardCVV,cardType,billingAddr);
+        const paymentCards = [];
+        paymentCards.push(newPaymentCard);
+        var user = {paymentCards,session}
+        fetch("http://localhost:8080/user/edit",{ 
            method:"POST",
            headers:{"Content-Type":"application/json"},
            body:JSON.stringify(user)
