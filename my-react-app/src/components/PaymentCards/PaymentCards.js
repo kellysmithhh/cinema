@@ -15,6 +15,7 @@ function PaymentCards(props) {
     const[cardCVV,setCardCVV] = useState(payment.cards.cardCVV)
     const[cardName,setCardName] = useState(payment.cards.cardName)
 
+    const id = payment.cards.id;
     //const[billingAddress,setBillingAddress] = useState('')
 
     class billingAddress {
@@ -27,7 +28,8 @@ function PaymentCards(props) {
     }
 
     class paymentCard {
-        constructor(cardNumber, cardExpiration, cardName, cardCVV, cardType, billingAddress) {
+        constructor(id, cardNumber, cardExpiration, cardName, cardCVV, cardType, billingAddress) {
+            this.id = id;
             this.cardNumber = cardNumber;
             this.cardExpiration = cardExpiration;
             this.cardName = cardName;
@@ -42,7 +44,7 @@ function PaymentCards(props) {
         var session = localStorage.getItem("session");
         session = session.replace(/^"(.*)"$/, '$1');
         const billingAddr = new billingAddress(street, city, state, zipCode);
-        const newPaymentCard =  new paymentCard(cardNumber,cardExpiration,cardName,cardCVV,cardType,billingAddr);
+        const newPaymentCard =  new paymentCard(id, cardNumber,cardExpiration,cardName,cardCVV,cardType,billingAddr);
         const paymentCards = [];
         paymentCards.push(newPaymentCard);
         var user = {paymentCards,session}
