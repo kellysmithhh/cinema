@@ -32,7 +32,7 @@ public class PaymentCard {
     private String cardCVV;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
+    //@JsonIgnore
     private Address billingAddress;
 
     public Long getId() {
