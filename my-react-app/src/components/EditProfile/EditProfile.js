@@ -33,7 +33,7 @@ function EditProfile() {
          headers:{"Content-Type":"application/json"}})
          .then((response)=> response.json())
          .then((data) => {
-          console.log(data); 
+          //console.log(data); 
                   
            setFirst_name(data.firstName)
            setLast_name(data.lastName)
@@ -42,11 +42,8 @@ function EditProfile() {
            setState(data.shippingAddress.state)
            setStreet(data.shippingAddress.street)
            setZip(data.shippingAddress.zipCode)
-           setPaymentCards(data.paymentCards)
-           console.log(data.paymentCards)       
+           setPaymentCards(data.paymentCards)      
            
-           //setPaymentBillingAddress(paymentCards[0].billingAddress)
-           //console.log(paymentBillingAddress[0])
            console.log("completed")
          })
          .catch(error => {
