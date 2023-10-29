@@ -21,7 +21,7 @@ function EditProfile() {
     let navigate = useNavigate(); 
 
     const[defaultCheck,setDefaultCheck] = useState(false);
-      if (firstName == "") {
+      if (firstName === "") {
       var session = localStorage.getItem('session');
       session = session.replace(/^"(.*)"$/, '$1');
       //console.log(session);
@@ -159,14 +159,14 @@ function EditProfile() {
            headers:{"Content-Type":"application/json"}           
        }).then((res)=>{
           console.log(res)
-          if (res.text == "false") {
+          if (res.text === "false") {
             isSame = true;
             console.log("user verified.")            
           }
          
        })
        //console.log(isSame)
-       if (isSame == true) {
+       if (isSame === true) {
         const userNewPass = {session,password}
        e.preventDefault();
        fetch("http://localhost:8080/user/edit",{ //route not implemented yet
