@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.User;
+import com.cinema.cinemasystem.enums.STATUS;
 import com.cinema.cinemasystem.model.Admin;
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.service.AdminService;
@@ -56,7 +57,8 @@ public class UserController {
             Customer customer = maybeCustomer.get();
             // TODO check if user session already exists
             if (security.matches(password, customer.getPassword())) {
-                return userService.startSession(customer);
+                customer.setStatus(STATUS.ACTIVE);
+                return userService.startSession(customer);                
             }
         }
         return null;
@@ -77,6 +79,7 @@ public class UserController {
 
     @PostMapping("/logout/{sessionId}")
     public boolean logout(@PathVariable String sessionId) {
+       //Optional<Customer> maybeCustomer = customerService.getWithSesssion(sessionId);
        Optional<User> maybeUser = userService.getWithSession(sessionId);
        User user = maybeUser.get();
        return userService.logout(user);

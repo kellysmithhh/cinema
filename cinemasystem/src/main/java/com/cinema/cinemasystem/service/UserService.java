@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.service;
 
+import java.io.ObjectInputFilter.Status;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -53,7 +54,7 @@ public class UserService {
 
     public boolean register(Customer customer) {
         customer.setPassword(security.encode(customer.getPassword()));
-        customer.setStatus(STATUS.ACTIVE);
+        customer.setStatus(STATUS.INACTIVE);
         Set<PaymentCard> paymentCards = customer.getPaymentCards();
         if (paymentCards != null) {
             // encode card information
