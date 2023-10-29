@@ -26,7 +26,7 @@ function App() {
     localStorage.setItem('session', "");
   }
 
- const[isSessionNull,setIsSessionNull] = useState(true)
+const[isSessionNull,setIsSessionNull] = useState(true)
 
  useEffect(() => { // have to manualy refresh page to see signed in navbar
   const session = localStorage.getItem('session');

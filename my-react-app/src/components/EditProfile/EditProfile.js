@@ -157,27 +157,20 @@ function EditProfile() {
        fetch(apiUrl,{
            method:"GET",
            headers:{"Content-Type":"application/json"}           
-       }).then((res)=>{
-          console.log(res)
-          if (res.text === "false") {
-            isSame = true;
-            console.log("user verified.")            
-          }
-         
+       }).then((response)=> response.text())
+       .then((data)=>{
+        console.log("db returned: " + data)
+        if (data === "true") {
+          const userNewPass = {password,session}
+          fetch("http://localhost:8080/user/edit",{ //route not implemented yet
+              method:"POST",
+              headers:{"Content-Type":"application/json"},
+              body:JSON.stringify(userNewPass)
+          }).then(()=>{
+              console.log("user edits added.")
+          })            
+        } // if
        })
-       //console.log(isSame)
-       if (isSame === true) {
-        const userNewPass = {session,password}
-       e.preventDefault();
-       fetch("http://localhost:8080/user/edit",{ //route not implemented yet
-           method:"POST",
-           headers:{"Content-Type":"application/json"},
-           body:JSON.stringify(userNewPass)
-       }).then(()=>{
-           console.log("user edits added.")
-       })
-
-       }
             
     }
 
