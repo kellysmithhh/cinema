@@ -22,9 +22,9 @@ public class CinemasystemApplication {
 	@PostConstruct
 	@Transactional
 	public void init() {
-		//adminService.deleteAll();
-		//adminService.autoCreate("Jonathan", "Dintino", "811049442", "password");
-		//adminService.autoCreate("Tucker", "Copeland", "1234", "password");
+		adminService.deleteAll();
+		adminService.autoCreate("Jonathan", "Dintino", "811049442", "password");
+		adminService.autoCreate("Tucker", "Copeland", "1234", "password");
 	}
 
 }

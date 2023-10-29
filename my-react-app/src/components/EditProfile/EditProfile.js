@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate, useRoutes } from 'react-router-dom';
+import PaymentCards from '../PaymentCards/PaymentCards';
 import './EditProfile.css';
 
 function EditProfile() {
-  //const sessionId = localStorage.getItem('session');
-  //const trimmedSessionId = sessionId.replace(/^"(.*)"$/, '$1');
-  //console.log(trimmedSessionId)
-    //var userGot = false;   
+    const[paymentCards,setPaymentCards] = useState([])  
+    const paymentList = paymentCards.map((cards, k) => <PaymentCards cards = {cards} key ={k}/>);  
     const[firstName,setFirst_name] = useState('')
     const[lastName,setLast_name] = useState('')
 
@@ -42,6 +41,7 @@ function EditProfile() {
            setState(data.shippingAddress.state)
            setStreet(data.shippingAddress.street)
            setZip(data.shippingAddress.zipCode)
+           setPaymentCards(data.paymentCards)
            console.log("completed")
          })
          .catch(error => {
@@ -278,7 +278,12 @@ function EditProfile() {
                     <input type="checkbox" id="Promotional" name="Promotional" onChange={handleCheck} checked={defaultCheck}/>
                     <label for="scales">I would like to receive emails about promotional codes.</label>
                 </div>
-
+          <div>
+          <label> Edit/Add payment card</label>
+          <div>
+                    {paymentList}
+          </div>
+          </div>
           <div className="input-container">
             <button type="submit" onClick = {handleClick}>Update Information</button>
           </div>
