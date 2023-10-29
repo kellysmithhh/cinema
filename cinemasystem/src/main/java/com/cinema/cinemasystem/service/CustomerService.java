@@ -51,15 +51,37 @@ public class CustomerService {
             }
             Set<PaymentCard> paymentCards = editCustomer.getPaymentCards();
             if (paymentCards != null) {
-                realCustomer.getPaymentCards().clear();
+                Set<PaymentCard> currentCards = realCustomer.getPaymentCards();
+
                 for (PaymentCard card : paymentCards) {
-                    card.setCardName(security.encode(card.getCardName()));
-                    card.setCardType(security.encode(card.getCardType()));
-                    card.setCardNumber(security.encode(card.getCardNumber()));
-                    card.setCardExpiration(security.encode(card.getCardExpiration()));
-                    card.setCardCVV(security.encode(card.getCardCVV()));
-                    realCustomer.getPaymentCards().add(card);
-                    card.setUser(realCustomer);
+                    for(PaymentCard card2 : currentCards) {
+                        if (card.getId() == card2.getId())  {
+                        //do stuff
+                        card2.setCardName(card.getCardName());
+                        card2.setCardCVV(card.getCardCVV());
+                        card2.setCardNumber(card.getCardNumber());
+                        card2.setBillingAddress(card.getBillingAddress());
+                        card2.setCardExpiration(card.getCardExpiration());
+                        card2.setCardType(card.getCardType());
+                        } else if (currentCards.size() != 3) {
+                            card.setCardName(security.encode(card.getCardName()));
+                            card.setCardType(security.encode(card.getCardType()));
+                            card.setCardNumber(security.encode(card.getCardNumber()));
+                            card.setCardExpiration(security.encode(card.getCardExpiration()));
+                            card.setCardCVV(security.encode(card.getCardCVV()));
+                            realCustomer.getPaymentCards().add(card);
+                            card.setUser(realCustomer);
+                        } else {
+                            System.out.println("Already have 3 cards");
+                        }
+                }
+                    // card.setCardName(security.encode(card.getCardName()));
+                    // card.setCardType(security.encode(card.getCardType()));
+                    // card.setCardNumber(security.encode(card.getCardNumber()));
+                    // card.setCardExpiration(security.encode(card.getCardExpiration()));
+                    // card.setCardCVV(security.encode(card.getCardCVV()));
+                    // realCustomer.getPaymentCards().add(card);
+                    // card.setUser(realCustomer);
                 }
             }
             customerRepository.save(realCustomer);
