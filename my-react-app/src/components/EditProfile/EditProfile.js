@@ -6,6 +6,7 @@ import './EditProfile.css';
 
 function EditProfile() {
     const[paymentCards,setPaymentCards] = useState([])  
+    const [paymentBillingAddress,setPaymentBillingAddress] = useState([])
     const paymentList = paymentCards.map((cards, k) => <PaymentCards cards = {cards} key ={k}/>);  
     const[firstName,setFirst_name] = useState('')
     const[lastName,setLast_name] = useState('')
@@ -32,7 +33,7 @@ function EditProfile() {
          headers:{"Content-Type":"application/json"}})
          .then((response)=> response.json())
          .then((data) => {
-           //console.log(data); 
+          console.log(data); 
                   
            setFirst_name(data.firstName)
            setLast_name(data.lastName)
@@ -42,6 +43,10 @@ function EditProfile() {
            setStreet(data.shippingAddress.street)
            setZip(data.shippingAddress.zipCode)
            setPaymentCards(data.paymentCards)
+           console.log(data.paymentCards)       
+           
+           //setPaymentBillingAddress(paymentCards[0].billingAddress)
+           //console.log(paymentBillingAddress[0])
            console.log("completed")
          })
          .catch(error => {
@@ -151,8 +156,7 @@ function EditProfile() {
 
       var session = localStorage.getItem("session");
       session = session.replace(/^"(.*)"$/, '$1');     
-     
-      var isSame = false;
+          
       const apiUrl = `http://localhost:8080/user/verify/${session}/${oldPass}`;       
        fetch(apiUrl,{
            method:"GET",
