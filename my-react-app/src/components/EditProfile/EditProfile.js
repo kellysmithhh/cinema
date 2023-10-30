@@ -11,6 +11,7 @@ function EditProfile() {
     const[firstName,setFirst_name] = useState('')
     const[lastName,setLast_name] = useState('')
 
+    const[email,setEmail] = useState('')
     const[phone,setPhoneNum] = useState('')
     const[password,setPassword] = useState('')
 
@@ -43,6 +44,7 @@ function EditProfile() {
            setStreet(data.shippingAddress.street)
            setZip(data.shippingAddress.zipCode)
            setPaymentCards(data.paymentCards)      
+           setEmail(data.email)
            
            console.log("completed")
          })
@@ -236,6 +238,7 @@ function EditProfile() {
       <div className="EditProfile">
         <form action="">
             <h1>Edit Profile</h1>
+            <p>{email}</p>
   
           <div className="form-group">            
             <label className="labele">First Name:</label>            
