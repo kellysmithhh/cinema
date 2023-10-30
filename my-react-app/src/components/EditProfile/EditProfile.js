@@ -255,7 +255,7 @@ function EditProfile() {
       <div className="EditProfile">
         <form action="">
             <h1>Edit Profile</h1>
-            <p>{email}</p>
+            <h2>{email}</h2>
   
           <div className="form-group">            
             <label className="labele">First Name:</label>            
@@ -264,7 +264,7 @@ function EditProfile() {
           </div>
   
           <div className="form-group">          
-            <label className="label">Last Name:</label>
+            <label className="labele">Last Name:</label>
             <input type="text" placeholder={lastName} id="name1" name="name1" onChange={(e)=>setLast_name(e.target.value)}></input>
             <button type="submit" onClick = {handleLnameclick}>Update</button>
           </div>
@@ -317,40 +317,41 @@ function EditProfile() {
           <div>
 
         <br></br>
+        <br></br>
 
-          <h2> Edit payment card</h2>
           <div>
                     {paymentList}
           </div>
           </div>
 
         <br></br>
+        <br></br>
 
           <div>
           <h2> Add payment card</h2>
           
           <div className='form-group'>
-            <label>Card Type:</label>
+            <label className="labele">Card Type:</label>
             <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
           </div>
          
           <div className='form-group'>
-              <label>Card Number:</label>
+              <label className="labele">Card Number:</label>
               <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
           </div>
 
           <div className='form-group'>
-            <label>Expiration Date:</label>
+            <label className="labele">Expiration Date:</label>
             <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
           </div>
 
           <div className='form-group'>
-            <label>Card Name:</label>
+            <label className="labele">Card Name:</label>
             <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
           </div>
                 
           <div className='form-group'>
-            <label>Card CVV:</label>
+            <label className="labele">Card CVV:</label>
             <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
           </div>
                 
@@ -358,25 +359,24 @@ function EditProfile() {
                 <br></br>
                 
                 <h3>Billing Address </h3>
-                <br></br>
 
                 <div className='form-group'>
-                  <label>Billing Street: </label>
+                  <label className="labele">Billing Street: </label>
                   <input type="text" placeholder="Billing Street" id="bs" name="bs" value={Newstreet} onChange={(e)=>setNewStreet(e.target.value)}></input>
                 </div>
 
                 <div className='form-group'>
-                  <label>New City: </label>
+                  <label className="labele">New City: </label>
                   <input type="text" placeholder="Billing City" id="bc" name="bc" value={Newcity} onChange={(e)=>setNewCity(e.target.value)}></input>
                 </div>
                 
                 <div className='form-group'>
-                  <label>New State: </label>
+                  <label className="labele">New State: </label>
                   <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={Newstate} onChange={(e)=>setNewState(e.target.value)}></input>
                 </div>
                 
                 <div className='form-group'>
-                  <label>New Zip: </label>
+                  <label className="labele">New Zip: </label>
                   <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={NewzipCode} onChange={(e)=>setNewZip(e.target.value)}></input>
                 </div>
                 

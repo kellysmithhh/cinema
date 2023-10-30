@@ -61,28 +61,30 @@ function PaymentCards(props) {
      return (
         <div className="paymentcard">
 
+                <h2> Edit payment card</h2>
+
                 <div className="form-group">   
-                    <label>Card Type: </label> 
+                    <label className="labele">Card Type: </label> 
                     <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
                 </div>
 
                 <div className="form-group">  
-                    <label>Card Number:</label>
+                    <label className="labele">Card Number:</label>
                     <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
                 </div>
 
                 <div className="form-group">  
-                    <label>Card Expiration:</label>
+                    <label className="labele">Card Expiration:</label>
                     <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
                 </div>
 
                 <div className="form-group">  
-                    <label>Card Holder:</label>
+                    <label className="labele">Card Holder:</label>
                     <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
                 </div>
 
                 <div className="form-group">  
-                    <label>Card CVV: </label>
+                    <label className="labele">Card CVV: </label>
                     <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
                 </div>
 
@@ -91,22 +93,22 @@ function PaymentCards(props) {
                 <h3>Billing Address </h3>
                 
                 <div className="form-group">  
-                    <label>Street Name: </label>
+                    <label className="labele">Street Name: </label>
                     <input type="text" placeholder="Billing Street" id="bs" name="bs" value={street} onChange={(e)=>setStreet(e.target.value)}></input>
                 </div>
 
                 <div className="form-group">  
-                    <label>City: </label>
+                    <label className="labele">City: </label>
                     <input type="text" placeholder="Billing City" id="bc" name="bc" value={city} onChange={(e)=>setCity(e.target.value)}></input>
                 </div>
 
                 <div className="form-group"> 
-                    <label>Street: </label>
+                    <label className="labele">Street: </label>
                     <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={state} onChange={(e)=>setState(e.target.value)}></input>
                 </div>
 
                 <div className="form-group">  
-                    <label>Zip Code:</label>
+                    <label className="labele">Zip Code:</label>
                     <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={zipCode} onChange={(e)=>setZip(e.target.value)}></input>
                 </div>
 

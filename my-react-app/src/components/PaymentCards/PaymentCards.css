@@ -1,12 +1,28 @@
 .paymentcard {
-    margin: 0 auto;
     text-align: center;
-    }
+  }
 
 .form-group {
     display: flex;
     flex-direction: row;
     align-items: baseline;
     background-color: #000000;
-    }
+}
 
+.input-field  {
+    border: 5px solid #ff0000;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .labele {
+    font-family: 'Play';
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-right: 10px;
+    width: 150px;
+    display: inline-block;
+    text-align: right;
+  }
