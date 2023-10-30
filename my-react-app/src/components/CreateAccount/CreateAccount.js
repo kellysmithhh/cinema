@@ -26,6 +26,8 @@ function CreateAccount() {
      const[cardName,setCardName] = useState('')
 
      const[paymentCards,setPaymentCards] = useState([])
+
+     const [cardCounter, setCardCounter] = useState(0);
  
       // Billing Address
       const[billingStreet,setBillingStreet] = useState('')
@@ -67,7 +69,6 @@ function CreateAccount() {
         setPromoEmail(e.target.checked);
     }
 
-    var cardCounter = 0;
     const handlePaymentCardSubmit = (e) => {
         e.preventDefault();
         if (cardCounter === 3) {
@@ -81,7 +82,7 @@ function CreateAccount() {
             const updatedPaymentCards = [...paymentCards, newPaymentCard];
             setPaymentCards(updatedPaymentCards);
             console.log(updatedPaymentCards)       
-            cardCounter++;
+            setCardCounter(cardCounter + 1);
             console.log("card count: " + cardCounter)
             alert("Card added successfully!");
             } // if

@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SignedInNavBar.css';
 import React from 'react';
   
 function SignedInNavBar({handleSignOut}) {
+
+    let navigate = useNavigate(); 
 
     const handleSignOutClick = () => {
         const sessionId = localStorage.getItem('session');
@@ -16,7 +18,6 @@ function SignedInNavBar({handleSignOut}) {
                     console.error('Error fetching data:', error);
                 });
         handleSignOut()
-
     }
 
     return (

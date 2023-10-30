@@ -12,6 +12,7 @@ function MovieGallery() {
         fetch("http://localhost:8080/movie/getAll")
         .then(res=>res.json())
         .then((result)=>{
+            console.log(result);
             setMovies(result);
         }
         )
