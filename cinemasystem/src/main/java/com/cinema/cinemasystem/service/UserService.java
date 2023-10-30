@@ -47,8 +47,9 @@ public class UserService {
         return userRepository.findBySession(session);
     }
 
-    public boolean logout(User user) {
+    public boolean logout(Customer user) {
         user.setSession(null);
+        user.setStatus(STATUS.INACTIVE);
         userRepository.save(user);
         return true;
     }

@@ -84,10 +84,10 @@ public class UserController {
 
     @PostMapping("/logout/{sessionId}")
     public boolean logout(@PathVariable String sessionId) {
-       //Optional<Customer> maybeCustomer = customerService.getWithSesssion(sessionId);
-       Optional<User> maybeUser = userService.getWithSession(sessionId);
-       User user = maybeUser.get();
-       return userService.logout(user);
+       Customer maybeCustomer = customerService.getWithSesssion(sessionId);
+       //Optional<User> maybeUser = userService.getWithSession(sessionId);
+       //User user = maybeUser.get();
+       return userService.logout(maybeCustomer);
     }
 
     @GetMapping("/verify/{sessionId}/{password}")
