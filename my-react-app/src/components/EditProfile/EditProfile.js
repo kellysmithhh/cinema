@@ -6,7 +6,7 @@ import './EditProfile.css';
 
 function EditProfile() {
     const[paymentCards,setPaymentCards] = useState([])  
-    const [paymentBillingAddress,setPaymentBillingAddress] = useState([])
+   
     const paymentList = paymentCards.map((cards, k) => <PaymentCards cards = {cards} key ={k}/>);  
     const[firstName,setFirst_name] = useState('')
     const[lastName,setLast_name] = useState('')
@@ -38,6 +38,23 @@ function EditProfile() {
 
     const handleAddCardClick = (e) => {
       e.preventDefault();
+      var session = localStorage.getItem('session');
+      session = session.replace(/^"(.*)"$/, '$1');
+      var billingAddress = {street: Newstreet, city: Newcity, state: Newstate, zipCode: NewzipCode}
+      const paymentCard = {cardNumber,cardExpiration,cardName,cardCVV,cardType,billingAddress}
+      const paymentCards = []
+      paymentCards.push(paymentCard)
+      const user = {paymentCards,session}
+      fetch("http://localhost:8080/user/edit",{ //route not implemented yet
+           method:"POST",
+           headers:{"Content-Type":"application/json"},
+           body:JSON.stringify(user)
+       }).then(()=>{
+           console.log("user edits added.")
+       })
+
+
+
     }
 
     useEffect(() => {
@@ -289,10 +306,10 @@ function EditProfile() {
                 <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
                 
                 <label className="label">Billing Address </label>
-                <input type="text" placeholder="Billing Street" id="bs" name="bs" value={Newstreet} onChange={(e)=>setStreet(e.target.value)}></input>
-                <input type="text" placeholder="Billing City" id="bc" name="bc" value={Newcity} onChange={(e)=>setCity(e.target.value)}></input>
-                <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={Newstate} onChange={(e)=>setState(e.target.value)}></input>
-                <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={NewzipCode} onChange={(e)=>setZip(e.target.value)}></input>
+                <input type="text" placeholder="Billing Street" id="bs" name="bs" value={Newstreet} onChange={(e)=>setNewStreet(e.target.value)}></input>
+                <input type="text" placeholder="Billing City" id="bc" name="bc" value={Newcity} onChange={(e)=>setNewCity(e.target.value)}></input>
+                <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={Newstate} onChange={(e)=>setNewState(e.target.value)}></input>
+                <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={NewzipCode} onChange={(e)=>setNewZip(e.target.value)}></input>
                 <button className="submit-button" type="submit" onClick={handleAddCardClick}>Add card</button>
           </div>
           <div className="input-container">
