@@ -53,6 +53,9 @@ public boolean editProfile(Customer editCustomer) {
         if (password != null) {
             realCustomer.setPassword(security.encode(password));
         }
+
+        Boolean promoEmail = editCustomer.getPromoEmail();
+        realCustomer.setPromoEmail(promoEmail);
         
         Address shippingAddress = editCustomer.getShippingAddress();
         if (shippingAddress != null) {

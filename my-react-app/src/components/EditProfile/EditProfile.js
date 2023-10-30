@@ -22,7 +22,12 @@ function EditProfile() {
 
     let navigate = useNavigate(); 
 
-    const[defaultCheck,setDefaultCheck] = useState(false);
+    const[promoEmail,setPromoEmail] = useState(Boolean);
+
+    useEffect(() => {
+      console.log("promoEmail changed: " + promoEmail);
+    }, [promoEmail]);
+    
       if (firstName === "") {
       var session = localStorage.getItem('session');
       session = session.replace(/^"(.*)"$/, '$1');
@@ -53,67 +58,41 @@ function EditProfile() {
        });              
       }
       
-      
+      useEffect(() => {
+      console.log("before fetch:" + promoEmail)
+      const apiUrl = `http://localhost:8080/user/check/promotions/${session}`;
+      fetch(apiUrl, {
+        method:"GET",
+        headers:{"Content-Type":"application/json",}})
+        .then((response)=> response.json())
+        .then((data) => {
+          console.log("Data from the fetch:", data);
+          if (data === true) {
+            setPromoEmail(true);
+            console.log("Inside if: " + promoEmail)
+          }
+          console.log("defaultCheck: " + promoEmail)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+      });
+      }, []);
 
-
-    //   const apiUrl = `http://localhost:8080/user/check/promotions/${trimmedSessionId}`;
-    //   fetch(apiUrl, {
-    //     method:"GET",
-    //     headers:{"Content-Type":"application/json",}})
-    //     .then((response)=> response.json())
-    //     .then((data) => {
-    //       console.log("Data from the fetch:", data);
-    //       if (data === true) {
-    //         setDefaultCheck(true);
-    //       }
-    //       console.log("defaultCheck: " + defaultCheck)
-    //     })
-    //     .catch(error => {
-    //       console.error('Error fetching data:', error);
-    //   });
-
-    //   const api2Url = `http://localhost:8080/user/get/fname/${trimmedSessionId}`;
-    //   fetch(api2Url, {
-    //     method:"GET",
-    //     headers:{"Content-Type":"application/json"}})
-    //     .then((response)=> response.text())
-    //     .then((data) => {
-    //       console.log("fname:" + data)
-    //       setFirst_name(data);
-    //     })
-    //     .catch(error => {
-    //       console.error('Error fetching data:', error);
-    //   });
-
-    //   const api3Url = `http://localhost:8080/user/get/lname/${trimmedSessionId}`;
-    //   fetch(api3Url, {
-    //     method:"GET",
-    //     headers:{"Content-Type":"application/json"}})
-    //     .then((response)=> response.text())
-    //     .then((data) => {
-    //       setLast_name(data);
-    //     })
-    //     .catch(error => {
-    //       console.error('Error fetching data:', error);
-    //   });
-
-    //   const api4Url = `http://localhost:8080/user/get/phone/${trimmedSessionId}`;
-    //   fetch(api4Url, {
-    //     method:"GET",
-    //     headers:{"Content-Type":"application/json"}})
-    //     .then((response)=> response.text())
-    //     .then((data) => {
-    //       setPhoneNum(data);
-    //     })
-    //     .catch(error => {
-    //       console.error('Error fetching data:', error);
-    //   });
-
-    // }, []);
 
     const handleCheck = (e) => {
-        setDefaultCheck(e.target.checked);
-        console.log("checked: " + defaultCheck) // if starting with checked, value is opposite
+      setPromoEmail(e.target.checked);
+      var session = localStorage.getItem("session");
+      session = session.replace(/^"(.*)"$/, '$1');     
+      const userPromoEmail = {promoEmail,session}
+      console.log("checked: " + promoEmail) // if starting with checked, value is opposite
+      fetch("http://localhost:8080/user/edit",{ //route not implemented yet
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(userPromoEmail)
+      }).then(()=>{
+        console.log("user edits added.")
+        console.log(userPromoEmail)
+      })
       // reflect changes in db
     }
 
@@ -272,7 +251,7 @@ function EditProfile() {
                 <button type="submit" onClick = {handleShippingclick}>Update Shipping Address</button>
 
                 <div class="checkbox-label2">
-                    <input type="checkbox" id="Promotional" name="Promotional" onChange={handleCheck} checked={defaultCheck}/>
+                    <input type="checkbox" id="Promotional" name="Promotional" onChange={handleCheck} checked={promoEmail}/>
                     <label for="scales">I would like to receive emails about promotional codes.</label>
                 </div>
           <div>
