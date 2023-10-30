@@ -71,7 +71,7 @@ function PaymentCards(props) {
                 <input type="text" placeholder="Billing City" id="bc" name="bc" value={city} onChange={(e)=>setCity(e.target.value)}></input>
                 <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={state} onChange={(e)=>setState(e.target.value)}></input>
                 <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={zipCode} onChange={(e)=>setZip(e.target.value)}></input>
-                <button className="submit-button" type="submit" onClick={handleClick}>Submit Card Info</button>
+                <button className="submit-button" type="submit" onClick={handleClick}>Update Card Info</button>
 
         </div>
 

@@ -20,9 +20,25 @@ function EditProfile() {
     const[state,setState] = useState('')
     const[zipCode,setZip] = useState('')
 
+    const[Newstreet,setNewStreet] = useState('')
+    const[Newcity,setNewCity] = useState('')
+    const[Newstate,setNewState] = useState('')
+    const[NewzipCode,setNewZip] = useState('')
+
+    const[cardType,setCardType] = useState('')
+    const[cardNumber,setCardNum] = useState('')
+    const[cardExpiration,setExpiration] = useState('')
+    const[cardCVV,setCardCVV] = useState('')
+    const[cardName,setCardName] = useState('')
+
+
     let navigate = useNavigate(); 
 
     const[promoEmail,setPromoEmail] = useState(Boolean);
+
+    const handleAddCardClick = (e) => {
+      e.preventDefault();
+    }
 
     useEffect(() => {
       console.log("promoEmail changed: " + promoEmail);
@@ -257,13 +273,29 @@ function EditProfile() {
                     <label for="scales">I would like to receive emails about promotional codes.</label>
                 </div>
           <div>
-          <label> Edit/Add payment card</label>
+
+          <label> Edit payment card</label>
           <div>
                     {paymentList}
           </div>
           </div>
+
+          <div>
+          <label> Add payment card</label>
+          <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
+                <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
+                <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
+                <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
+                <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
+                
+                <label className="label">Billing Address </label>
+                <input type="text" placeholder="Billing Street" id="bs" name="bs" value={Newstreet} onChange={(e)=>setStreet(e.target.value)}></input>
+                <input type="text" placeholder="Billing City" id="bc" name="bc" value={Newcity} onChange={(e)=>setCity(e.target.value)}></input>
+                <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={Newstate} onChange={(e)=>setState(e.target.value)}></input>
+                <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={NewzipCode} onChange={(e)=>setZip(e.target.value)}></input>
+                <button className="submit-button" type="submit" onClick={handleAddCardClick}>Add card</button>
+          </div>
           <div className="input-container">
-            <button type="submit" onClick = {handleClick}>Update Information</button>
           </div>
         </form>
       </div>
