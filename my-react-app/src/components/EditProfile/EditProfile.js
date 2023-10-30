@@ -255,6 +255,11 @@ function EditProfile() {
       <div className="EditProfile">
         <form action="">
             <h1>Edit Profile</h1>
+
+
+        <div className='borderGroup'>
+
+          <br></br>
             <h2>{email}</h2>
   
           <div className="form-group">            
@@ -314,7 +319,8 @@ function EditProfile() {
                     <input type="checkbox" id="Promotional" name="Promotional" onChange={handleCheck} checked={promoEmail}/>
                     <label for="scales">I would like to receive emails about promotional codes.</label>
                 </div>
-          <div>
+        </div>
+
 
         <br></br>
         <br></br>
@@ -322,12 +328,12 @@ function EditProfile() {
           <div>
                     {paymentList}
           </div>
-          </div>
+        
 
         <br></br>
         <br></br>
 
-          <div>
+        <div className='borderGroup'>
           <h2> Add payment card</h2>
           
           <div className='form-group'>
@@ -384,7 +390,8 @@ function EditProfile() {
                 <button className="submit-button" type="submit" onClick={handleAddCardClick}>Add card</button>
           </div>
           <div className="input-container">
-          </div>
+        </div>
+
         </form>
       </div>
     );
