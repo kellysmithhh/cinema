@@ -277,13 +277,35 @@ function EditProfile() {
             <input type="text" placeholder={phone} id="phone" name="phone" onChange={(e)=>setPhoneNum(e.target.value)}></input>
             <button type="submit" onClick = {handlePhoneclick}>Update</button>
           </div>
+
+          <br></br>
   
-          <label className="label"> New Shipping Address </label>
-                <input type="text" placeholder={street} id="str" name="str"  onChange={(e)=>setStreet(e.target.value)}></input>
-                <input type="text" placeholder={city} id="city" name="city"  onChange={(e)=>setCity(e.target.value)}></input>
-                <input type="text" placeholder={state} id="state" name="state" onChange={(e)=>setState(e.target.value)}></input>
-                <input type="text" placeholder={zipCode} id="zip" name="zip"  onChange={(e)=>setZip(e.target.value)}></input>
+          <h2> New Shipping Address </h2>
+                <div className='form-group'>
+                  <label className="labele">Street Name:</label>    
+                  <input type="text" placeholder={street} id="str" name="str"  onChange={(e)=>setStreet(e.target.value)}></input>
+                </div>
+
+                <div className='form-group'>
+                  <label className="labele">City:</label>    
+                  <input type="text" placeholder={city} id="city" name="city"  onChange={(e)=>setCity(e.target.value)}></input>
+                </div>
+
+                <div className='form-group'>
+                  <label className="labele">State:</label>  
+                  <input type="text" placeholder={state} id="state" name="state" onChange={(e)=>setState(e.target.value)}></input>
+                </div>
+
+                <div className='form-group'>
+                  <label className="labele">Zip Code:</label>  
+                  <input type="text" placeholder={zipCode} id="zip" name="zip"  onChange={(e)=>setZip(e.target.value)}></input>
+                </div>
+
+                <br></br>
+
                 <button type="submit" onClick = {handleShippingclick}>Update Shipping Address</button>
+
+                <br></br>
 
                 <div class="checkbox-label2">
                     <input type="checkbox" id="Promotional" name="Promotional" onChange={handleCheck} checked={promoEmail}/>
@@ -291,25 +313,71 @@ function EditProfile() {
                 </div>
           <div>
 
-          <label> Edit payment card</label>
+        <br></br>
+
+          <h2> Edit payment card</h2>
           <div>
                     {paymentList}
           </div>
           </div>
 
+        <br></br>
+
           <div>
-          <label> Add payment card</label>
-          <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
-                <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
-                <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
-                <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
-                <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
+          <h2> Add payment card</h2>
+          
+          <div className='form-group'>
+            <label>Card Type:</label>
+            <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
+          </div>
+         
+          <div className='form-group'>
+              <label>Card Number:</label>
+              <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
+          </div>
+
+          <div className='form-group'>
+            <label>Expiration Date:</label>
+            <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
+          </div>
+
+          <div className='form-group'>
+            <label>Card Name:</label>
+            <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
+          </div>
                 
-                <label className="label">Billing Address </label>
-                <input type="text" placeholder="Billing Street" id="bs" name="bs" value={Newstreet} onChange={(e)=>setNewStreet(e.target.value)}></input>
-                <input type="text" placeholder="Billing City" id="bc" name="bc" value={Newcity} onChange={(e)=>setNewCity(e.target.value)}></input>
-                <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={Newstate} onChange={(e)=>setNewState(e.target.value)}></input>
-                <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={NewzipCode} onChange={(e)=>setNewZip(e.target.value)}></input>
+          <div className='form-group'>
+            <label>Card CVV:</label>
+            <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
+          </div>
+                
+
+                <br></br>
+                
+                <h3>Billing Address </h3>
+                <br></br>
+
+                <div className='form-group'>
+                  <label>Billing Street: </label>
+                  <input type="text" placeholder="Billing Street" id="bs" name="bs" value={Newstreet} onChange={(e)=>setNewStreet(e.target.value)}></input>
+                </div>
+
+                <div className='form-group'>
+                  <label>New City: </label>
+                  <input type="text" placeholder="Billing City" id="bc" name="bc" value={Newcity} onChange={(e)=>setNewCity(e.target.value)}></input>
+                </div>
+                
+                <div className='form-group'>
+                  <label>New State: </label>
+                  <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={Newstate} onChange={(e)=>setNewState(e.target.value)}></input>
+                </div>
+                
+                <div className='form-group'>
+                  <label>New Zip: </label>
+                  <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={NewzipCode} onChange={(e)=>setNewZip(e.target.value)}></input>
+                </div>
+                
+                
                 <button className="submit-button" type="submit" onClick={handleAddCardClick}>Add card</button>
           </div>
           <div className="input-container">

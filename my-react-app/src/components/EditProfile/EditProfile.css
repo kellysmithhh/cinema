@@ -20,6 +20,26 @@
     line-height: 1.3em;
   }
 
+  h2 {
+    font-family: 'Play';
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 1px;
+    color: #ffffff;
+    font-size: 1.5em;
+    line-height: 1.3em;
+  }
+
+  h3 {
+    font-family: 'Play';
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 1px;
+    color: #ffffff;
+    font-size: 1em;
+    line-height: 1.3em;
+  }
+
   .form-group {
   display: flex;
   flex-direction: row;

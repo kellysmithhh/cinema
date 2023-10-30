@@ -1,0 +1,12 @@
+.paymentcard {
+    margin: 0 auto;
+    text-align: center;
+    }
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    background-color: #000000;
+    }
+

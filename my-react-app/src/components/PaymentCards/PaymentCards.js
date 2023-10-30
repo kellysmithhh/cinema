@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './PaymentCards.css';
 
 function PaymentCards(props) {
     const payment = props;
@@ -60,17 +61,56 @@ function PaymentCards(props) {
      return (
         <div className="paymentcard">
 
-                <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
-                <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
-                <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
-                <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
-                <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
+                <div className="form-group">   
+                    <label>Card Type: </label> 
+                    <input type="text" placeholder="Card Type" id="ct" name="ct" value={cardType} onChange={(e)=>setCardType(e.target.value)}></input>
+                </div>
+
+                <div className="form-group">  
+                    <label>Card Number:</label>
+                    <input type="text" placeholder="Card Number" id="cn" name="cn" value={cardNumber} onChange={(e)=>setCardNum(e.target.value)}></input>
+                </div>
+
+                <div className="form-group">  
+                    <label>Card Expiration:</label>
+                    <input type="text" placeholder="Expiration Date" id="ed" name="ed" value={cardExpiration} onChange={(e)=>setExpiration(e.target.value)}></input>
+                </div>
+
+                <div className="form-group">  
+                    <label>Card Holder:</label>
+                    <input type="text" placeholder="Card Name" id="cname" name="cname" value={cardName} onChange={(e)=>setCardName(e.target.value)}></input>
+                </div>
+
+                <div className="form-group">  
+                    <label>Card CVV: </label>
+                    <input type="text" placeholder="Card CVV" id="CVV" name="CVV" value={cardCVV} onChange={(e)=>setCardCVV(e.target.value)}></input>
+                </div>
+
+                <br></br>
                 
-                <label className="label">Billing Address </label>
-                <input type="text" placeholder="Billing Street" id="bs" name="bs" value={street} onChange={(e)=>setStreet(e.target.value)}></input>
-                <input type="text" placeholder="Billing City" id="bc" name="bc" value={city} onChange={(e)=>setCity(e.target.value)}></input>
-                <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={state} onChange={(e)=>setState(e.target.value)}></input>
-                <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={zipCode} onChange={(e)=>setZip(e.target.value)}></input>
+                <h3>Billing Address </h3>
+                
+                <div className="form-group">  
+                    <label>Street Name: </label>
+                    <input type="text" placeholder="Billing Street" id="bs" name="bs" value={street} onChange={(e)=>setStreet(e.target.value)}></input>
+                </div>
+
+                <div className="form-group">  
+                    <label>City: </label>
+                    <input type="text" placeholder="Billing City" id="bc" name="bc" value={city} onChange={(e)=>setCity(e.target.value)}></input>
+                </div>
+
+                <div className="form-group"> 
+                    <label>Street: </label>
+                    <input type="text" placeholder="Billing State" id="bstate" name="bstate" value={state} onChange={(e)=>setState(e.target.value)}></input>
+                </div>
+
+                <div className="form-group">  
+                    <label>Zip Code:</label>
+                    <input type="text" placeholder="Billing Zip" id="bz" name="bz" value={zipCode} onChange={(e)=>setZip(e.target.value)}></input>
+                </div>
+
+                <br></br>
                 <button className="submit-button" type="submit" onClick={handleClick}>Update Card Info</button>
 
         </div>
