@@ -27,7 +27,7 @@ function EditProfile() {
     useEffect(() => {
       console.log("promoEmail changed: " + promoEmail);
     }, [promoEmail]);
-    
+
       if (firstName === "") {
       var session = localStorage.getItem('session');
       session = session.replace(/^"(.*)"$/, '$1');
@@ -80,12 +80,14 @@ function EditProfile() {
 
 
     const handleCheck = (e) => {
-      setPromoEmail(e.target.checked);
+      setPromoEmail(e.target.checked)
+
       var session = localStorage.getItem("session");
       session = session.replace(/^"(.*)"$/, '$1');     
-      const userPromoEmail = {promoEmail,session}
-      console.log("checked: " + promoEmail) // if starting with checked, value is opposite
-      fetch("http://localhost:8080/user/edit",{ //route not implemented yet
+      const userPromoEmail = {promoEmail: e.target.checked,session}
+      console.log("checked: " + promoEmail) 
+
+      fetch("http://localhost:8080/user/edit",{ 
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(userPromoEmail)
