@@ -72,7 +72,7 @@ function LoginPage() {
            <div className="LogIn">
                <h1>Sign In</h1>
            </div>
-           <input type="text" placeholder="Email" id="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)}></input>
+           <input type="text" placeholder="Email or employee id" id="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)}></input>
 
            <input type="text" placeholder="Password" id="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}></input>
 

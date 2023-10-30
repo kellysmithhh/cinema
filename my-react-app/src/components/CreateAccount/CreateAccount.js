@@ -73,7 +73,9 @@ function CreateAccount() {
         if (cardCounter === 3) {
             alert("Maximum amount of cards reached");
         } else {
-        
+            if (cardType === '' || cardNumber === '' || cardExpiration === '' || cardName === '' || cardCVV === '' || billingStreet === '' || billingCity === '' || billingState === '' || billingZip === '') {
+                alert("Please fill out all fields for payment card");
+            } else {
             const billingAddr = new billingAddress(billingStreet, billingCity, billingState, billingZip);
             const newPaymentCard =  new paymentCard(cardNumber,cardExpiration,cardName,cardCVV,cardType,billingAddr);
             const updatedPaymentCards = [...paymentCards, newPaymentCard];
@@ -81,7 +83,9 @@ function CreateAccount() {
             console.log(updatedPaymentCards)       
             cardCounter++;
             console.log("card count: " + cardCounter)
-        } // else
+            alert("Card added successfully!");
+            } // if
+        } // if
 
     }
 
@@ -140,9 +144,6 @@ function CreateAccount() {
 
                 <label className="label">Password</label>
                 <input type="text" placeholder="Required Field" id="pwd" name="pwd" value={password} onChange={(e)=>setPassword(e.target.value)}></input>
-
-                <label className="label">Confirm Password</label>
-                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
 
                 <label className="label">Shipping Address (Optional)</label>
                 <input type="text" placeholder="Street" id="str" name="str" value={street} onChange={(e)=>setStreet(e.target.value)}></input>

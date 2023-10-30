@@ -185,8 +185,11 @@ function EditProfile() {
               body:JSON.stringify(userNewPass)
           }).then(()=>{
               console.log("user edits added.")
-          })            
-        } // if
+          })
+          alert("Password updated!");            
+        } else {
+          alert("Incorrect password. Please try again");
+        }
        })
             
     }
