@@ -6,24 +6,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.cinema.cinemasystem.service.EmailService;
+
+import com.cinema.cinemasystem.Facade.EmailFacade;
 
 @RestController
 @RequestMapping("/email")
 @CrossOrigin(origins = "*")
 public class EmailServiceController {
+
     @Autowired
-    private EmailService emailService;
+    private EmailFacade emailFacade;
 
     @PostMapping("/send/{address}/{code}")
     public String send(@PathVariable String address, @PathVariable int code) {
-        emailService.sendEmail(address, code);
-        return "email sent";
+        return emailFacade.send(address, code);
     }
 
     @PostMapping("/send/confirmation/{address}")
     public String send(@PathVariable String address) {
-        emailService.sendConfirmation(address);
-        return "email sent";
+        return emailFacade.send(address);
     }
 }

@@ -10,29 +10,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cinema.cinemasystem.Facade.MovieFacade;
 import com.cinema.cinemasystem.model.Movie;
-import com.cinema.cinemasystem.service.MovieService;
 
 @RestController
 @RequestMapping("/movie")
 @CrossOrigin(origins = "*")
 public class MovieController {
+
     @Autowired
-    private MovieService movieService;
+    private MovieFacade movieFacade;
 
     @PostMapping("/add")
     public String add(@RequestBody Movie movie) {
-        movieService.saveMovie(movie);
-        return "New movie added.";
+        return movieFacade.add(movie);
     }
 
     @GetMapping("/getAll")
     public List<Movie> getAllMovies() {
-        return movieService.getAllMovies();
+        return movieFacade.getAllMovies();
     }
 
     @GetMapping("/search/{title}")
     public List<Movie> getMoviesByTitle(@PathVariable String title) {
-        return movieService.getMoviesByTitle(title);
+        return movieFacade.getMoviesByTitle(title);
     }
 }
