@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.cinema.cinemasystem.enums.RATING;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.service.MovieService;
 
@@ -17,7 +18,18 @@ public class MovieFacade {
 @Autowired
 private MovieService movieService;
 
-public String add(@RequestBody Movie movie) {
+    public String add(Movie movie, String mpaaRatingCode) {
+        if (mpaaRatingCode.equals("G")) {
+            movie.setRatingMPAA(RATING.G);
+        } else if (mpaaRatingCode.equals("PG")) {
+            movie.setRatingMPAA(RATING.PG);
+        } else if (mpaaRatingCode.equals("PG-13")) {
+            movie.setRatingMPAA(RATING.PG_13);
+        } else if (mpaaRatingCode.equals("R")) {
+            movie.setRatingMPAA(RATING.R);
+        } else if (mpaaRatingCode.equals("NC-17")) {
+            movie.setRatingMPAA(RATING.NC_17);
+        }
         movieService.saveMovie(movie);
         return "New movie added.";
     }

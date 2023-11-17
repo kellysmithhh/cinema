@@ -6,6 +6,16 @@ function Movie(props) {
 
     const movie = props.movie;
 
+    const ratingMap = {
+        G: 'G',
+        PG: 'PG',
+        PG_13: 'PG-13',
+        R: 'R',
+        NC_17: 'NC-17'
+    };
+
+    const mpaaRating = movie.ratingMPAA ? ratingMap[movie.ratingMPAA] : 'Unknown';
+
     return (
         <div className="Movie">
             <div id = "MovieBlock">
@@ -18,7 +28,7 @@ function Movie(props) {
                     <h1>{movie.title}</h1>
 
                     <div className = "rating">
-                        <h2>{movie.mpaaRatingCode}</h2>
+                        <h2>{String(mpaaRating)}</h2>
                         <h2>{movie.category}</h2>
                     </div>
 

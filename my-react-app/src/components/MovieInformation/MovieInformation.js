@@ -12,7 +12,7 @@ function MovieInformation() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = `http://localhost:8080/movie/search/${from}`;
+    const apiUrl = `http://localhost:8080/movie/search/title/${from}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {

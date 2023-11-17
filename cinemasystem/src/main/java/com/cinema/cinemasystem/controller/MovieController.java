@@ -22,9 +22,9 @@ public class MovieController {
     @Autowired
     private MovieFacade movieFacade;
 
-    @PostMapping("/add")
-    public String add(@RequestBody Movie movie) {
-        return movieFacade.add(movie);
+    @PostMapping("/add/{mpaaRatingCode}")
+    public String add(@RequestBody Movie movie, @PathVariable String mpaaRatingCode) {
+        return movieFacade.add(movie, mpaaRatingCode);
     }
 
     @GetMapping("/getAll")

@@ -11,6 +11,16 @@ function Information(props) {
       navigate(path);
     }
 
+    const ratingMap = {
+        G: 'G',
+        PG: 'PG',
+        PG_13: 'PG-13',
+        R: 'R',
+        NC_17: 'NC-17'
+    };
+
+    const mpaaRating = info.ratingMPAA ? ratingMap[info.ratingMPAA] : 'Unknown';
+
     return (
         <div className="Information">
             
@@ -29,7 +39,7 @@ function Information(props) {
                     <p>Director: {info.director}</p>
                     <p>Producer: {info.producer} </p>
                     <p>Synopsis: {info.synopsis}</p>
-                    <p>Film Rating: {info.mpaa_rating_code}</p>
+                    <p>Film Rating: {mpaaRating}</p>
                 </div>
         
     

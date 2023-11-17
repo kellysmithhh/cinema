@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 function AddMovie() {
 
     const[title,setTitle] = useState('')
-    const[mpaaRatingCode,setMpaaRatingCode] = useState('')
     const[cast,setCast] = useState('')
     const[category,setCategory] = useState('')
     const[director,setDirector] = useState('')
@@ -18,12 +17,21 @@ function AddMovie() {
     const[nowShowing,setNowShowing] = useState(false)
     const[duration,setDuration] = useState('')
 
+    const RATING = {
+        G: "G",
+        PG: "PG",
+        PG_13: "PG-13",
+        R: "R",
+        NC_17: "NC-17",
+      };
+
+      const[mpaaRatingCode,setMpaaRatingCode] = useState('')
 
     const handleClick=(e)=>{
         e.preventDefault()
         const movie={mpaaRatingCode,cast,category,director,producer,reviews,showDates,showTimes,synopsis,title,trailerImage,trailerLink,comingSoon,nowShowing,duration}
         console.log(movie)
-        fetch("http://localhost:8080/movie/add",{
+        fetch(`http://localhost:8080/movie/add/${mpaaRatingCode}`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(movie)
@@ -74,8 +82,15 @@ function AddMovie() {
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={trailerLink} onChange={(e)=>setTrailerLink(e.target.value)}></input>
 
                 <label className="label">Film Rating</label>
-                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={mpaaRatingCode} onChange={(e)=>setMpaaRatingCode(e.target.value)}></input>
-
+                <select value={mpaaRatingCode} onChange={(e)=>setMpaaRatingCode(e.target.value)}>
+                    <option value="">Select...</option>
+                    <option value={RATING.G}>G</option>
+                    <option value={RATING.PG}>PG</option>
+                    <option value={RATING.PG_13}>PG-13</option>
+                    <option value={RATING.R}>R</option>
+                    <option value={RATING.NC_17}>NC-17</option>
+                </select>
+            
                 <label className="label">Show Dates</label>
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={showDates} onChange={(e)=>setShowDates(e.target.value)}></input>
 
