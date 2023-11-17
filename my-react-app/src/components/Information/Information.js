@@ -29,7 +29,7 @@ function Information(props) {
             <div className='MovieDetails'>
     
                 <div className='MovieImage'>
-                    <img src ={info.trailer_image} alt = "An "/>
+                    <img src ={info.trailerImage} alt = "An "/>
                 </div>
         
                 <div className='MovieInfo'>
