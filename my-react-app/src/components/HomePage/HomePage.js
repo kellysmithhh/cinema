@@ -1,6 +1,7 @@
-import MovieGallery from '../MovieGallery/MovieGallery';
+import MovieGalleryComingSoon from '../MovieGallery/MovieGalleryComingSoon';
 import './HomePage.css';
 import InitialPreviewCarousel from '../InitialPreviewCarousel/InitialPreviewCarousel';
+import MovieGalleryCurrentlyShowing from '../MovieGallery/MovieGalleryCurrentlyShowing';
 
 function HomePage() {
 
@@ -9,8 +10,9 @@ function HomePage() {
             <InitialPreviewCarousel />
             <div className ="Gallery">
                 <h1>Currently Showing</h1>
-                <MovieGallery />
+                <MovieGalleryCurrentlyShowing />
                 <h1>Coming Soon</h1>
+                <MovieGalleryComingSoon />
             </div>
         </div>
     );

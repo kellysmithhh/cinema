@@ -1,6 +1,6 @@
 import './ManagerView.css'
 import AddMovie from '../AddMovie/AddMovie'
-import MovieGallery from '../MovieGallery/MovieGallery'
+//import MovieGalleryComingSoon from '../MovieGallery/MovieGalleryComingSoon'
 
 function ManagerView() {
 

@@ -1,5 +1,5 @@
 import './AddMovie.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function AddMovie() {
 
     const[title,setTitle] = useState('')
@@ -32,10 +32,14 @@ function AddMovie() {
         })
     }
 
+    useEffect(() => {
+        console.log('Now showing:', nowShowing);
+    }, [nowShowing]);
+
     const handleCheck=(e)=>{
-        e.preventDefault();
-        setComingSoon(false);
-        setNowShowing(true);
+        const isChecked = e.target.checked;
+        setNowShowing(isChecked);
+        setComingSoon(!isChecked);
     }
 
     return (
@@ -82,8 +86,8 @@ function AddMovie() {
                 <input type="text" placeholder="Required Field" value ={duration} onChange={(e)=>setDuration(e.target.value)}></input>
 
                 <div class="checkbox-label">
-                    <input type="checkbox" id="scales" name="scales"/>
-                    <label for="scales" onChange={handleCheck}>Now showing?</label>
+                    <input type="checkbox" id="scales" name="scales" checked = {nowShowing} onChange={handleCheck}/>
+                    <label for="scales">Now showing?</label>
                 </div>
 
                 

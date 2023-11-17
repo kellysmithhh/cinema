@@ -21,6 +21,10 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+    public List<Movie> getComingSoon(Boolean isComingSoon) {
+        return movieRepository.findByComingSoon(isComingSoon);
+    }
+
     public List<Movie> getMoviesByTitle(String title) {
         return movieRepository.findByTitle(title);
     }
