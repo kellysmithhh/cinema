@@ -30,8 +30,15 @@ public String add(@RequestBody Movie movie) {
         return movieService.getComingSoon(isComingSoon);
     }
 
-    public List<Movie> getMoviesByTitle(@PathVariable String title) {
-        return movieService.getMoviesByTitle(title);
+    public List<Movie> getMoviesByInput(String searchBy, String input) {
+        System.out.println("searchBy: " + searchBy);
+        if (searchBy.equals("title")) {
+            System.out.println("made it to title");
+            return movieService.getMoviesByTitle(input);
+        } else {
+            System.out.println("made it to category");
+             return movieService.getMoviesByCategory(input);
+        }
     }
 
 }

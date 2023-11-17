@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import InitialPreview from '../InitialPreview/InitialPreview';
 import './MovieInformation.css';
 import Information from '../Information/Information'
 
@@ -36,7 +35,6 @@ function MovieInformation() {
 
   return (
     <div className="MovieInformation">
-      <InitialPreview />
      {infoList}
     </div>
   );

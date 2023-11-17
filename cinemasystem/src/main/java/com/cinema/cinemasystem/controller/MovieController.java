@@ -37,8 +37,8 @@ public class MovieController {
         return movieFacade.getComingSoon(isComingSoon);
     }
 
-    @GetMapping("/search/{title}")
-    public List<Movie> getMoviesByTitle(@PathVariable String title) {
-        return movieFacade.getMoviesByTitle(title);
+    @GetMapping("/search/{searchBy}/{input}")
+    public List<Movie> getMoviesByInput(@PathVariable String searchBy, @PathVariable String input) {
+        return movieFacade.getMoviesByInput(searchBy, input);
     }
 }

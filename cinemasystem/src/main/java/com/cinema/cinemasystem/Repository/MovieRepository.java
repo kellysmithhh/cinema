@@ -8,6 +8,7 @@ import com.cinema.cinemasystem.model.Movie;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    List<Movie> findByTitle(String title);
+    List<Movie> findByTitle(String input);
+    List<Movie> findByCategory(String input);
     List<Movie> findByComingSoon(Boolean isComingSoon);
 }
