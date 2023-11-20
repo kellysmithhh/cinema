@@ -1,13 +1,16 @@
 package com.cinema.cinemasystem.model;
 
+import java.time.LocalDateTime;
 import java.util.Set;
-
 
 // import java.time.LocalDateTime;
 
 import com.cinema.cinemasystem.enums.RATING;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 // import jakarta.persistence.CascadeType;
 // import jakarta.persistence.CollectionTable;
 // import jakarta.persistence.Column;
@@ -18,6 +21,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 // import jakarta.persistence.JoinColumn;
 // import jakarta.persistence.JoinTable;
 // import jakarta.persistence.ManyToMany;
@@ -51,8 +55,6 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews;
 
-    //private String reviews;
-
     private String trailerImage;
 
     private String trailerLink;
@@ -65,9 +67,10 @@ public class Movie {
     // @Column(name = "show_date")
     // private Set<LocalDateTime> showDates;
 
-    private String showDates;
-
-    private String showTimes;
+    @ElementCollection
+    @CollectionTable(name = "movie_show_times", joinColumns = @JoinColumn(name = "movie_id"))
+    @Column(name = "show_time")
+    private Set<LocalDateTime> showTimes;
 
     private Integer duration;
 
@@ -163,19 +166,11 @@ public class Movie {
         this.mpaaRatingCode = mpaaRatingCode;
     }
 
-    public String getShowDates() {
-        return showDates;
-    }
-
-    public void setShowDates(String showTimes) {
-        this.showDates = showTimes;
-    }
-
-    public String getShowTimes() {
+    public Set<LocalDateTime> getShowTimes() {
         return showTimes;
     }
 
-    public void setShowTimes(String showTimes) {
+    public void setShowTimes(Set<LocalDateTime> showTimes) {
         this.showTimes = showTimes;
     }
 

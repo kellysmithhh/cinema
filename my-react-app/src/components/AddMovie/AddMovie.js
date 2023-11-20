@@ -8,8 +8,7 @@ function AddMovie() {
     const[director,setDirector] = useState('')
     const[producer,setProducer] = useState('')
     const[reviews] = useState([])
-    const[showDates,setShowDates] = useState('')
-    const[showTimes,setShowTimes] = useState('')
+    const[showTimes] = useState([])
     const[synopsis,setSynopsis] = useState('')
     const[trailerImage,setTrailerImage] = useState('')
     const[trailerLink,setTrailerLink] = useState('')
@@ -29,7 +28,7 @@ function AddMovie() {
 
     const handleClick=(e)=>{
         e.preventDefault()
-        const movie={mpaaRatingCode,cast,category,director,producer,reviews,showDates,showTimes,synopsis,title,trailerImage,trailerLink,comingSoon,nowShowing,duration}
+        const movie={mpaaRatingCode,cast,category,director,producer,reviews,showTimes,synopsis,title,trailerImage,trailerLink,comingSoon,nowShowing,duration}
         console.log(movie)
         fetch(`http://localhost:8080/movie/add/${mpaaRatingCode}`,{
             method:"POST",
@@ -72,9 +71,6 @@ function AddMovie() {
                 <label className="label">Synopsis</label>
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={synopsis} onChange={(e)=>setSynopsis(e.target.value)}></input>
 
-                <label className="label">Reviews</label>
-                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
-
                 <label className="label">Trailer Image URL</label>
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={trailerImage} onChange={(e)=>setTrailerImage(e.target.value)}></input>
         
@@ -90,12 +86,6 @@ function AddMovie() {
                     <option value={RATING.R}>R</option>
                     <option value={RATING.NC_17}>NC-17</option>
                 </select>
-            
-                <label className="label">Show Dates</label>
-                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={showDates} onChange={(e)=>setShowDates(e.target.value)}></input>
-
-                <label className="label">Show Times</label>
-                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={showTimes} onChange={(e)=>setShowTimes(e.target.value)}></input>
 
                 <label className="label">Duration</label>
                 <input type="text" placeholder="Required Field" value ={duration} onChange={(e)=>setDuration(e.target.value)}></input>
