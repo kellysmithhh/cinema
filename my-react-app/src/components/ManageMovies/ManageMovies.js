@@ -5,10 +5,21 @@ function ManageMovies() {
 
     const [dateTimeSet,setDateTimeSet] = useState([]);
     const [dateTimeValue, setDateTimeValue] = useState('');
+    const [movies,setMovies] = useState([]);
 
-    const handleDate = () => {
+    const handleDate = (e) => {
+        e.preventDefault();
         setDateTimeSet([...dateTimeSet, dateTimeValue]);
     };
+
+    useEffect (() => {
+        fetch("http://localhost:8080/movie/getAll")
+        .then(res=>res.json())
+        .then((result)=>{
+            console.log(result);
+            setMovies(result);
+        })
+    }, []);
 
     useEffect (() => {
         console.log(dateTimeSet);
