@@ -19,6 +19,9 @@ import ChangePassword from './components/ChangePassword/ChangePassword';
 import AddCard from './components/AddCard/AddCard';
 import EditProfile from './components/EditProfile/EditProfile';
 import SignedInNavBar from './components/SignedInNavBar/SignedInNavBar';
+import ManagePromotions from './components/ManagePromotions/ManagePromotions';
+import ManageUsers from './components/ManageUsers/ManageUsers';
+import ManageMovies from './components/ManageMovies/ManageMovies';
 import { useEffect, useState } from 'react';
 
 function App() { 
@@ -63,6 +66,9 @@ const[isSessionNull,setIsSessionNull] = useState(true)
             <Route path = "/ChangePassword/:email" element = {<ChangePassword/>}/>
             <Route path ="/AddCard" element = {<AddCard/>}/>
             <Route path ="/EditProfile" element = {<EditProfile/>}/>
+            <Route path ="/ManagePromotions" element ={<ManagePromotions/>}/>
+            <Route path ="/ManageMovies" element = {<ManageMovies/>}/>
+            <Route path = "/ManageUsers" element = {<ManageUsers/>}/>
           </Routes>
         </div>
       </div>
