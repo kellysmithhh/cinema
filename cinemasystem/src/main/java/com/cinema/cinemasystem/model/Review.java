@@ -21,7 +21,7 @@ public class Review {
 
     private String content;
 
-    private LocalDateTime dateTime;
+    //private LocalDateTime dateTime;
 
     @ManyToOne
     private Movie movie;
@@ -58,13 +58,13 @@ public class Review {
         this.content = content;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
+    //public LocalDateTime getDateTime() {
+    //    return dateTime;
+    //}
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
+    //public void setDateTime(LocalDateTime dateTime) {
+    //    this.dateTime = dateTime;
+    //}
 
     public Movie getMovie() {
         return movie;

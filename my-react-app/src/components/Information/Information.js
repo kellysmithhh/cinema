@@ -1,9 +1,20 @@
 import './Information.css';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Information(props) {
 
     const info = props.info;
+    const [rating, setRating] = useState('');
+
+    const handleRatingChange = (event) => {
+        const inputValue = event.target.value;
+        // Ensure the entered value is within the range of 1-10
+        if (!isNaN(inputValue) && inputValue >= 1 && inputValue <= 5) {
+          setRating(inputValue);
+        }
+      };
+
 
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
@@ -40,6 +51,17 @@ function Information(props) {
                     <p>Producer: {info.producer} </p>
                     <p>Synopsis: {info.synopsis}</p>
                     <p>Film Rating: {mpaaRating}</p>
+                    <p><label>Reviews:</label></p>
+                    <label htmlFor="ratingInput">Rate (1-5):</label>
+                    <input
+                        type="number"
+                        id="ratingInput"
+                        value={rating}
+                        onChange={handleRatingChange}
+                        min="1"
+                        max="5"
+                        placeholder="Enter a number from 1 to 5"
+                    />
                 </div>
         
     
