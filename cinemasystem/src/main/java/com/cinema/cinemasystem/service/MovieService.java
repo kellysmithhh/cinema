@@ -33,4 +33,8 @@ public class MovieService {
         return movieRepository.findByCategory(category);
     }
 
+    public void addShowDates(String id, List<String> showDates) {
+        
+    }
+
 }

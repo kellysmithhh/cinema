@@ -2,6 +2,7 @@ package com.cinema.cinemasystem.controller;
 
 import java.util.List;
 
+import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,5 +41,10 @@ public class MovieController {
     @GetMapping("/search/{searchBy}/{input}")
     public List<Movie> getMoviesByInput(@PathVariable String searchBy, @PathVariable String input) {
         return movieFacade.getMoviesByInput(searchBy, input);
+    }
+
+    @PostMapping("/{movieID}/show-dates")
+    public void addShowDates(@PathVariable String movieID, @RequestBody List<String> showDates) {
+        movieFacade.addShowDates(movieID, showDates);
     }
 }

@@ -53,4 +53,8 @@ private MovieService movieService;
         }
     }
 
+    public void addShowDates(String id, List<String> showDates) {
+        movieService.addShowDates(id, showDates);
+    }
+
 }
