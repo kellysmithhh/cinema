@@ -1,6 +1,11 @@
 package com.cinema.cinemasystem.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +39,15 @@ public class MovieService {
     }
 
     public void addShowDates(String id, List<String> showDates) {
-        
+        long movieId = Long.parseLong(id);
+        Optional<Movie> maybeMovie = movieRepository.findById(movieId);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        Set<LocalDateTime> localDateTimes = showDates.stream()
+            .map(dateString -> LocalDateTime.parse(dateString, formatter))
+            .collect(Collectors.toSet());
+        Movie movie = maybeMovie.get();
+        movie.setShowTimes(localDateTimes);
+        movieRepository.save(movie);
     }
 
 }
