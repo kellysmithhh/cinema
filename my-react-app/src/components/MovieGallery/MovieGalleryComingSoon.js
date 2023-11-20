@@ -8,14 +8,21 @@ function MovieGalleryComingSoon() {
 
     const[comingSoonMovies,setComingSoonMovies] = useState([])
 
+    
     useEffect(()=> {
+         
         fetch("http://localhost:8080/movie/get/coming/soon/true")
         .then(res=>res.json())
         .then((result)=>{
             console.log(result);
             setComingSoonMovies(result);
         }
+        
         )
+        .catch(rejected => {
+            console.log(rejected);
+        })
+    
     },[])
 
     const comingSoonMoviesList = comingSoonMovies.map((movie, k) => <Movie movie = {movie} key ={k}/>);
@@ -28,5 +35,6 @@ function MovieGalleryComingSoon() {
     );
 
 }
+
 
 export default MovieGalleryComingSoon;

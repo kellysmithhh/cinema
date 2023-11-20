@@ -45,9 +45,14 @@ public class MovieService {
         Set<LocalDateTime> localDateTimes = showDates.stream()
             .map(dateString -> LocalDateTime.parse(dateString, formatter))
             .collect(Collectors.toSet());
-        Movie movie = maybeMovie.get();
-        movie.setShowTimes(localDateTimes);
-        movieRepository.save(movie);
+        if (movieRepository.findByShowTimes(localDateTimes) != null) {
+            System.out.println("Time slot already taken");
+        } else {
+            Movie movie = maybeMovie.get();
+            movie.setShowTimes(localDateTimes);
+            movieRepository.save(movie);
+        }
+        
     }
 
 }
