@@ -1,11 +1,19 @@
 import './ManagerView.css';
 import AddMovie from '../AddMovie/AddMovie'
 //import MovieGalleryComingSoon from '../MovieGallery/MovieGalleryComingSoon'
+import { useNavigate } from 'react-router-dom';
 
 function ManagerView() {
 
+let navigate = useNavigate(); 
+
+const handleClickMovies = () => {
+    let path = `/ManageMovies`;
+    navigate(path);
+};
+
 const handleClick = () => {
-    
+
 };
 
     return (
@@ -18,7 +26,7 @@ const handleClick = () => {
                     <button type="submit" onClick={handleClick}>Manage Users</button>
                 </div>
                 <div className="input-container">
-                    <button type="submit" onClick={handleClick}>Manage Movies </button>
+                    <button type="submit" onClick={handleClickMovies}>Manage Movies </button>
                 </div>
             </div>
 
