@@ -2,13 +2,13 @@ package com.cinema.cinemasystem.model;
 
 import java.time.LocalDateTime;
 
-// import jakarta.persistence.Entity;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
-// @Entity
+@Entity
 public class Review {
 
     @Id
@@ -50,11 +50,11 @@ public class Review {
         this.rating = rating;
     }
 
-    public String getDescription() {
+    public String getContent() {
         return content;
     }
 
-    public void setDescription(String content) {
+    public void setContent(String content) {
         this.content = content;
     }
 

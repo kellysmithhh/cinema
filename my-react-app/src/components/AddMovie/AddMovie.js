@@ -7,7 +7,7 @@ function AddMovie() {
     const[category,setCategory] = useState('')
     const[director,setDirector] = useState('')
     const[producer,setProducer] = useState('')
-    const[reviews,setReviews] = useState('')
+    const[reviews] = useState([])
     const[showDates,setShowDates] = useState('')
     const[showTimes,setShowTimes] = useState('')
     const[synopsis,setSynopsis] = useState('')
@@ -73,7 +73,7 @@ function AddMovie() {
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={synopsis} onChange={(e)=>setSynopsis(e.target.value)}></input>
 
                 <label className="label">Reviews</label>
-                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={reviews} onChange={(e)=>setReviews(e.target.value)}></input>
+                <input type="text" placeholder="Required Field" id="cpwd" name="cpwd"></input>
 
                 <label className="label">Trailer Image URL</label>
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={trailerImage} onChange={(e)=>setTrailerImage(e.target.value)}></input>

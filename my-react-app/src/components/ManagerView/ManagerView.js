@@ -4,6 +4,10 @@ import AddMovie from '../AddMovie/AddMovie'
 
 function ManagerView() {
 
+const handleClick = () => {
+    
+};
+
     return (
         <div className="ManagerView">
             <div id ="MVLeft">

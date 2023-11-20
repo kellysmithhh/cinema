@@ -1,11 +1,13 @@
 package com.cinema.cinemasystem.model;
 
+import java.util.Set;
+
+
 // import java.time.LocalDateTime;
-// import java.util.HashSet;
-// import java.util.Set;
 
 import com.cinema.cinemasystem.enums.RATING;
 
+import jakarta.persistence.CascadeType;
 // import jakarta.persistence.CascadeType;
 // import jakarta.persistence.CollectionTable;
 // import jakarta.persistence.Column;
@@ -21,6 +23,7 @@ import jakarta.persistence.Id;
 // import jakarta.persistence.ManyToMany;
 // import jakarta.persistence.ManyToOne;
 // import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Movie {
@@ -45,10 +48,10 @@ public class Movie {
 
     private String synopsis;
 
-    // @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    // private Set<Review> reviews = new HashSet<>();
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews;
 
-    private String reviews;
+    //private String reviews;
 
     private String trailerImage;
 
@@ -128,11 +131,11 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public String getReviews() {
+    public Set<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(String reviews) {
+    public void setReviews(Set<Review> reviews) {
         this.reviews = reviews;
     }
 
