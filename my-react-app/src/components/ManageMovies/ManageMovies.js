@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import './ManageMovies.css';
+import EditMovie from '../EditMovie/EditMovie';
 
 function ManageMovies() {
 
     const [dateTimeSet,setDateTimeSet] = useState([]);
     const [dateTimeValue, setDateTimeValue] = useState('');
     const [movies,setMovies] = useState([]);
+    const movieList = movies.map((movie, k) => <EditMovie movie = {movie} key ={k}/>);
 
     const handleDate = (e) => {
         e.preventDefault();
@@ -59,7 +61,14 @@ function ManageMovies() {
             </tr>
             </table>                    
         
+        <div>
+            {movieList}
         </div>
+
+        </div>
+        
+
+        
        
     )
 }
