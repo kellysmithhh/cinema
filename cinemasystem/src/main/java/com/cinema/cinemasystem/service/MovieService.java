@@ -42,15 +42,23 @@ public class MovieService {
         long movieId = Long.parseLong(id);
         Optional<Movie> maybeMovie = movieRepository.findById(movieId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        Set<LocalDateTime> localDateTimes = showDates.stream()
+        Set<LocalDateTime> newLocalDateTimes = showDates.stream()
             .map(dateString -> LocalDateTime.parse(dateString, formatter))
             .collect(Collectors.toSet());
-        if (movieRepository.findByShowTimes(localDateTimes) != null) {
+        Movie movie = maybeMovie.get();
+        Set<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
+        existingLocalDateTimes.addAll(newLocalDateTimes);
+        List<Movie> moviesWithOverlappingTimes = movieRepository.findMoviesByOverlappingShowTimes(
+            movie.getId(),
+            existingLocalDateTimes,
+            existingLocalDateTimes.size()
+        );
+        if (!moviesWithOverlappingTimes.isEmpty()) {
             System.out.println("Time slot already taken");
         } else {
-            Movie movie = maybeMovie.get();
-            movie.setShowTimes(localDateTimes);
+            movie.setShowTimes(existingLocalDateTimes);
             movieRepository.save(movie);
+            System.out.println("Time saved!");
         }
         
     }
