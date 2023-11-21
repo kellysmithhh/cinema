@@ -17,9 +17,11 @@ const handleClickPromotions = () => {
     navigate(path);
 };
 
-const handleClick = () => {
-
+const handleClickUsers = () => {
+    let path = `/ManageUsers`;
+    navigate(path);
 };
+
 
     return (
         <div className="ManagerView">
@@ -28,7 +30,7 @@ const handleClick = () => {
                     <button type="submit" onClick={handleClickPromotions}>Manage Promotions</button>
                 </div>
                 <div className="input-container">
-                    <button type="submit" onClick={handleClick}>Manage Users</button>
+                    <button type="submit" onClick={handleClickUsers}>Manage Users</button>
                 </div>
                 <div className="input-container">
                     <button type="submit" onClick={handleClickMovies}>Manage Movies </button>

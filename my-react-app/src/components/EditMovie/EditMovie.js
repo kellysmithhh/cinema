@@ -32,7 +32,7 @@ function EditMovie(props) {
                     console.error('There was a problem adding show dates:', error);
                 });
         } else {
-            console.log('DateTime already exists in the set');
+            alert('DateTime already exists in the set');
             setDateTimeValue('');
         }
     };
