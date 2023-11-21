@@ -1,6 +1,8 @@
 package com.cinema.cinemasystem.Facade;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -55,6 +57,10 @@ private MovieService movieService;
 
     public void addShowDates(String id, List<String> showDates) {
         movieService.addShowDates(id, showDates);
+    }
+
+    public List<String> getShowDates(Long movieID) {
+        return movieService.getShowDates(movieID);
     }
 
 }

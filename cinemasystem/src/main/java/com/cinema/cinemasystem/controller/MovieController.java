@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.mapping.Set;
@@ -46,5 +47,10 @@ public class MovieController {
     @PostMapping("/{movieID}/show-dates")
     public void addShowDates(@PathVariable String movieID, @RequestBody List<String> showDates) {
         movieFacade.addShowDates(movieID, showDates);
+    }
+
+    @GetMapping("/{movieID}/get/show-dates")
+    public List<String> getShowDates(@PathVariable Long movieID) {
+        return movieFacade.getShowDates(movieID);
     }
 }

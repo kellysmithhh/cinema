@@ -1,11 +1,13 @@
 import './Information.css';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Information(props) {
 
     const info = props.info;
     const [rating, setRating] = useState('');
+    const movieId = info.id;
+    const [showTimes, setShowTimes] = useState([]);
 
     const handleRatingChange = (event) => {
         const inputValue = event.target.value;
@@ -14,6 +16,22 @@ function Information(props) {
           setRating(inputValue);
         }
       };
+
+    useEffect((e) => {
+        fetch(`http://localhost:8080/movie/${movieId}/get/show-dates`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setShowTimes(data)
+            })
+            .catch(error => {
+                console.error('There was a problem getting show dates:', error);
+            });
+    }, [movieId]);
 
 
     let navigate = useNavigate(); 
@@ -62,6 +80,15 @@ function Information(props) {
                         max="5"
                         placeholder="Enter a number from 1 to 5"
                     />
+                    <p>Show Times: {showTimes && showTimes.length > 0 ? (
+                        <ul>
+                            {showTimes.map((time, index) => (
+                                <li key={index}>{time}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No show times available</p>
+                    )}</p>
                 </div>
         
     

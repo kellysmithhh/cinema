@@ -60,7 +60,18 @@ public class MovieService {
             movieRepository.save(movie);
             System.out.println("Time saved!");
         }
-        
+    }
+
+    public List<String> getShowDates(Long movieID) {
+        Optional<Movie> maybeMovie = movieRepository.findById(movieID);
+        Movie movie = maybeMovie.get();
+        Set<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        List<String> dateStringList = existingLocalDateTimes.stream()
+                .map(date -> date.format(formatter))
+                .toList(); // If using Java 16+, otherwise use Collectors.toList()
+
+        return dateStringList;
     }
 
 }
