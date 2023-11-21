@@ -1,6 +1,7 @@
 package com.cinema.cinemasystem.service;
 
 import java.util.Base64;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -129,6 +130,10 @@ public boolean editProfile(Customer editCustomer) {
             System.out.println("maybe customer not present.");
             return false;
         }
+    }
+
+    public List<Customer> getAllPromoCustomers() {
+        return customerRepository.findByPromoEmailIsTrue();
     }
 
     public Customer getWithSesssion(String sessionId) {

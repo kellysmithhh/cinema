@@ -17,4 +17,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     public Optional<Customer> findByEmail(String email);
 
     public Optional<Customer> findBySession(String sessionId);
+
+    public List<Customer> findByPromoEmailIsTrue();
 }
