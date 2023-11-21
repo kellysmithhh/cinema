@@ -12,6 +12,11 @@ const handleClickMovies = () => {
     navigate(path);
 };
 
+const handleClickPromotions = () => {
+    let path = `/ManagePromotions`;
+    navigate(path);
+};
+
 const handleClick = () => {
 
 };
@@ -20,7 +25,7 @@ const handleClick = () => {
         <div className="ManagerView">
             <div id ="MVLeft">
                 <div className="input-container">
-                    <button type="submit" onClick={handleClick}>Manage Promotions</button>
+                    <button type="submit" onClick={handleClickPromotions}>Manage Promotions</button>
                 </div>
                 <div className="input-container">
                     <button type="submit" onClick={handleClick}>Manage Users</button>

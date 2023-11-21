@@ -12,7 +12,9 @@ public class PromoCode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String code;
+    private String promoCode;
+
+    private String percentOff;
 
     public Long getId() {
         return id;
@@ -22,12 +24,20 @@ public class PromoCode {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getPromoCode() {
+        return promoCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setPromoCode(String promoCode) {
+        this.promoCode = promoCode;
+    }
+
+    public void setPercentOff(String percentOff) {
+        this.percentOff = percentOff;
+    }
+
+    public String getPercentOff() {
+        return percentOff;
     }
 
 }
