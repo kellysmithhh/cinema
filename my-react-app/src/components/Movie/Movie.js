@@ -10,9 +10,9 @@ function Movie(props) {
     const ratingMap = {
         G: 'G',
         PG: 'PG',
-        PG_13: 'PG-13',
+        PG_13: 'PG13',
         R: 'R',
-        NC_17: 'NC-17'
+        NC_17: 'NC17'
     };
 
     const mpaaRating = movie.ratingMPAA ? ratingMap[movie.ratingMPAA] : 'Unknown';
