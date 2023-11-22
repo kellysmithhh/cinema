@@ -40,7 +40,7 @@ function Information(props) {
    let navigate = useNavigate();
    const routeChange = () => {
        let path = `/ShowtimeSelection`;
-       navigate(path);
+       navigate(path, {state: info});
    };
 
 
@@ -63,6 +63,7 @@ function Information(props) {
                <div className='MovieImage'>
                    <img src={info.trailerImage} alt="An " />
                </div>
+               {/* <iframe src = {movie.trailerLink} />  */}
                <div className='MovieInfo'>
                    <p>Movie Name: {info.title}</p>
                    <p>Category: {info.category} </p>

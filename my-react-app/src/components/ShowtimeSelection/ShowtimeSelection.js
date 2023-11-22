@@ -1,9 +1,13 @@
 import React from 'react';
 import './ShowtimeSelection.css';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 function ShowtimeSelection() {
-  const movieTitle = 'Oppenheimer';
+  const location = useLocation();
+  const movie = location.state;
+  const movieTitle = movie.title
+  const movieTime = movie.showTimes 
 
   let navigate = useNavigate(); 
     const routeChange = () =>{ 
@@ -11,26 +15,37 @@ function ShowtimeSelection() {
       navigate(path);
     }
 
-  const showtimesByDate = [
-    {
-      date: 'October 3, 2023',
-      times: ['1:00 PM', '3:30 PM', '6:00 PM'],
-    },
-    {
-      date: 'October 4, 2023',
-      times: ['2:00 PM', '4:30 PM', '7:00 PM'],
-    },
-    {
-      date: 'October 5, 2023',
-      times: ['12:30 PM', '3:00 PM', '5:30 PM'],
-    },
-  ];
-
+    var allShowTimes = []
+    var count = 0;
+    for (var i = 0; i < movieTime.length; i++) {
+      let dates = movieTime[i].substring(0,10)
+      var time = []
+      time[0] = movieTime[i].substring(11,16)                 
+      
+      var dupe = false;
+      for (var j = 0; j < allShowTimes.length; j++) {
+        if (allShowTimes[j].date === dates) {
+          dupe = true
+          allShowTimes[j].times.push(movieTime[i].substring(11,16))
+        }
+      }     
+      if(dupe === false) {
+        var data = {
+          date: dates,
+          times: time,
+        };
+        allShowTimes[count] = data
+        count++
+      }      
+    }
+    
+    
+  
   return (
     <div className="ShowtimeSelection">
       <h4>Showtimes</h4>
       <div className="movie-title">{movieTitle}</div>
-      {showtimesByDate.map((showtime, index) => (
+      {allShowTimes.map((showtime, index) => (
         <div key={index} className="date-showtimes">
           <div className="showtime-date">{showtime.date}</div>
           <div className="showtime-times">
