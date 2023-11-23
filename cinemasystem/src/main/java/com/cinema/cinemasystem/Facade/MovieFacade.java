@@ -2,6 +2,7 @@ package com.cinema.cinemasystem.Facade;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cinema.cinemasystem.enums.RATING;
 import com.cinema.cinemasystem.model.Movie;
+import com.cinema.cinemasystem.model.Review;
 import com.cinema.cinemasystem.service.MovieService;
 
 
@@ -20,18 +22,7 @@ public class MovieFacade {
 @Autowired
 private MovieService movieService;
 
-    public String add(Movie movie, String mpaaRatingCode) {
-        if (mpaaRatingCode.equals("G")) {
-            movie.setRatingMPAA(RATING.G);
-        } else if (mpaaRatingCode.equals("PG")) {
-            movie.setRatingMPAA(RATING.PG);
-        } else if (mpaaRatingCode.equals("PG-13")) {
-            movie.setRatingMPAA(RATING.PG_13);
-        } else if (mpaaRatingCode.equals("R")) {
-            movie.setRatingMPAA(RATING.R);
-        } else if (mpaaRatingCode.equals("NC-17")) {
-            movie.setRatingMPAA(RATING.NC_17);
-        }
+    public String add(Movie movie) {
         movieService.saveMovie(movie);
         return "New movie added.";
     }
@@ -61,6 +52,14 @@ private MovieService movieService;
 
     public List<String> getShowDates(Long movieID) {
         return movieService.getShowDates(movieID);
+    }
+
+    public String addReview(Long movieID, Review review) {
+        Optional<Movie> maybeMovie = movieService.getMovieWithId(movieID);
+        if (maybeMovie.isPresent()) {
+            return movieService.addReview(maybeMovie.get(), review);
+        }
+        return "movie does not exist";
     }
 
 }

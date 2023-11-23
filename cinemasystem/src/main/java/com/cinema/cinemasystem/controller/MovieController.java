@@ -1,9 +1,7 @@
 package com.cinema.cinemasystem.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinemasystem.Facade.MovieFacade;
 import com.cinema.cinemasystem.model.Movie;
+import com.cinema.cinemasystem.model.Review;
 
 @RestController
 @RequestMapping("/movie")
@@ -24,9 +23,9 @@ public class MovieController {
     @Autowired
     private MovieFacade movieFacade;
 
-    @PostMapping("/add/{mpaaRatingCode}")
-    public String add(@RequestBody Movie movie, @PathVariable String mpaaRatingCode) {
-        return movieFacade.add(movie, mpaaRatingCode);
+    @PostMapping("/add")
+    public String add(@RequestBody Movie movie) {
+        return movieFacade.add(movie);
     }
 
     @GetMapping("/getAll")
@@ -52,5 +51,10 @@ public class MovieController {
     @GetMapping("/{movieID}/get/show-dates")
     public List<String> getShowDates(@PathVariable Long movieID) {
         return movieFacade.getShowDates(movieID);
+    }
+
+    @PostMapping("/{movieID}/add-review")
+    public String addReview(@PathVariable Long movieID, @RequestBody Review review) {
+        return movieFacade.addReview(movieID, review);
     }
 }

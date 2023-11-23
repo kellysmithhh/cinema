@@ -10,13 +10,18 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cinema.cinemasystem.Repository.MovieRepository;
+import com.cinema.cinemasystem.Repository.ReviewRepository;
 import com.cinema.cinemasystem.model.Movie;
+import com.cinema.cinemasystem.model.Review;
 
 @Service
 public class MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public Movie saveMovie(Movie movie) {
         return movieRepository.save(movie);
@@ -28,6 +33,10 @@ public class MovieService {
 
     public List<Movie> getComingSoon(Boolean isComingSoon) {
         return movieRepository.findByComingSoon(isComingSoon);
+    }
+
+    public Optional<Movie> getMovieWithId(Long id) {
+        return movieRepository.findById(id);
     }
 
     public List<Movie> getMoviesByTitle(String title) {
@@ -72,6 +81,12 @@ public class MovieService {
                 .toList(); // If using Java 16+, otherwise use Collectors.toList()
 
         return dateStringList;
+    }
+
+    public String addReview(Movie movie, Review review) {
+        review.setMovie(movie);
+        reviewRepository.save(review);
+        return "add review success";
     }
 
 }
