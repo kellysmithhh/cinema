@@ -24,13 +24,13 @@ function AddMovie() {
         NC_17: "NC17",
       };
 
-      const[mpaaRatingCode,setMpaaRatingCode] = useState('')
+      const[ratingMPAA,setMpaaRatingCode] = useState('')
 
     const handleClick=(e)=>{
         e.preventDefault()
-        const movie={mpaaRatingCode,cast,category,director,producer,reviews,showTimes,synopsis,title,trailerImage,trailerLink,comingSoon,nowShowing,duration}
+        const movie={ratingMPAA,cast,category,director,producer,reviews,showTimes,synopsis,title,trailerImage,trailerLink,comingSoon,nowShowing,duration}
         console.log(movie)
-        fetch(`http://localhost:8080/movie/add/${mpaaRatingCode}`,{
+        fetch(`http://localhost:8080/movie/add/`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(movie)
@@ -78,7 +78,7 @@ function AddMovie() {
                 <input type="text" placeholder="Required Field" id="cpwd" name="cpwd" value ={trailerLink} onChange={(e)=>setTrailerLink(e.target.value)}></input>
 
                 <label className="label">Film Rating</label>
-                <select value={mpaaRatingCode} onChange={(e)=>setMpaaRatingCode(e.target.value)}>
+                <select value={ratingMPAA} onChange={(e)=>setMpaaRatingCode(e.target.value)}>
                     <option value="">Select...</option>
                     <option value={RATING.G}>G</option>
                     <option value={RATING.PG}>PG</option>
