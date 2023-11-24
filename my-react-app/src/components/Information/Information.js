@@ -83,9 +83,8 @@ function Information(props) {
            fetch(`http://localhost:8080/movie/${movieId}/get-reviews`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.reviews)
-                    setOldReviews(data.reviews);
-                    console.log(oldReviews)
+                    setOldReviews(data);
+                    console.log(data)
                 })
                 .catch(error => {
                     console.error('Error fetching reviews:', error);
