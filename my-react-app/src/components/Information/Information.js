@@ -23,6 +23,26 @@ function Information(props) {
    const [newReview, setNewReview] = useState('');   
    const movieId = info.id;
    const [showTimes, setShowTimes] = useState([]);
+   const [userName,setUserName] = useState('');
+
+   if (localStorage.getItem("session") !== "") {
+    
+        var session = localStorage.getItem('session');
+        session = session.replace(/^"(.*)"$/, '$1');       
+         const apigetURL = `http://localhost:8080/user/get/user/${session}`;
+         fetch(apigetURL, {          
+           method:"GET",
+           headers:{"Content-Type":"application/json"}})
+           .then((response)=> response.json())
+           .then((data) => {       
+                setUserName(data.firstName)            
+            console.log("completed")
+           })
+           .catch(error => {
+             console.error('Error fetching data:', error);
+         });             
+        
+   }
 
 
    const handleRatingChange = (event) => {
@@ -70,26 +90,29 @@ function Information(props) {
    const mpaaRating = info.ratingMPAA ? ratingMap[info.ratingMPAA] : 'Unknown';
 
    const handleClick = (e) => {
-        e.preventDefault();       
-        const user = {fromName: "alex", rating: rating, content: newReview}
-        
-        const url = `http://localhost:8080/movie/${movieId}/add-review`;
-        fetch(url,{ 
-           method:"POST",
-           headers:{"Content-Type":"application/json"},
-           body:JSON.stringify(user)
-       }).then(()=>{
-           console.log("Movie Review Added")
-           fetch(`http://localhost:8080/movie/${movieId}/get-reviews`)
-                .then(response => response.json())
-                .then(data => {
-                    setOldReviews(data);
-                    console.log(data)
-                })
-                .catch(error => {
-                    console.error('Error fetching reviews:', error);
-                });
-       })
+
+        if (localStorage.getItem("session") !== "") {
+                e.preventDefault();       
+                const user = {fromName: userName, rating: rating, content: newReview}
+                
+                const url = `http://localhost:8080/movie/${movieId}/add-review`;
+                fetch(url,{ 
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(user)
+            }).then(()=>{
+                console.log("Movie Review Added")
+                fetch(`http://localhost:8080/movie/${movieId}/get-reviews`)
+                        .then(response => response.json())
+                        .then(data => {
+                            setOldReviews(data);
+                            console.log(data)
+                        })
+                        .catch(error => {
+                            console.error('Error fetching reviews:', error);
+                        });
+            })
+        }
     }
 
 
