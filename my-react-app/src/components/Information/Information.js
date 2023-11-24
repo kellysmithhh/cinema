@@ -2,12 +2,23 @@
 import './Information.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import MovieReview from '../MovieReviews/MovieReviews';
 
 
 function Information(props) {
-   const info = props.info;
+   const info = props.info;   
+   const[oldReviews,setOldReviews] = useState([])
+   if (props.reviews !== undefined) {
+    console.log("not null")
+    setOldReviews(oldReviews)
+   } else {
+    console.log("is null")
+   }
+
+   const reviewList = oldReviews.map((reviews, k) => <MovieReview reviews = {reviews} key ={k}/>); 
+
    const [rating, setRating] = useState('');
-   const [review, setReview] = useState('');
+   const [newReview, setNewReview] = useState('');   
    const movieId = info.id;
    const [showTimes, setShowTimes] = useState([]);
 
@@ -55,6 +66,20 @@ function Information(props) {
 
    const mpaaRating = info.ratingMPAA ? ratingMap[info.ratingMPAA] : 'Unknown';
 
+   const handleClick = (e) => {
+        e.preventDefault();       
+        const user = {fromName: "alex", rating: rating, content: newReview}
+        
+        const url = `http://localhost:8080/movie/${movieId}/add-review`;
+        fetch(url,{ 
+           method:"POST",
+           headers:{"Content-Type":"application/json"},
+           body:JSON.stringify(user)
+       }).then(()=>{
+           console.log("Movie Review Added")
+       })
+    }
+
 
    return (
        <div className="Information">
@@ -87,11 +112,12 @@ function Information(props) {
                        <input
                            type="text"
                            id="reviewInput"
-                           value={review}
-                           onChange={(e) => setReview(e.target.value)}
+                           value={newReview}
+                           onChange={(e) => setNewReview(e.target.value)}
                            placeholder="Add your review"
                        />
-                       <button type="button">Submit</button>
+                       <button type="button" onClick={handleClick}>Submit</button>
+                       {reviewList}
                    </div>
                    <div className="ShowTimes">
                        <label htmlFor="showTimes">Show Times:</label>
