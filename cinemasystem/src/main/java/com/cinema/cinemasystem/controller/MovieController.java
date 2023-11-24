@@ -57,4 +57,9 @@ public class MovieController {
     public String addReview(@PathVariable Long movieID, @RequestBody Review review) {
         return movieFacade.addReview(movieID, review);
     }
+
+    @GetMapping("/{movieID}/get-reviews")
+    public List<Review> getReviews(@PathVariable Long movieID) {
+        return movieFacade.getReviews(movieID);
+    }
 }

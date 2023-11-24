@@ -8,14 +8,16 @@ import MovieReview from '../MovieReviews/MovieReviews';
 function Information(props) {
    const info = props.info;   
    const[oldReviews,setOldReviews] = useState([])
-   if (props.reviews !== undefined) {
-    console.log("not null")
-    setOldReviews(oldReviews)
-   } else {
-    console.log("is null")
-   }
+   useEffect(() => {
+    if (info.reviews !== undefined) {
+      setOldReviews(info.reviews);
+      console.log(info.reviews)
+    } else {
+        console.log("is null")
+    }
+   }, [info.reviews]);
 
-   const reviewList = oldReviews.map((reviews, k) => <MovieReview reviews = {reviews} key ={k}/>); 
+   //const reviewList = oldReviews.map((reviews, k) => <MovieReview reviews = {reviews} key ={k}/>); 
 
    const [rating, setRating] = useState('');
    const [newReview, setNewReview] = useState('');   
@@ -41,6 +43,7 @@ function Information(props) {
            })
            .then(data => {
                setShowTimes(data);
+               console.log(data)
            })
            .catch(error => {
                console.error('There was a problem getting show dates:', error);
@@ -77,6 +80,16 @@ function Information(props) {
            body:JSON.stringify(user)
        }).then(()=>{
            console.log("Movie Review Added")
+           fetch(`http://localhost:8080/movie/${movieId}/get-reviews`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.reviews)
+                    setOldReviews(data.reviews);
+                    console.log(oldReviews)
+                })
+                .catch(error => {
+                    console.error('Error fetching reviews:', error);
+                });
        })
     }
 
@@ -108,17 +121,29 @@ function Information(props) {
                        placeholder="Enter a number from 1 to 5"
                    />
                    <div>
-                       <label htmlFor="reviewInput">Review:</label>
-                       <input
-                           type="text"
-                           id="reviewInput"
-                           value={newReview}
-                           onChange={(e) => setNewReview(e.target.value)}
-                           placeholder="Add your review"
-                       />
-                       <button type="button" onClick={handleClick}>Submit</button>
-                       {reviewList}
-                   </div>
+                   <label htmlFor="reviewInput">Review:</label>
+                    <input
+                        type="text"
+                        id="reviewInput"
+                        value={newReview}
+                        onChange={(e) => setNewReview(e.target.value)}
+                        placeholder="Add your review"
+                    />
+                    <button type="button" onClick={handleClick}>Submit</button>
+                    </div>
+
+                    {/* Display existing reviews */}
+                    <div className="existingReviews">
+                    {oldReviews && oldReviews.length > 0 ? (
+                        <div>
+                            {oldReviews.map((review, index) => (
+                                <MovieReview key={index} review={review} />
+                            ))}
+                        </div>
+                    ) : (
+                        <p>No reviews available</p>
+                    )}
+                    </div>
                    <div className="ShowTimes">
                        <label htmlFor="showTimes">Show Times:</label>
                        {showTimes && showTimes.length > 0 ? (

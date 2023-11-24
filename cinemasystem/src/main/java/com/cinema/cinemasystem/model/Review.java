@@ -2,6 +2,8 @@ package com.cinema.cinemasystem.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Review {
 
     //private LocalDateTime dateTime;
 
+    @JsonIgnore
     @ManyToOne
     private Movie movie;
 

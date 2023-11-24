@@ -62,4 +62,12 @@ private MovieService movieService;
         return "movie does not exist";
     }
 
+    public List<Review> getReviews(Long movieID) {
+        Optional<Movie> maybeMovie = movieService.getMovieWithId(movieID);
+        if (maybeMovie.isPresent()) {
+            return movieService.getReviews(maybeMovie.get());
+        }
+        return null;
+    }
+
 }

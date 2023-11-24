@@ -2,6 +2,7 @@ package com.cinema.cinemasystem.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -87,6 +88,11 @@ public class MovieService {
         review.setMovie(movie);
         reviewRepository.save(review);
         return "add review success";
+    }
+
+    public List<Review> getReviews(Movie movie) {
+        List<Review> reviewsList = new ArrayList<>(movie.getReviews());
+        return reviewsList;
     }
 
 }
