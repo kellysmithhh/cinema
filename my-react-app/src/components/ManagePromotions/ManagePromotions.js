@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ManagePromotions.css';
 import PromoCodes from '../PromoCodes/PromoCodes';
 

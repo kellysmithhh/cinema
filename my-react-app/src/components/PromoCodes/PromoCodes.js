@@ -11,4 +11,4 @@ function PromoCodes(props) {
         </div>
 
     )
-}
+} export default PromoCodes
