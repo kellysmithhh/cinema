@@ -8,6 +8,8 @@ function EditMovie(props) {
 
     const handleDate = (e) => {
         e.preventDefault();
+        if (dateTimeValue !== "" ) {
+            console.log(dateTimeValue);
         if (!dateTimeSet.includes(dateTimeValue)) {
             const updatedDateTimeSet = [...dateTimeSet, dateTimeValue];
             const movieId = String(movie.movie.id);
@@ -35,6 +37,9 @@ function EditMovie(props) {
             alert('DateTime already exists in the set');
             setDateTimeValue('');
         }
+    } else {
+        alert("Please enter a Date and Time")
+    }
     };
 
     useEffect(() => {
