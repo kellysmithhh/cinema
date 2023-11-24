@@ -6,7 +6,9 @@ function PromoCodes(props) {
     return (
 
         <div>
+            <label>Promotion code: </label>
             {promo.promoCode}
+            <label> Percent off: </label>
             {promo.percentOff}
         </div>
 
