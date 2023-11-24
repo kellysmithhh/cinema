@@ -29,4 +29,7 @@ public class PromotionFacade {
         emailService.sendPromotion(promotion, customers);
     }
     
+    public List<PromoCode> getAll() {
+        return promotionService.getAll();
+    }
 }

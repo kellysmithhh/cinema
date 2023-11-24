@@ -11,7 +11,7 @@ function ManagePromotions() {
     
     useEffect(()=> {
          
-        fetch("http://localhost:8080/promotions/all")
+        fetch("http://localhost:8080/promotions/getAll")
         .then(res=>res.json())
         .then((result)=>{
             console.log(result);
