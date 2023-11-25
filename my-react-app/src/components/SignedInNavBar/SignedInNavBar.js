@@ -17,7 +17,8 @@ function SignedInNavBar({handleSignOut}) {
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
-        handleSignOut()
+        //handleSignOut()
+        navigate('')
     }
 
     return (
