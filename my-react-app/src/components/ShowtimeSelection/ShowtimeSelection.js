@@ -20,7 +20,19 @@ function ShowtimeSelection() {
     for (var i = 0; i < movieTime.length; i++) {
       let dates = movieTime[i].substring(0,10)
       var time = []
-      time[0] = movieTime[i].substring(11,16)                 
+      // Extracting hours and minutes from the time string
+      const [hours, minutes] = movieTime[i].substring(11, 16).split(':');
+
+      // Convert hours to a 12-hour format
+      let formattedHours = hours % 12 || 12; // If hours are 0, convert to 12
+
+      // Determine whether it's AM or PM
+      const meridiem = hours >= 12 ? 'PM' : 'AM';
+
+      // Create the formatted time string in 12-hour format
+      const formattedTime = `${formattedHours}:${minutes} ${meridiem}`;
+
+      time[0] = formattedTime;             
       
       var dupe = false;
       for (var j = 0; j < allShowTimes.length; j++) {
