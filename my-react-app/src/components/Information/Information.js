@@ -31,6 +31,14 @@ function Information(props) {
        }
    };
 
+   const formatTime = (inputTime) => {
+    const date = new Date(inputTime);
+    const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    const formattedTime = date.toLocaleString('en-US', options).replace(',', '');
+    return `${formattedDate} ${formattedTime}`;
+};
+
 
    useEffect(() => {
        fetch(`http://localhost:8080/movie/${movieId}/get/show-dates`)
@@ -41,8 +49,9 @@ function Information(props) {
                return response.json();
            })
            .then(data => {
-               setShowTimes(data);
-               console.log(data)
+                const formattedShowTimes = data.map(time => formatTime(time));
+                setShowTimes(formattedShowTimes);
+                console.log(data)
            })
            .catch(error => {
                console.error('There was a problem getting show dates:', error);
