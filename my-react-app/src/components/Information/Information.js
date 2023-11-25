@@ -23,8 +23,6 @@ function Information(props) {
    const [newReview, setNewReview] = useState('');   
    const movieId = info.id;
    const [showTimes, setShowTimes] = useState([]);
-   const [userName,setUserName] = useState('');
-
 
    const handleRatingChange = (event) => {
        const inputValue = event.target.value;
@@ -103,6 +101,8 @@ function Information(props) {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+        } else {
+            alert("Please login to leave a comment!")
         }
     }
 
