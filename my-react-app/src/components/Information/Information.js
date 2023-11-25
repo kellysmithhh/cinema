@@ -3,6 +3,7 @@ import './Information.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import MovieReview from '../MovieReviews/MovieReviews';
+import InitialPreview from '../InitialPreview/InitialPreview';
 
 
 function Information(props) {
@@ -118,6 +119,11 @@ function Information(props) {
 
    return (
        <div className="Information">
+
+        <div className ="Preview">
+            <InitialPreview link ={info.trailerLink}/>
+        </div>
+
            <h1>{info.title}</h1>
            <div className='MovieDetails'>
                <div className='MovieImage'>
@@ -154,18 +160,6 @@ function Information(props) {
                     <button type="button" onClick={handleClick}>Submit</button>
                     </div>
 
-                    {/* Display existing reviews */}
-                    <div className="existingReviews">
-                    {oldReviews && oldReviews.length > 0 ? (
-                        <div>
-                            {oldReviews.map((review, index) => (
-                                <MovieReview key={index} review={review} />
-                            ))}
-                        </div>
-                    ) : (
-                        <p>No reviews available</p>
-                    )}
-                    </div>
                    <div className="ShowTimes">
                        <label htmlFor="showTimes">Show Times:</label>
                        {showTimes && showTimes.length > 0 ? (
@@ -178,11 +172,27 @@ function Information(props) {
                            <p>No show times available</p>
                        )}
                    </div>
+
+                    <div className='buttonInfo'>
+                        <button onClick={routeChange} type='submit'>Book Ticket</button>
+                    </div>
                </div>
            </div>
-           <div className='buttonInfo'>
-               <button onClick={routeChange} type='submit'>Book Ticket</button>
-           </div>
+           
+           <h2>Reviews</h2>
+
+           {/* Display existing reviews */}
+           <div className="existingReviews">
+                    {oldReviews && oldReviews.length > 0 ? (
+                        <div>
+                            {oldReviews.map((review, index) => (
+                                <MovieReview key={index} review={review} />
+                            ))}
+                        </div>
+                    ) : (
+                        <p>No reviews available</p>
+                    )}
+            </div>
        </div>
    );
 }

@@ -13,7 +13,7 @@ function InitialPreviewCarousel() {
         <div className="Carousel">
             <div className = "inner">
                 {items.map((item) => {
-                    return <InitialPreview />;
+                    return <InitialPreview link = {'https://www.youtube.com/embed/uYPbbksJxIg'} />;
                 })}
             </div>
             
