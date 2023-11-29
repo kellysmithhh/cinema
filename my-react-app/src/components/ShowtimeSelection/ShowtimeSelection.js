@@ -1,58 +1,56 @@
 import React from 'react';
 import './ShowtimeSelection.css';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 function ShowtimeSelection() {
   const location = useLocation();
   const movie = location.state;
-  const movieTitle = movie.title
-  const movieTime = movie.showTimes 
+  const movieTitle = movie.title;
+  const movieTime = movie.showTimes;
 
-  let navigate = useNavigate(); 
-    const routeChange = (selectedTime) =>{ 
-    let path = `/TheaterBooking`; 
-    navigate(`${path}?time=${selectedTime}`);
+  let navigate = useNavigate();
+  const routeChange = (selectedDate, selectedTime) => {
+    let path = `/TheaterBooking`;
+    navigate(`${path}?date=${selectedDate}&time=${selectedTime}`);
+  };
+
+  var allShowTimes = [];
+  var count = 0;
+  for (var i = 0; i < movieTime.length; i++) {
+    let dateTime = new Date(movieTime[i]); // Convert string to a JavaScript Date object
+
+    // Format date
+    let formattedDate = dateTime.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+
+    // Format time
+    let formattedTime = dateTime.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    });
+
+    var dupe = false;
+    for (var j = 0; j < allShowTimes.length; j++) {
+      if (allShowTimes[j].date === formattedDate) {
+        dupe = true;
+        allShowTimes[j].times.push(formattedTime);
+      }
+    }
+    if (!dupe) {
+      var data = {
+        date: formattedDate,
+        times: [formattedTime],
+      };
+      allShowTimes[count] = data;
+      count++;
+    }
   }
 
-    var allShowTimes = []
-    var count = 0;
-    for (var i = 0; i < movieTime.length; i++) {
-      let dates = movieTime[i].substring(0,10)
-      var time = []
-      // Extracting hours and minutes from the time string
-      const [hours, minutes] = movieTime[i].substring(11, 16).split(':');
-
-      // Convert hours to a 12-hour format
-      let formattedHours = hours % 12 || 12; // If hours are 0, convert to 12
-
-      // Determine whether it's AM or PM
-      const meridiem = hours >= 12 ? 'PM' : 'AM';
-
-      // Create the formatted time string in 12-hour format
-      const formattedTime = `${formattedHours}:${minutes} ${meridiem}`;
-
-      time[0] = formattedTime;             
-      
-      var dupe = false;
-      for (var j = 0; j < allShowTimes.length; j++) {
-        if (allShowTimes[j].date === dates) {
-          dupe = true
-          allShowTimes[j].times.push(movieTime[i].substring(11,16))
-        }
-      }     
-      if(dupe === false) {
-        var data = {
-          date: dates,
-          times: time,
-        };
-        allShowTimes[count] = data
-        count++
-      }      
-    }
-    
-    
-  
   return (
     <div className="ShowtimeSelection">
       <h4>Showtimes</h4>
@@ -62,7 +60,11 @@ function ShowtimeSelection() {
           <div className="showtime-date">{showtime.date}</div>
           <div className="showtime-times">
             {showtime.times.map((time, idx) => (
-              <button onClick={() => routeChange(time)} key={idx} className="showtime-button">
+              <button
+                onClick={() => routeChange(showtime.date, time)}
+                key={idx}
+                className="showtime-button"
+              >
                 {time}
               </button>
             ))}

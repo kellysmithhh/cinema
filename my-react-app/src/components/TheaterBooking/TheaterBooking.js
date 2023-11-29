@@ -10,10 +10,10 @@ function TheaterBooking() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const selectedTime = searchParams.get('time');
-  console.log(selectedTime);
+  const selectedDate = searchParams.get('date');
 
   useEffect(() => {
-    // fetch to get full seats
+    // fech to get all seats and status
   })
 
   const createSeatCheckboxes = () => {
