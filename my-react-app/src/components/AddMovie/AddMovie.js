@@ -30,13 +30,13 @@ function AddMovie() {
         e.preventDefault()
         const movie={ratingMPAA,cast,category,director,producer,reviews,showTimes,synopsis,title,trailerImage,trailerLink,comingSoon,nowShowing,duration}
         console.log(movie)
-        fetch(`http://localhost:8080/movie/add/`,{
+        fetch(`http://localhost:8080/movie/add`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(movie)
         }).then(()=>{
             console.log("New movie added.")
-        })
+        });
     }
 
     useEffect(() => {
