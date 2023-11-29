@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './TheaterBooking.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function TheaterBooking() {
   const rows = ['A', 'B', 'C', 'D', 'E'];
   const columns = 10;
   const totalSeats = rows.length * columns;
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const selectedTime = searchParams.get('time');
+  console.log(selectedTime);
+
+  useEffect(() => {
+    // fetch to get full seats
+  })
 
   const createSeatCheckboxes = () => {
     const seatCheckboxes = [];
