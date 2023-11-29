@@ -39,6 +39,7 @@ function LoginPage() {
                 .then((data) => {
                     if (data !== '') {
                         localStorage.setItem('session', JSON.stringify(data));
+                        localStorage.setItem('admin',true);
                         //change path
                         let path = `/ManagerView`; 
                         navigate(path);

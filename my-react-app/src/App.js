@@ -29,18 +29,24 @@ function App() {
     localStorage.setItem('session', "");
   }
 
+  if (localStorage.getItem('admin') == null) {
+    localStorage.setItem('admin', false);
+  }
+
 const[isSessionNull,setIsSessionNull] = useState(true)
 
  useEffect(() => { // have to manualy refresh page to see signed in navbar
   const session = localStorage.getItem('session');
   setIsSessionNull(session === '');
  }, []);
-
+  
  const handleSignOut = () => {
   localStorage.setItem('session', '');
-  setIsSessionNull(true);
-  window.location.reload()
+  setIsSessionNull(true);  
+  window.location.reload()  
 };
+
+
 
   return (
     <Router>

@@ -23,6 +23,27 @@ public class ShowRoom {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "showRoom")
     private Set<ShowInfo> shows;
 
+    
+    // private Set<Seat> seats;
+
+    // public Set<Seat> getSeats() {
+    //     return seats;
+    // }
+
+    // public void setSeats(Set<Seat> seats) {
+    //     this.seats = seats;
+    // }
+
+    private int numSeats;    
+
+    public int getNumSeats() {
+        return numSeats;
+    }
+
+    public void setNumSeats(int numSeats) {
+        this.numSeats = numSeats;
+    }
+
     public Long getId() {
         return id;
     }

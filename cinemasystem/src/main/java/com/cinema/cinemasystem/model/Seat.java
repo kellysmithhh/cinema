@@ -15,6 +15,15 @@ public class Seat {
 
     private Integer seatRow;
     private Integer seatColumn;
+    private Boolean status;
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     @OneToOne
     private Ticket ticket;
@@ -50,5 +59,7 @@ public class Seat {
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
+
+    
 
 }

@@ -7,6 +7,7 @@ function SignedInNavBar({handleSignOut}) {
     let navigate = useNavigate(); 
 
     const handleSignOutClick = () => {
+        localStorage.setItem('admin',false);
         const sessionId = localStorage.getItem('session');
         const trimmedSessionId = sessionId.replace(/^"(.*)"$/, '$1');
         const apiUrl = `http://localhost:8080/user/logout/${trimmedSessionId}`
@@ -17,14 +18,19 @@ function SignedInNavBar({handleSignOut}) {
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
+        navigate("/");
         handleSignOut();
-        navigate();
-    }
+        
+    } 
+
+    const isAdmin = localStorage.getItem('admin')
+    console.log(isAdmin)
 
     return (
         <div className="NavBar">
             <div className="navbar-flexbox">
                 <div className="navbar-body">
+                   
                     <h1>
                         <Link to = "/">
                             <h1>Cinema E-Booking</h1>
@@ -35,7 +41,12 @@ function SignedInNavBar({handleSignOut}) {
             
                 <div className="navbar-buttons">
                         <ul>
-                        <li>
+                        {isAdmin === 'true' &&
+                            <li>
+                            <Link to = "/ManagerView">Manager View</Link>
+                            </li>
+                        }
+                            <li>
                                 <Link to = "/Browse">Browse</Link>
                             </li>
                             <li>
