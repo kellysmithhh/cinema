@@ -1,5 +1,7 @@
 package com.cinema.cinemasystem.model;
 
+import com.cinema.cinemasystem.enums.TTYPE;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,16 @@ public class Ticket {
 
     @OneToOne(mappedBy = "ticket")
     private Seat seat;
+
+    private TTYPE ticketType;
+
+    public TTYPE getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(TTYPE ticketType) {
+        this.ticketType = ticketType;
+    }
 
     public Long getId() {
         return id;
