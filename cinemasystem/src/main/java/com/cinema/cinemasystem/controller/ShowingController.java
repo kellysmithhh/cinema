@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinemasystem.Facade.ShowingFacade;
+import com.cinema.cinemasystem.dto.TicketTypesRequest;
 
 @RestController
 @RequestMapping("/showing")
@@ -20,7 +21,11 @@ public class ShowingController {
     private ShowingFacade showingFacade;
 
     @PostMapping("/set/ticket/types")
-    public void setTicketTypes(@RequestBody int childTickets, @RequestBody int adultTickets, @RequestBody int seniorTickets) {
+    public void setTicketTypes(@RequestBody TicketTypesRequest request) {
+        int childTickets = request.getChildTickets();
+        int adultTickets = request.getAdultTickets();
+        int seniorTickets = request.getSeniorTickets();
         showingFacade.setTicketTypes(childTickets, adultTickets, seniorTickets);
     }
+
 }
