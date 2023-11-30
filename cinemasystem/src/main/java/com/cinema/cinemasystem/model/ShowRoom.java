@@ -25,15 +25,15 @@ public class ShowRoom {
 
     private int numSeats;   
     
-    private Set<Seat> seats;
+    //private Set<Seat> seats;
 
-    public Set<Seat> getSeats() {
-        return seats;
-    }
+    //public Set<Seat> getSeats() {
+      //  return seats;
+    //}
 
-    public void setSeats(Set<Seat> seats) {
-        this.seats = seats;
-    }    
+    //public void setSeats(Set<Seat> seats) {
+      //  this.seats = seats;
+    //}    
 
     public int getNumSeats() {
         return numSeats;
