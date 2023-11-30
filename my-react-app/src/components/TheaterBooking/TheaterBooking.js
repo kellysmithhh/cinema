@@ -13,8 +13,9 @@ function TheaterBooking() {
   useEffect(() => {
     console.log(selectedDate);
     console.log(selectedTime);
-    // fech to get all seats and status
-  }, []);
+    // fetch to get all seats and status
+    // fetch to get all ticket types and count
+  }, [selectedDate, selectedTime]);
 
   const createSeatCheckboxes = () => {
     const seatCheckboxes = [];
