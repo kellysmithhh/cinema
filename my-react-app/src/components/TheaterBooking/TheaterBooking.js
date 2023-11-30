@@ -8,13 +8,13 @@ function TheaterBooking() {
   const totalSeats = rows.length * columns;
 
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const selectedTime = searchParams.get('time');
-  const selectedDate = searchParams.get('date');
+  const { selectedDate, selectedTime } = location.state;
 
   useEffect(() => {
+    console.log(selectedDate);
+    console.log(selectedTime);
     // fech to get all seats and status
-  })
+  }, []);
 
   const createSeatCheckboxes = () => {
     const seatCheckboxes = [];

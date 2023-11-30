@@ -1,7 +1,6 @@
 import React from 'react';
 import './ShowtimeSelection.css';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function ShowtimeSelection() {
   const location = useLocation();
@@ -11,8 +10,9 @@ function ShowtimeSelection() {
 
   let navigate = useNavigate();
   const routeChange = (selectedDate, selectedTime) => {
-    let path = `/TicketPage`;
-    navigate(`${path}?date=${selectedDate}&time=${selectedTime}`);
+    navigate('/TicketPage', {
+      state: { selectedDate, selectedTime },
+    });
   };
 
   var allShowTimes = [];
