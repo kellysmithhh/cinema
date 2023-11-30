@@ -53,4 +53,15 @@ public class EmailService {
         }
     }
 
+    public void sendOrderConfirmation(String to) {
+        String subject = "Order confirmation";
+        String body = "Congrats! Your Order has been Processed! Enjoy the show!"; 
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(body);
+        message.setFrom("copelandtucker@gmail.com");
+        mailSender.send(message);
+    }
+
 }

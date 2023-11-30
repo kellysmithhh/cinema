@@ -1,11 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CheckoutUI.css'; 
 import { useNavigate } from 'react-router-dom';
 
 function CheckoutUI() {
 
   let navigate = useNavigate(); 
-    const routeChange = () =>{ 
+  const[email,setEmail] = useState('');
+
+  useEffect(() => {
+    console.log(email);
+  }, [email]);
+
+  useEffect(() => {
+    var session = localStorage.getItem('session');
+    session = session.replace(/^"(.*)"$/, '$1');
+    const apigetURL = `http://localhost:8080/user/get/user/${session}`;
+     fetch(apigetURL, {
+       method:"GET",
+       headers:{"Content-Type":"application/json"}})
+       .then((response)=> response.json())
+       .then((data) => { 
+          setEmail(data.email)
+       })
+       .catch(error => {
+         console.error('Error fetching data:', error);
+     });        
+  }, []);
+
+    const handlePlaceOrder = (e) => {
+      e.preventDefault();
+      fetch(`http://localhost:8080/email/send/order/confirmation/${email}`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+    }).then(()=>{
+        console.log("New movie added.")
+    });
+
       let path = `/OrderConfirmation`; 
       navigate(path);
     }
@@ -69,7 +99,7 @@ function CheckoutUI() {
         </div>
 
         <div className="ButtonContainer">
-        <button onClick = {routeChange} className="ConfirmButton">Place Order </button>
+        <button onClick = {handlePlaceOrder} className="ConfirmButton">Place Order </button>
         <button className="CancelButton">Cancel</button>
 
       </div>

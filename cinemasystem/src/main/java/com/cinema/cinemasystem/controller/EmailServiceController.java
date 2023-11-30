@@ -26,4 +26,9 @@ public class EmailServiceController {
     public String send(@PathVariable String address) {
         return emailFacade.send(address);
     }
+
+    @PostMapping("/send/order/confirmation/{address}")
+    public void sendOrderConfirmation(@PathVariable String address) {
+        emailFacade.sendOrderConfirmation(address);
+    }
 }

@@ -22,4 +22,8 @@ public class EmailFacade {
         return "email sent";
     }
 
+    public void sendOrderConfirmation(String address) {
+        emailService.sendOrderConfirmation(address);
+    }
+
 }
