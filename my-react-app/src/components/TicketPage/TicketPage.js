@@ -12,7 +12,29 @@ function TicketPage() {
 
   const routeChange = (e) => {
     e.preventDefault();
-    //fetch to add the number of each ticket type 
+    const data = {
+      childTickets: childTickets,
+      adultTickets: adultTickets,
+      seniorTickets: seniorTickets
+    };
+    fetch('http://localhost:8080/showing/set/ticket/types', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        // Handle success
+        console.log('Request successful');
+      })
+      .catch(error => {
+        // Handle error
+        console.error('There was a problem with the fetch operation:', error);
+      });
     navigate('/TheaterBooking', {
       state: { selectedDate, selectedTime },
     });
