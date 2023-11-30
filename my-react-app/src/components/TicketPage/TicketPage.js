@@ -1,15 +1,25 @@
-import { useNavigate} from 'react-router-dom';
+
+import { useNavigate, useLocation} from 'react-router-dom';
 
 function TicketPage() {
     const tickets = [];
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
     const selectedTime = searchParams.get('time');
     const selectedDate = searchParams.get('date');
-
     let navigate = useNavigate();
-    const routeChange = (selectedDate, selectedTime) => {
-        let path = `/TheaterBooking`;
-        navigate(`${path}?date=${selectedDate}&time=${selectedTime}`,{state : tickets});
-      };
+
+   
+    // const routeChange = (date, time) => {        
+    //         let path = `/TheaterBooking`;
+    //         console.log("clicked")
+    //         navigate(`${path}?date=${date}&time=${time}`);
+    // };   
+
+    const routeChange = () => {
+        navigate('/TheaterBooking')
+    }
+        
 
     return (
       
@@ -21,7 +31,7 @@ function TicketPage() {
             <input type="number" id="childTickets" name="childTickets" min="0" />
             <label htmlFor="seniorTickets">Senior Tickets ($12.99):</label>
             <input type="number" id="seniorTickets" name="seniorTickets" min="0" />
-            <button onClick={routeChange(selectedDate,selectedTime)}>Book Tickets</button>
+            <button onClick={routeChange}>Book Tickets</button>
             </div>
         </div>
      
