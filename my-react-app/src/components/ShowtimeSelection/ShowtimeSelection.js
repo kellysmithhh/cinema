@@ -11,7 +11,7 @@ function ShowtimeSelection() {
 
   let navigate = useNavigate();
   const routeChange = (selectedDate, selectedTime) => {
-    let path = `/TheaterBooking`;
+    let path = `/TicketPage`;
     navigate(`${path}?date=${selectedDate}&time=${selectedTime}`);
   };
 
