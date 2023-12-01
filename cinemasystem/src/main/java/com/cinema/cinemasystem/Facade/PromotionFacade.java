@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.PromoCode;
@@ -32,4 +33,9 @@ public class PromotionFacade {
     public List<PromoCode> getAll() {
         return promotionService.getAll();
     }
+
+    public String checkPromo(String promoInput) {
+        return promotionService.checkPromo(promoInput);
+    }
+
 }

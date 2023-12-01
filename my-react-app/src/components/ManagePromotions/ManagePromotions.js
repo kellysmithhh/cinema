@@ -29,7 +29,7 @@ function ManagePromotions() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        const promo = {promoCode, percentOff};
+        const promo = { promoCode, percentOff };
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -37,18 +37,23 @@ function ManagePromotions() {
             },
             body: JSON.stringify(promo),
         };
-
+    
         fetch(`http://localhost:8080/promotions/add`, requestOptions)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+                return fetch("http://localhost:8080/promotions/getAll"); // Fetch updated list after successful addition
+            })
+            .then(res => res.json())
+            .then(result => {
+                setAllPromoCodes(result); // Update state with the updated list of promotions
             })
             .catch(error => {
                 console.error('There was a problem adding promo', error);
             });
     }
-
+    
     return (
         <div>
             <div>

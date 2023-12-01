@@ -9,10 +9,12 @@ function CheckoutUI() {
 
   const location = useLocation();
   const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets } = location.state;
-
-  useEffect(() => {
-    console.log(movieTitle);
-  }, []);
+  const adultCost = 12.99 * adultTickets;
+  const childCost = 10.99 * childTickets;
+  const seniorCost = 11.99 * seniorTickets;
+  const[totalCost,setTotalCost] = useState(adultCost + childCost + seniorCost);
+  const[promoInput,setPromoInput] = useState('');
+  const[promoPercent,setPromoPercent] = useState('');
 
   useEffect(() => {
     var session = localStorage.getItem('session');
@@ -30,6 +32,13 @@ function CheckoutUI() {
      });        
   }, []);
 
+  useEffect(() => {
+    if (promoPercent !== "code not present") {
+      const discountedCost = totalCost - (totalCost * promoPercent);
+      setTotalCost(discountedCost);
+    }
+  }, [promoPercent]);
+
     const handlePlaceOrder = (e) => {
       e.preventDefault();
       fetch(`http://localhost:8080/email/send/order/confirmation/${email}`,{
@@ -43,14 +52,45 @@ function CheckoutUI() {
       navigate(path);
     }
 
+    const handlePromoClick = (e) => {
+      e.preventDefault();
+      // fetch to check for promocode in db
+  fetch(`http://localhost:8080/promotions/check/promo/${promoInput}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Handle success
+      return response.text(); // Return the promise for further chaining
+    })
+    .then(data => {
+      if (data === "code not present") {
+        alert("code not present.")
+      } else {
+        const percentValue = parseFloat(data.replace('%', ''));
+        const decimalValue = percentValue / 100;
+        setPromoPercent(decimalValue);
+      }
+    })
+    .catch(error => {
+      // Handle error
+      console.error('There was a problem with the fetch operation:', error);
+    });
+};
+
   return (
     <div className="CheckoutUI">
       <div className="LeftSection">
         {/* Left Section - Promotion Code */}
         <h2>Promotion Code</h2>
         <div className="PromotionCodeInput">
-          <input type="text" placeholder="Enter code" />
-          <button_1>Apply</button_1>
+          <input type="text" placeholder="Enter code" value={promoInput} onChange={(e)=>setPromoInput(e.target.value)} />
+          <button_1 onClick={handlePromoClick}>Apply</button_1>
         </div>
       </div>
 
@@ -100,7 +140,7 @@ function CheckoutUI() {
             <span>Senior Tickets:</span> {seniorTickets}
           </div>
           <div>
-            <span>Total:</span> 
+            <span>Total:</span> {totalCost.toFixed(2)}
           </div>
         </div>
 
@@ -110,8 +150,6 @@ function CheckoutUI() {
 
       </div>
       </div>
-
-      
 
     </div>
   );
