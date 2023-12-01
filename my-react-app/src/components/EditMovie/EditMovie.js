@@ -5,6 +5,7 @@ function EditMovie(props) {
     const [dateTimeSet, setDateTimeSet] = useState([]);
     const [dateTimeValue, setDateTimeValue] = useState('');
     const [title] = useState(movie.movie.title);
+    const [showRoomId, setShowRoomId] = useState(1);
 
     const handleDate = (e) => {
         e.preventDefault();
@@ -13,7 +14,6 @@ function EditMovie(props) {
         if (!dateTimeSet.includes(dateTimeValue)) {
             const updatedDateTimeSet = [...dateTimeSet, dateTimeValue];
             const movieId = String(movie.movie.id);
-            const showRoomId = 1; // change
             const data = {movieId, dateTimeValue, showRoomId}
             const requestOptions = {
                 method: 'POST',
@@ -42,6 +42,10 @@ function EditMovie(props) {
     }
     };
 
+    const handleShowRoomChange = (e) => {
+        setShowRoomId(parseInt(e.target.value));
+    };
+
     useEffect(() => {
         console.log(dateTimeSet);
     }, [dateTimeSet]);
@@ -56,6 +60,14 @@ function EditMovie(props) {
                         value={dateTimeValue}
                         onChange={(e) => setDateTimeValue(e.target.value)}
                     />
+                    <button type="submit">Send DateTime</button>
+                    <select value={showRoomId} onChange={handleShowRoomChange}>
+                        {[1, 2, 3, 4].map((id) => (
+                            <option key={id} value={id}>
+                                Showroom {id}
+                            </option>
+                        ))}
+                    </select>
                     <button type="submit">Send DateTime</button>
                 </form>
             </td>
