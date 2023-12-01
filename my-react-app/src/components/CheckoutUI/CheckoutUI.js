@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './CheckoutUI.css'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function CheckoutUI() {
 
   let navigate = useNavigate(); 
   const[email,setEmail] = useState('');
 
+  const location = useLocation();
+  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets } = location.state;
+
   useEffect(() => {
-    console.log(email);
-  }, [email]);
+    console.log(movieTitle);
+  }, []);
 
   useEffect(() => {
     var session = localStorage.getItem('session');
@@ -76,25 +79,28 @@ function CheckoutUI() {
         <h2>Order Summary</h2>
         <div className="OrderSummaryList">
           <div>
-            <span>Movie:</span> Oppenheimer
+            <span>Movie:</span> {movieTitle}
           </div>
           <div>
-            <span>Date:</span> October 7, 2023
+            <span>Date:</span> {selectedDate}
           </div>
           <div>
-            <span>Time:</span> 7:30 PM
+            <span>Time:</span> {selectedTime}
           </div>
           <div>
-            <span>Seats:</span> B1, B2, B3
+            <span>Seats:</span>
           </div>
           <div>
-            <span>Adult Tickets:</span> 2
+            <span>Adult Tickets:</span> {adultTickets}
           </div>
           <div>
-            <span>Child Tickets:</span> 1
+            <span>Child Tickets:</span> {childTickets}
           </div>
           <div>
-            <span>Total:</span> $30.00
+            <span>Senior Tickets:</span> {seniorTickets}
+          </div>
+          <div>
+            <span>Total:</span> 
           </div>
         </div>
 

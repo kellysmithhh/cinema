@@ -8,7 +8,7 @@ function TheaterBooking() {
   const totalSeats = rows.length * columns;
 
   const location = useLocation();
-  const { selectedDate, selectedTime } = location.state;
+  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets} = location.state;
 
   useEffect(() => {
     console.log(selectedDate);
@@ -32,8 +32,10 @@ function TheaterBooking() {
 
   let navigate = useNavigate(); 
     const routeChange = () =>{ 
-      let path = `/OrderSummary`; 
-      navigate(path);
+      let path = `/CheckOut`;
+      navigate(path, {
+        state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets },
+      });
     }
 
   return (
