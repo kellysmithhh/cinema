@@ -19,9 +19,6 @@ public class ShowRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Theatre theatre;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "showRoom")
     private List<ShowInfo> shows;
 
@@ -51,14 +48,6 @@ public class ShowRoom {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Theatre getTheatre() {
-        return theatre;
-    }
-
-    public void setTheatre(Theatre theatre) {
-        this.theatre = theatre;
     }
 
     public List<ShowInfo> getShows() {

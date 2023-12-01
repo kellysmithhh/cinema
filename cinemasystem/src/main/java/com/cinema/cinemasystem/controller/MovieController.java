@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinemasystem.Proxy.MovieProxy;
+import com.cinema.cinemasystem.dto.ShowDateRequest;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
+import com.cinema.cinemasystem.model.ShowRoom;
 
 @RestController
 @RequestMapping("/movie")
@@ -43,9 +46,13 @@ public class MovieController {
         return movieFacade.getMoviesByInput(searchBy, input);
     }
 
-    @PostMapping("/{movieID}/show-dates")
-    public void addShowDates(@PathVariable String movieID, @RequestBody List<String> showDates) {
-        movieFacade.addShowDates(movieID, showDates);
+    @PostMapping("/show-dates")
+    public void addShowDates(@RequestBody ShowDateRequest request) {
+        LocalDateTime localDateTime = request.getDateTime();
+        Long movieId = request.getMovieId();
+        Long showRoomId = request.getShowRoomId();
+
+        movieFacade.addShowDates(localDateTime, movieId, showRoomId);
     }
 
     @GetMapping("/{movieID}/get/show-dates")

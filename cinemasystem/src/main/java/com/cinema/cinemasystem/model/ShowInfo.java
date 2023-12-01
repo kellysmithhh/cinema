@@ -1,7 +1,7 @@
 package com.cinema.cinemasystem.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -27,7 +27,7 @@ public class ShowInfo {
     private ShowRoom showRoom;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "showInfo")
-    private List<Seat> seats;
+    private Set<Seat> seats;
 
     public Long getId() {
         return id;

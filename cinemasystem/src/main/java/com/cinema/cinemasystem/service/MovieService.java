@@ -3,16 +3,23 @@ package com.cinema.cinemasystem.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cinema.cinemasystem.Repository.MovieRepository;
 import com.cinema.cinemasystem.Repository.ReviewRepository;
+import com.cinema.cinemasystem.Repository.ShowInfoRepository;
+import com.cinema.cinemasystem.Repository.ShowRoomRepository;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
+import com.cinema.cinemasystem.model.Seat;
+import com.cinema.cinemasystem.model.ShowInfo;
+import com.cinema.cinemasystem.model.ShowRoom;
 
 @Service
 public class MovieService {
@@ -22,6 +29,12 @@ public class MovieService {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ShowRoomRepository showRoomRepository;
+
+    @Autowired
+    private ShowInfoRepository showInfoRepository;
 
     public Movie add(Movie movie) {
         for (Review review : movie.getReviews()) {
@@ -51,28 +64,32 @@ public class MovieService {
         return movieRepository.findByCategory(category);
     }
 
-    public void addShowDates(String id, List<String> showDates) {
-        long movieId = Long.parseLong(id);
+    public void addShowDates(LocalDateTime dateTime, Long movieId, Long showRoomId) {
+        ShowInfo newShow = new ShowInfo();
+        newShow.setDateTime(dateTime);
         Optional<Movie> maybeMovie = movieRepository.findById(movieId);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        List<LocalDateTime> newLocalDateTimes = showDates.stream()
-            .map(dateString -> LocalDateTime.parse(dateString, formatter))
-            .collect(Collectors.toList());
-        Movie movie = maybeMovie.get();
-        List<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
-        existingLocalDateTimes.addAll(newLocalDateTimes);
-        List<Movie> moviesWithOverlappingTimes = movieRepository.findMoviesByOverlappingShowTimes(
-            movie.getId(),
-            existingLocalDateTimes,
-            existingLocalDateTimes.size()
-        );
-        if (!moviesWithOverlappingTimes.isEmpty()) {
-            System.out.println("Time slot already taken");
-        } else {
-            movie.setShowTimes(existingLocalDateTimes);
-            movieRepository.save(movie);
-            System.out.println("Time saved!");
+        if (maybeMovie.isPresent()) {
+            Movie movie = maybeMovie.get();
+            newShow.setMovie(movie);
         }
+        Optional<ShowRoom> maybeShowRoom = showRoomRepository.findById(showRoomId);
+        if (maybeShowRoom.isPresent()) {
+            ShowRoom showRoom = maybeShowRoom.get();
+            newShow.setShowroom(showRoom);
+        }
+        Set<Seat> seats = new HashSet<>();
+        int numRows = 5;
+        int numColumns = 4;
+            for (int i = 1; i <= numRows; i++) {
+                for (int j = 1; j <= numColumns; j++) {
+                    Seat newSeat = new Seat();
+                    newSeat.setSeatRow(i);
+                    newSeat.setSeatColumn(j);
+                    newSeat.setStatus(false);
+                    seats.add(newSeat);
+                }
+            }
+        showInfoRepository.save(newShow);
     }
 
     public List<String> getShowDates(Long movieID) {

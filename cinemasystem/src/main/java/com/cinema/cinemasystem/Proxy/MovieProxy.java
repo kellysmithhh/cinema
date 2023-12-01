@@ -1,13 +1,16 @@
 package com.cinema.cinemasystem.Proxy;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
+import com.cinema.cinemasystem.model.ShowRoom;
 import com.cinema.cinemasystem.service.MovieService;
 
 
@@ -40,8 +43,8 @@ private MovieService movieService;
         }
     }
 
-    public void addShowDates(String id, List<String> showDates) {
-        movieService.addShowDates(id, showDates);
+    public void addShowDates(LocalDateTime dateTime, Long movieId, Long showRoomId) {
+        movieService.addShowDates(dateTime, movieId, showRoomId);
     }
 
     public List<String> getShowDates(Long movieID) {

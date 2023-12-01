@@ -20,9 +20,6 @@ public class Theatre {
 
     private String cinemaName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "theatre")
-    private List<ShowRoom> showrooms;
-
     public Long getId() {
         return id;
     }
@@ -37,14 +34,6 @@ public class Theatre {
 
     public void setCinemaName(String cinemaName) {
         this.cinemaName = cinemaName;
-    }
-
-    public List<ShowRoom> getShowrooms() {
-        return showrooms;
-    }
-
-    public void setShowrooms(List<ShowRoom> showrooms) {
-        this.showrooms = showrooms;
     }
 
 }
