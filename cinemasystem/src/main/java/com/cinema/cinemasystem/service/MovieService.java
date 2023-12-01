@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cinema.cinemasystem.Repository.MovieRepository;
 import com.cinema.cinemasystem.Repository.ReviewRepository;
+import com.cinema.cinemasystem.Repository.SeatRepository;
 import com.cinema.cinemasystem.Repository.ShowInfoRepository;
 import com.cinema.cinemasystem.Repository.ShowRoomRepository;
 import com.cinema.cinemasystem.model.Movie;
@@ -35,6 +36,9 @@ public class MovieService {
 
     @Autowired
     private ShowInfoRepository showInfoRepository;
+
+    @Autowired
+    private SeatRepository seatRepository;
 
     public Movie add(Movie movie) {
         for (Review review : movie.getReviews()) {
@@ -77,6 +81,9 @@ public class MovieService {
             ShowRoom showRoom = maybeShowRoom.get();
             newShow.setShowroom(showRoom);
         }
+
+        ShowInfo savedShow = showInfoRepository.save(newShow);
+
         Set<Seat> seats = new HashSet<>();
         int numRows = 5;
         int numColumns = 4;
@@ -86,10 +93,14 @@ public class MovieService {
                     newSeat.setSeatRow(i);
                     newSeat.setSeatColumn(j);
                     newSeat.setStatus(false);
+                    newSeat.setShowInfo(savedShow);
                     seats.add(newSeat);
+                    //seatRepository.save(newSeat);
                 }
             }
-        showInfoRepository.save(newShow);
+            seatRepository.saveAll(seats);
+        newShow.setSeats(seats);
+        showInfoRepository.save(savedShow);
     }
 
     public List<String> getShowDates(Long movieID) {

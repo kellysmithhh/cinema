@@ -29,6 +29,10 @@ public class ShowInfo {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "showInfo")
     private Set<Seat> seats;
 
+    public void setSeats(Set<Seat> seats) {
+        this.seats = seats;
+    }
+
     public Long getId() {
         return id;
     }
