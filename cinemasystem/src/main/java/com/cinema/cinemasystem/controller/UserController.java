@@ -16,7 +16,7 @@ import com.cinema.cinemasystem.model.Customer;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.cinema.cinemasystem.Facade.UserFacade;
+import com.cinema.cinemasystem.Proxy.UserProxy;
 import com.cinema.cinemasystem.dto.CreateBooking;
 
 @RestController
@@ -25,7 +25,7 @@ import com.cinema.cinemasystem.dto.CreateBooking;
 public class UserController {
 
     @Autowired
-    private UserFacade userFacade;
+    private UserProxy userFacade;
 
     @PostMapping("/register")
     public String register(@RequestBody Customer customer) {

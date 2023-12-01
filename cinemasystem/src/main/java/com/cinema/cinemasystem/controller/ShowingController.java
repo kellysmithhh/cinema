@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cinema.cinemasystem.Facade.ShowingFacade;
+import com.cinema.cinemasystem.Proxy.ShowingProxy;
 import com.cinema.cinemasystem.dto.TicketTypesRequest;
 
 @RestController
@@ -16,7 +16,7 @@ import com.cinema.cinemasystem.dto.TicketTypesRequest;
 public class ShowingController {
 
     @Autowired
-    private ShowingFacade showingFacade;
+    private ShowingProxy showingFacade;
 
     @PostMapping("/set/ticket/types")
     public void setTicketTypes(@RequestBody TicketTypesRequest request) {

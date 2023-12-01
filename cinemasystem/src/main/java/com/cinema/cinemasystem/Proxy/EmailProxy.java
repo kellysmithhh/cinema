@@ -1,4 +1,4 @@
-package com.cinema.cinemasystem.Facade;
+package com.cinema.cinemasystem.Proxy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.cinema.cinemasystem.service.EmailService;
 
 @Component
-public class EmailFacade {
+public class EmailProxy {
 
     @Autowired
     private EmailService emailService;

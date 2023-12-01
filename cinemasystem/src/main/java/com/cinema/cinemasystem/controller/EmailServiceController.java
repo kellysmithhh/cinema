@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cinema.cinemasystem.Facade.EmailFacade;
+import com.cinema.cinemasystem.Proxy.EmailProxy;
 
 @RestController
 @RequestMapping("/email")
@@ -15,7 +15,7 @@ import com.cinema.cinemasystem.Facade.EmailFacade;
 public class EmailServiceController {
 
     @Autowired
-    private EmailFacade emailFacade;
+    private EmailProxy emailFacade;
 
     @PostMapping("/send/{address}/{code}")
     public String send(@PathVariable String address, @PathVariable int code) {

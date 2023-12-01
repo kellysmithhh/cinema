@@ -1,4 +1,4 @@
-package com.cinema.cinemasystem.Facade;
+package com.cinema.cinemasystem.Proxy;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,7 @@ import com.cinema.cinemasystem.service.MovieService;
 
 
 @Component
-public class MovieFacade {
+public class MovieProxy {
 
 @Autowired
 private MovieService movieService;

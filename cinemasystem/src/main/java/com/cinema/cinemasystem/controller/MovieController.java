@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cinema.cinemasystem.Facade.MovieFacade;
+import com.cinema.cinemasystem.Proxy.MovieProxy;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
 
@@ -21,7 +21,7 @@ import com.cinema.cinemasystem.model.Review;
 public class MovieController {
 
     @Autowired
-    private MovieFacade movieFacade;
+    private MovieProxy movieFacade;
 
     @PostMapping("/add")
     public Movie add(@RequestBody Movie movie) {

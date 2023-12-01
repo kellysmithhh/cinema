@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cinema.cinemasystem.Facade.PromotionFacade;
+import com.cinema.cinemasystem.Proxy.PromotionProxy;
 import com.cinema.cinemasystem.model.PromoCode;
 
 @RestController
@@ -20,7 +20,7 @@ import com.cinema.cinemasystem.model.PromoCode;
 public class PromotionsController {
 
     @Autowired
-    private PromotionFacade promotionFacade;
+    private PromotionProxy promotionFacade;
     
     @PostMapping("/add")
     public void addPromotion(@RequestBody PromoCode promotion) {

@@ -1,4 +1,4 @@
-package com.cinema.cinemasystem.Facade;
+package com.cinema.cinemasystem.Proxy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.cinema.cinemasystem.service.ShowingService;
 
 @Component
-public class ShowingFacade {
+public class ShowingProxy {
 
     @Autowired
     private ShowingService showingService;

@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 import com.cinema.cinemasystem.Repository.AddressRepository;
 import com.cinema.cinemasystem.Repository.CustomerRepository;
 import com.cinema.cinemasystem.Repository.MovieRepository;
-import com.cinema.cinemasystem.Repository.ShowInfoRepository;
+// import com.cinema.cinemasystem.Repository.ShowInfoRepository;
 import com.cinema.cinemasystem.dto.CreateBooking;
 import com.cinema.cinemasystem.model.Address;
 import com.cinema.cinemasystem.model.Booking;
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.PaymentCard;
-import com.cinema.cinemasystem.model.ShowInfo;
+// import com.cinema.cinemasystem.model.ShowInfo;
 import com.cinema.cinemasystem.model.Ticket;
 
 import jakarta.transaction.Transactional;
@@ -35,8 +35,8 @@ public class CustomerService {
     @Autowired
     private MovieRepository movieRepository;
 
-    @Autowired
-    private ShowInfoRepository showInfoRepository;
+    // @Autowired
+    // private ShowInfoRepository showInfoRepository;
 
     @Autowired
     private PasswordEncoder security;

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -16,6 +17,9 @@ public class Seat {
     private Integer seatRow;
     private Integer seatColumn;
     private Boolean status;
+
+    @ManyToOne
+    private ShowInfo show_info;
 
     public Boolean getStatus() {
         return status;

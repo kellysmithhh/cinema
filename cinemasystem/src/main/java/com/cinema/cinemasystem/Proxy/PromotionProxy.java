@@ -1,10 +1,9 @@
-package com.cinema.cinemasystem.Facade;
+package com.cinema.cinemasystem.Proxy;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.PromoCode;
@@ -13,7 +12,7 @@ import com.cinema.cinemasystem.service.EmailService;
 import com.cinema.cinemasystem.service.PromotionService;
 
 @Component
-public class PromotionFacade {
+public class PromotionProxy {
 
     @Autowired
     private PromotionService promotionService;
@@ -29,7 +28,7 @@ public class PromotionFacade {
         List<Customer> customers = customerService.getAllPromoCustomers();
         emailService.sendPromotion(promotion, customers);
     }
-    
+
     public List<PromoCode> getAll() {
         return promotionService.getAll();
     }

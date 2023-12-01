@@ -1,4 +1,4 @@
-package com.cinema.cinemasystem.Facade;
+package com.cinema.cinemasystem.Proxy;
 
 import java.util.Base64;
 import java.util.List;
@@ -23,7 +23,7 @@ import com.cinema.cinemasystem.service.CustomerService;
 import com.cinema.cinemasystem.service.UserService;
 
 @Component
-public class UserFacade {
+public class UserProxy {
 
     @Autowired
     private UserService userService;
