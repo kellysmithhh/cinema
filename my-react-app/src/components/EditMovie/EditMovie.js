@@ -13,15 +13,17 @@ function EditMovie(props) {
         if (!dateTimeSet.includes(dateTimeValue)) {
             const updatedDateTimeSet = [...dateTimeSet, dateTimeValue];
             const movieId = String(movie.movie.id);
+            const showRoomId = 1; // change
+            const data = {movieId, dateTimeValue, showRoomId}
             const requestOptions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedDateTimeSet),
+                body: JSON.stringify(data),
             };
 
-            fetch(`http://localhost:8080/movie/${movieId}/show-dates`, requestOptions)
+            fetch(`http://localhost:8080/movie/show-dates`, requestOptions)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -33,8 +35,6 @@ function EditMovie(props) {
                 .catch(error => {
                     console.error('There was a problem adding show dates:', error);
                 });
-                alert("Date and time added sucessfully");
-            alert('DateTime already exists in the set');
             setDateTimeValue('');
         }
     } else {
