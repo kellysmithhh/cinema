@@ -23,6 +23,7 @@ import ManagePromotions from './components/ManagePromotions/ManagePromotions';
 import ManageUsers from './components/ManageUsers/ManageUsers';
 import ManageMovies from './components/ManageMovies/ManageMovies';
 import TicketPage from './components/TicketPage/TicketPage';
+import OrderHistory from './components/Orderhistory/OrderHistory';
 import { useEffect, useState } from 'react';
 
 function App() { 
@@ -77,6 +78,7 @@ const[isSessionNull,setIsSessionNull] = useState(true)
             <Route path ="/ManageMovies" element = {<ManageMovies/>}/>
             <Route path = "/ManageUsers" element = {<ManageUsers/>}/>
             <Route path = "/TicketPage" element = {<TicketPage/>}/>
+            <Route path = "/OrderHistory" element = {<OrderHistory/>}/>
           </Routes>
         </div>
       </div>

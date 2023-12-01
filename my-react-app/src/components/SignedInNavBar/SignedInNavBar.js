@@ -47,6 +47,12 @@ function SignedInNavBar({handleSignOut}) {
                             </li>
                         }
                             <li>
+                             <Link to = "/OrderHistory">Order History</Link>
+                            </li> 
+                            <li>
+                                <Link to = "/OrderHistory">Order History</Link>
+                            </li>
+                            <li>
                                 <Link to = "/Browse">Browse</Link>
                             </li>
                             <li>
