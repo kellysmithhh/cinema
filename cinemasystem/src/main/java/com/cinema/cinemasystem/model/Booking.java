@@ -29,11 +29,6 @@ public class Booking {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
     private List<Ticket> tickets;
 
-    // bookings can have only one movie
-    // & can get "movie title" from this movie ref (11)
-    @ManyToOne
-    private Movie movie;
-
     // bookings can have only one show info
     @ManyToOne
     private ShowInfo show;
@@ -68,14 +63,6 @@ public class Booking {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
     }
 
     public ShowInfo getShow() {

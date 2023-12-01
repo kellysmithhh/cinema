@@ -158,9 +158,7 @@ public class CustomerService {
             // movie with that id does not exist
             return null;
         }
-        Movie movie = maybeMovie.get();
-
-        realBooking.setMovie(movie);
+        // Movie movie = maybeMovie.get();
 
         List<Ticket> tickets = booking.getTickets();
         for (Ticket ticket : tickets) {
