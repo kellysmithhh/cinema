@@ -19,19 +19,14 @@ public class Booking {
 
     private Integer bookingNumber;
 
-    // bookings can have only one user
-    // & can get "credit card info" from this user ref (11)
     @ManyToOne
     private Customer customer;
 
-    // single booking can have multiple tickets
-    // and each ticket can only be associated with this booking
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
     private List<Ticket> tickets;
 
-    // bookings can have only one show info
     @ManyToOne
-    private ShowInfo show;
+    private ShowInfo showInfo;
 
     public Long getId() {
         return id;
@@ -65,12 +60,12 @@ public class Booking {
         this.tickets = tickets;
     }
 
-    public ShowInfo getShow() {
-        return show;
+    public ShowInfo getShowInfo() {
+        return showInfo;
     }
 
-    public void setShow(ShowInfo show) {
-        this.show = show;
+    public void setShowInfo(ShowInfo showInfo) {
+        this.showInfo = showInfo;
     }
 
 }

@@ -11,15 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.cinema.cinemasystem.Repository.AddressRepository;
 import com.cinema.cinemasystem.Repository.CustomerRepository;
-import com.cinema.cinemasystem.Repository.MovieRepository;
-// import com.cinema.cinemasystem.Repository.ShowInfoRepository;
+import com.cinema.cinemasystem.Repository.ShowInfoRepository;
 import com.cinema.cinemasystem.dto.CreateBooking;
 import com.cinema.cinemasystem.model.Address;
 import com.cinema.cinemasystem.model.Booking;
 import com.cinema.cinemasystem.model.Customer;
-import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.PaymentCard;
-// import com.cinema.cinemasystem.model.ShowInfo;
+import com.cinema.cinemasystem.model.ShowInfo;
 import com.cinema.cinemasystem.model.Ticket;
 
 import jakarta.transaction.Transactional;
@@ -33,10 +31,7 @@ public class CustomerService {
     private AddressRepository addressRepository;
 
     @Autowired
-    private MovieRepository movieRepository;
-
-    // @Autowired
-    // private ShowInfoRepository showInfoRepository;
+    private ShowInfoRepository showInfoRepository;
 
     @Autowired
     private PasswordEncoder security;
@@ -153,23 +148,15 @@ public class CustomerService {
         Booking realBooking = new Booking();
         realBooking.setBookingNumber(booking.getBookingNumber());
 
-        Optional<Movie> maybeMovie = movieRepository.findById(booking.getMovie());
-        if (maybeMovie.isEmpty()) {
-            // movie with that id does not exist
-            return null;
-        }
-        // Movie movie = maybeMovie.get();
-
         List<Ticket> tickets = booking.getTickets();
         for (Ticket ticket : tickets) {
             ticket.setBooking(realBooking);
         }
         realBooking.setTickets(tickets);
 
-        // ShowInfo showInfo = booking.getShowInfo();
-        // showInfo.setMovie(movie);
-        // showInfoRepository.save(showInfo);
-        // realBooking.setShow(showInfo);
+        Optional<ShowInfo> maybeInfo = showInfoRepository.findById(booking.getShowInfo());
+        if (maybeInfo.isEmpty()) return null;
+        realBooking.setShowInfo(maybeInfo.get());
 
         List<Booking> bookings = customer.getBookings();
         bookings.add(realBooking);
