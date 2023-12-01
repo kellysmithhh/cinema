@@ -19,7 +19,10 @@ public class Seat {
     private Boolean status;
 
     @ManyToOne
-    private ShowInfo show_info;
+    private ShowInfo showInfo;
+
+    @OneToOne
+    private Ticket ticket;
 
     public Boolean getStatus() {
         return status;
@@ -28,9 +31,6 @@ public class Seat {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
-    @OneToOne
-    private Ticket ticket;
 
     public Long getId() {
         return id;
@@ -64,6 +64,12 @@ public class Seat {
         this.ticket = ticket;
     }
 
-    
+    public ShowInfo getShowInfo() {
+        return showInfo;
+    }
+
+    public void setShowInfo(ShowInfo showInfo) {
+        this.showInfo = showInfo;
+    }
 
 }

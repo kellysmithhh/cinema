@@ -26,7 +26,7 @@ public class ShowInfo {
     @ManyToOne
     private ShowRoom showRoom;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "show_info")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "showInfo")
     private List<Seat> seats;
 
     public Long getId() {
