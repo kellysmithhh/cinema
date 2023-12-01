@@ -1,7 +1,7 @@
 package com.cinema.cinemasystem.model;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 // import java.time.LocalDateTime;
 
@@ -42,7 +42,7 @@ public class Movie {
 
     // @ManyToMany
     // @JoinTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movie"), inverseJoinColumns = @JoinColumn(name = "actor"))
-    // private Set<Actor> cast = new HashSet<>();
+    // private List<Actor> cast;
 
     private String cast;
 
@@ -53,7 +53,7 @@ public class Movie {
     private String synopsis;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Review> reviews;
+    private List<Review> reviews;
 
     private String trailerImage;
 
@@ -65,12 +65,12 @@ public class Movie {
     // @ElementCollection
     // @CollectionTable(name = "show_dates", joinColumns = @JoinColumn(name = "movie"))
     // @Column(name = "show_date")
-    // private Set<LocalDateTime> showDates;
+    // private List<LocalDateTime> showDates;
 
     @ElementCollection
     @CollectionTable(name = "movie_show_times", joinColumns = @JoinColumn(name = "movie_id"))
     @Column(name = "show_time")
-    private Set<LocalDateTime> showTimes;
+    private List<LocalDateTime> showTimes;
 
     private Integer duration;
 
@@ -134,11 +134,11 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public Set<Review> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Set<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
@@ -166,11 +166,11 @@ public class Movie {
         this.mpaaRatingCode = mpaaRatingCode;
     }
 
-    public Set<LocalDateTime> getShowTimes() {
+    public List<LocalDateTime> getShowTimes() {
         return showTimes;
     }
 
-    public void setShowTimes(Set<LocalDateTime> showTimes) {
+    public void setShowTimes(List<LocalDateTime> showTimes) {
         this.showTimes = showTimes;
     }
 

@@ -1,9 +1,7 @@
 package com.cinema.cinemasystem.service;
 
-import java.io.ObjectInputFilter.Status;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import java.util.Base64;
 
@@ -47,17 +45,20 @@ public class UserService {
         return userRepository.findBySession(session);
     }
 
-    public boolean logout(Customer user) {
+    public String logout(User user) {
+        Optional<Customer> maybeCustomer = customerRepository.findBySession(user.getSession());
+        if (maybeCustomer.isPresent()) {
+            maybeCustomer.get().setStatus(STATUS.INACTIVE);
+        }
         user.setSession(null);
-        user.setStatus(STATUS.INACTIVE);
         userRepository.save(user);
-        return true;
+        return "logout success";
     }
 
     public boolean register(Customer customer) {
         customer.setPassword(security.encode(customer.getPassword()));
         customer.setStatus(STATUS.INACTIVE);
-        Set<PaymentCard> paymentCards = customer.getPaymentCards();
+        List<PaymentCard> paymentCards = customer.getPaymentCards();
         if (paymentCards != null) {
             // encode card information
             for (PaymentCard card : paymentCards) {
@@ -75,9 +76,9 @@ public class UserService {
     public boolean verify(String sessionId, String password) {
         Optional<Customer> maybeCustomer = customerRepository.findBySession(sessionId);
         if (maybeCustomer.isPresent()) {
-            Customer customer = maybeCustomer.get();                    
+            Customer customer = maybeCustomer.get();
             return security.matches(password, customer.getPassword());
-        }       
+        }
         return false;
     }
 

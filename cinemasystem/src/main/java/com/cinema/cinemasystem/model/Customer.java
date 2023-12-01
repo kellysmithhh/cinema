@@ -1,6 +1,6 @@
 package com.cinema.cinemasystem.model;
 
-import java.util.Set;
+import java.util.List;
 
 import com.cinema.cinemasystem.enums.STATUS;
 
@@ -35,15 +35,15 @@ public class Customer extends User {
     // single user can have many payment cards
     // each payment card can only be associated with one user
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PaymentCard> paymentCards;
+    private List<PaymentCard> paymentCards;
 
     // users can have only one shipping address
     // same shipping address can be shared by many users
     @ManyToOne(cascade = CascadeType.ALL)
     private Address shippingAddress;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
-    private Set<Booking> bookings;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true)
+    private List<Booking> bookings;
 
     private boolean promoEmail;
 
@@ -79,11 +79,11 @@ public class Customer extends User {
         this.status = status;
     }
 
-    public Set<PaymentCard> getPaymentCards() {
+    public List<PaymentCard> getPaymentCards() {
         return paymentCards;
     }
 
-    public void setPaymentCards(Set<PaymentCard> paymentCards) {
+    public void setPaymentCards(List<PaymentCard> paymentCards) {
         this.paymentCards = paymentCards;
         for (PaymentCard paymentCard : paymentCards) {
             paymentCard.setUser(this);
@@ -98,11 +98,11 @@ public class Customer extends User {
         this.shippingAddress = shippingAddress;
     }
 
-    public Set<Booking> getBookings() {
+    public List<Booking> getBookings() {
         return bookings;
     }
 
-    public void setBookings(Set<Booking> bookings) {
+    public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
 

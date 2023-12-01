@@ -1,16 +1,11 @@
 package com.cinema.cinemasystem.Facade;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.cinema.cinemasystem.enums.RATING;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
 import com.cinema.cinemasystem.service.MovieService;
@@ -18,13 +13,12 @@ import com.cinema.cinemasystem.service.MovieService;
 
 @Component
 public class MovieFacade {
-    
+
 @Autowired
 private MovieService movieService;
 
-    public String add(Movie movie) {
-        movieService.saveMovie(movie);
-        return "New movie added.";
+    public Movie add(Movie movie) {
+        return movieService.add(movie);
     }
 
     public List<Movie> getAllMovies() {

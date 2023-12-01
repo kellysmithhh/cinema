@@ -7,7 +7,7 @@ import com.cinema.cinemasystem.service.ShowingService;
 
 @Component
 public class ShowingFacade {
-    
+
     @Autowired
     private ShowingService showingService;
 

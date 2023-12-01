@@ -1,6 +1,6 @@
 package com.cinema.cinemasystem.controller;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinemasystem.model.PaymentCard;
+import com.cinema.cinemasystem.model.Booking;
 import com.cinema.cinemasystem.model.Customer;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.cinema.cinemasystem.Facade.UserFacade;
+import com.cinema.cinemasystem.dto.CreateBooking;
 
 @RestController
 @RequestMapping("/user")
@@ -41,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/logout/{sessionId}")
-    public boolean logout(@PathVariable String sessionId) {
+    public String logout(@PathVariable String sessionId) {
        return userFacade.logout(sessionId);
     }
 
@@ -86,13 +88,23 @@ public class UserController {
     }
 
     @GetMapping("/get/paymentCards/{sessionId}")
-    public Set<PaymentCard> getPaymentCards(@PathVariable String sessionId) {
+    public List<PaymentCard> getPaymentCards(@PathVariable String sessionId) {
         return userFacade.getPaymentCards(sessionId);
     }
 
     @GetMapping("/get/user/{sessionId}")
     public Customer getCustomer(@PathVariable String sessionId) {
         return userFacade.getCustomer(sessionId);
+    }
+
+    @GetMapping("/booking/get/{sessionId}")
+    public List<Booking> getBookings(@PathVariable String sessionId) {
+        return userFacade.getBookings(sessionId);
+    }
+
+    @PostMapping("/booking/add/{sessionId}")
+    public Booking addBooking(@PathVariable String sessionId, @RequestBody CreateBooking booking) {
+        return userFacade.addBooking(sessionId, booking);
     }
 
     // @PostMapping("/register/verify/{email}")

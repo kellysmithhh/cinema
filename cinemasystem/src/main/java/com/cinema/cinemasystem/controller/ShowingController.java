@@ -1,7 +1,5 @@
 package com.cinema.cinemasystem.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +14,7 @@ import com.cinema.cinemasystem.dto.TicketTypesRequest;
 @RequestMapping("/showing")
 @CrossOrigin(origins = "*")
 public class ShowingController {
-    
+
     @Autowired
     private ShowingFacade showingFacade;
 

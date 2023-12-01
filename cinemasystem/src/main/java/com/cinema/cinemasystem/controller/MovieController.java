@@ -24,7 +24,7 @@ public class MovieController {
     private MovieFacade movieFacade;
 
     @PostMapping("/add")
-    public String add(@RequestBody Movie movie) {
+    public Movie add(@RequestBody Movie movie) {
         return movieFacade.add(movie);
     }
 

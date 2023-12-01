@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.cinema.cinemasystem.model.Movie;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 
 @Repository
@@ -24,7 +23,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
            "GROUP BY m HAVING COUNT(st) >= :count")
     List<Movie> findMoviesByOverlappingShowTimes(
         @Param("movieId") Long movieId,
-        @Param("showTimes") Set<LocalDateTime> showTimes,
+        @Param("showTimes") List<LocalDateTime> showTimes,
         @Param("count") long count
     );
 }

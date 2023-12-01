@@ -1,6 +1,6 @@
 package com.cinema.cinemasystem.model;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+
+// TODO hardcode existence of theatre(s)
 
 @Entity
 public class Theatre {
@@ -19,7 +21,7 @@ public class Theatre {
     private String cinemaName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "theatre")
-    private Set<ShowRoom> showrooms;
+    private List<ShowRoom> showrooms;
 
     public Long getId() {
         return id;
@@ -37,11 +39,11 @@ public class Theatre {
         this.cinemaName = cinemaName;
     }
 
-    public Set<ShowRoom> getShowrooms() {
+    public List<ShowRoom> getShowrooms() {
         return showrooms;
     }
 
-    public void setShowrooms(Set<ShowRoom> showrooms) {
+    public void setShowrooms(List<ShowRoom> showrooms) {
         this.showrooms = showrooms;
     }
 

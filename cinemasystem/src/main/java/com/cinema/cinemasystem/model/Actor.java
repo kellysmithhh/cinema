@@ -1,7 +1,6 @@
 package com.cinema.cinemasystem.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.Column;
 // import jakarta.persistence.Entity;
@@ -24,7 +23,7 @@ public class Actor {
     private String lastName;
 
     @ManyToMany(mappedBy = "cast")
-    private Set<Movie> movies = new HashSet<>();
+    private List<Movie> movies;
 
     public Long getId() {
         return id;
@@ -50,11 +49,11 @@ public class Actor {
         this.lastName = lastName;
     }
 
-    public Set<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(Set<Movie> movies) {
+    public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 

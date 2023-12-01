@@ -1,6 +1,6 @@
 package com.cinema.cinemasystem.model;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,12 +22,12 @@ public class Booking {
     // bookings can have only one user
     // & can get "credit card info" from this user ref (11)
     @ManyToOne
-    private User user;
+    private Customer customer;
 
     // single booking can have multiple tickets
     // and each ticket can only be associated with this booking
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
-    private Set<Ticket> tickets;
+    private List<Ticket> tickets;
 
     // bookings can have only one movie
     // & can get "movie title" from this movie ref (11)
@@ -54,19 +54,19 @@ public class Booking {
         this.bookingNumber = bookingNumber;
     }
 
-    public User getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Set<Ticket> getTickets() {
+    public List<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(Set<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
 

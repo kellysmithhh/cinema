@@ -1,6 +1,6 @@
 package com.cinema.cinemasystem.model;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+
+// TODO hardcode showrooms to be in the theatre
 
 @Entity
 public class ShowRoom {
@@ -21,19 +23,19 @@ public class ShowRoom {
     private Theatre theatre;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "showRoom")
-    private Set<ShowInfo> shows;
+    private List<ShowInfo> shows;
 
-    private int numSeats;   
-    
-    //private Set<Seat> seats;
+    private int numSeats;
 
-    //public Set<Seat> getSeats() {
+    //private List<Seat> seats;
+
+    //public List<Seat> getSeats() {
       //  return seats;
     //}
 
-    //public void setSeats(Set<Seat> seats) {
+    //public void setSeats(List<Seat> seats) {
       //  this.seats = seats;
-    //}    
+    //}
 
     public int getNumSeats() {
         return numSeats;
@@ -59,11 +61,11 @@ public class ShowRoom {
         this.theatre = theatre;
     }
 
-    public Set<ShowInfo> getShows() {
+    public List<ShowInfo> getShows() {
         return shows;
     }
 
-    public void setShows(Set<ShowInfo> shows) {
+    public void setShows(List<ShowInfo> shows) {
         this.shows = shows;
     }
 

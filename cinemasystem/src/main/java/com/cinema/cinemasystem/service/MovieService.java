@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,12 @@ public class MovieService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Movie saveMovie(Movie movie) {
-        return movieRepository.save(movie);
+    public Movie add(Movie movie) {
+        for (Review review : movie.getReviews()) {
+            review.setMovie(movie);
+        }
+        movieRepository.save(movie);
+        return movie;
     }
 
     public List<Movie> getAllMovies() {
@@ -52,11 +55,11 @@ public class MovieService {
         long movieId = Long.parseLong(id);
         Optional<Movie> maybeMovie = movieRepository.findById(movieId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        Set<LocalDateTime> newLocalDateTimes = showDates.stream()
+        List<LocalDateTime> newLocalDateTimes = showDates.stream()
             .map(dateString -> LocalDateTime.parse(dateString, formatter))
-            .collect(Collectors.toSet());
+            .collect(Collectors.toList());
         Movie movie = maybeMovie.get();
-        Set<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
+        List<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
         existingLocalDateTimes.addAll(newLocalDateTimes);
         List<Movie> moviesWithOverlappingTimes = movieRepository.findMoviesByOverlappingShowTimes(
             movie.getId(),
@@ -75,7 +78,7 @@ public class MovieService {
     public List<String> getShowDates(Long movieID) {
         Optional<Movie> maybeMovie = movieRepository.findById(movieID);
         Movie movie = maybeMovie.get();
-        Set<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
+        List<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         List<String> dateStringList = existingLocalDateTimes.stream()
                 .map(date -> date.format(formatter))

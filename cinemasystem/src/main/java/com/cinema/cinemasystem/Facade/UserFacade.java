@@ -1,8 +1,9 @@
 package com.cinema.cinemasystem.Facade;
 
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+import java.util.Base64.Decoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.cinema.cinemasystem.dto.CreateBooking;
 import com.cinema.cinemasystem.enums.STATUS;
 import com.cinema.cinemasystem.model.Admin;
+import com.cinema.cinemasystem.model.Booking;
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.User;
@@ -51,7 +54,7 @@ public class UserFacade {
             Customer customer = maybeCustomer.get();
             if (security.matches(password, customer.getPassword())) {
                 customer.setStatus(STATUS.ACTIVE);
-                return userService.startSession(customer);                
+                return userService.startSession(customer);
             }
         }
         return null;
@@ -69,11 +72,13 @@ public class UserFacade {
         return null;
     }
 
-    public boolean logout(String sessionId) {
-        Customer maybeCustomer = customerService.getWithSesssion(sessionId);
-       //Optional<User> maybeUser = userService.getWithSession(sessionId);
-       //User user = maybeUser.get();
-       return userService.logout(maybeCustomer);
+    public String logout(String sessionId) {
+        Optional<User> maybeUser = userService.getWithSession(sessionId);
+        if (maybeUser.isPresent()) {
+            return userService.logout(maybeUser.get());
+        } else {
+            return "invalid request";
+        }
     }
 
     public boolean verify(@PathVariable String sessionId, @PathVariable String password) {
@@ -94,54 +99,76 @@ public class UserFacade {
     }
 
     public boolean checkPromotionsValue(@PathVariable String sessionId) {
-        return customerService.checkPromotionsValue(sessionId);
+        Optional<Customer> maybeCustomer = customerService.getWithSession(sessionId);
+        if (maybeCustomer.isEmpty()) return false;
+        return customerService.checkPromotionsValue(maybeCustomer.get());
     }
 
     public String getFname(@PathVariable String sessionId) {
         Optional<User> maybeUser = userService.getWithSession(sessionId);
-        User user = maybeUser.get();
-        return user.getFirstName();
+        if (maybeUser.isEmpty()) return "invalid request";
+        return maybeUser.get().getFirstName();
     }
 
     public String getLname(@PathVariable String sessionId) {
         Optional<User> maybeUser = userService.getWithSession(sessionId);
-        User user = maybeUser.get();
-        return user.getLastName();
+        if (maybeUser.isEmpty()) return "invalid request";
+        return maybeUser.get().getLastName();
     }
 
     public String getPhone(@PathVariable String sessionId) {
-        Customer customer = customerService.getWithSesssion(sessionId);
-        return customer.getPhone();
+        Optional<Customer> maybeCustomer = customerService.getWithSession(sessionId);
+        if (maybeCustomer.isPresent()) {
+            return maybeCustomer.get().getPhone();
+        } else {
+            return "invalid request";
+        }
     }
 
-     public Set<PaymentCard> getPaymentCards(@PathVariable String sessionId) {
-        Customer customer = customerService.getWithSesssion(sessionId);
-        return customer.getPaymentCards();
+     public List<PaymentCard> getPaymentCards(@PathVariable String sessionId) {
+        Optional<Customer> maybeCustomer = customerService.getWithSession(sessionId);
+        if (maybeCustomer.isPresent()) {
+            return maybeCustomer.get().getPaymentCards();
+        } else {
+            return List.of(); // empty set
+        }
     }
 
      public Customer getCustomer(@PathVariable String sessionId) {
-        Customer customer = customerService.getWithSesssion(sessionId);
-        Set<PaymentCard> cards = customer.getPaymentCards();
-        for (PaymentCard card : cards) {
-            String cardType = new String (Base64.getDecoder().decode(card.getCardType()));
-            card.setCardType(cardType); 
-            
-            String cardCVV = new String (Base64.getDecoder().decode(card.getCardCVV()));
-            card.setCardCVV(cardCVV); 
+        Optional<Customer> maybeCustomer = customerService.getWithSession(sessionId);
+        if (maybeCustomer.isEmpty()) {
+            return null;
+        }
+        Customer customer = maybeCustomer.get();
+        Decoder decoder = Base64.getDecoder();
+        for (PaymentCard card : customer.getPaymentCards()) {
+            String cardType = new String (decoder.decode(card.getCardType()));
+            card.setCardType(cardType);
 
-            String cardExp = new String (Base64.getDecoder().decode(card.getCardExpiration()));
-            card.setCardExpiration(cardExp); 
-            
-            String cardName = new String (Base64.getDecoder().decode(card.getCardName()));
-            card.setCardName(cardName); 
+            String cardCVV = new String (decoder.decode(card.getCardCVV()));
+            card.setCardCVV(cardCVV);
 
-            String cardNum = new String (Base64.getDecoder().decode(card.getCardNumber()));
-            card.setCardNumber(cardNum); 
+            String cardExp = new String (decoder.decode(card.getCardExpiration()));
+            card.setCardExpiration(cardExp);
 
+            String cardName = new String (decoder.decode(card.getCardName()));
+            card.setCardName(cardName);
+
+            String cardNum = new String (decoder.decode(card.getCardNumber()));
+            card.setCardNumber(cardNum);
         }
         return customer;
     }
 
-    
+    public List<Booking> getBookings(String sessionId) {
+        Optional<Customer> maybeCustomer = customerService.getWithSession(sessionId);
+        if (maybeCustomer.isEmpty()) return List.of();
+        return customerService.getBookings(maybeCustomer.get());
+    }
 
+    public Booking addBooking(String sessionId, CreateBooking booking) {
+        Optional<Customer> maybeCustomer = customerService.getWithSession(sessionId);
+        if (maybeCustomer.isEmpty()) return null;
+        return customerService.addBooking(maybeCustomer.get(), booking);
+    }
 }
