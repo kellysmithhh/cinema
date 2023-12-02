@@ -71,7 +71,7 @@ public class MovieController {
         return movieFacade.getReviews(movieID);
     }
 
-    // @GetMapping("/{dateTime}/getSeats")
+    // @GetMapping("/{dateTime}/{movieID}/getSeats")
     // public List<Seat> getSeats(@PathVariable String dateTime) {
     //     return movieFacade.getSeats(dateTime);
     // }

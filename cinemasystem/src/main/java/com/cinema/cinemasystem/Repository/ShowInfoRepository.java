@@ -9,4 +9,5 @@ import com.cinema.cinemasystem.model.ShowInfo;
 
 public interface ShowInfoRepository extends JpaRepository<ShowInfo, Long> {
     Optional<ShowInfo> findById(Long id);
+    //Optional<ShowInfo> findByDateAndMovie(String date,Long movieID)
 }

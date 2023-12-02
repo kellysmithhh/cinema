@@ -71,8 +71,8 @@ private MovieService movieService;
         return null;
     }
 
-    // public List<Seat> getSeats(String dateTime) {
-    //     Optional<ShowInfo> maybeShowInfo = movieService.getShowInfoByDate(dateTime);
+    // public List<Seat> getSeats(String dateTime,Long movieID) {
+    //     Optional<ShowInfo> maybeShowInfo = movieService.getShowInfoByDate(dateTime,movieID);
     //     return movieService.getAllSeats(maybeShowInfo);
     // }
 

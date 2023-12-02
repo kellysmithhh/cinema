@@ -140,8 +140,8 @@ public class MovieService {
         showRoomRepository.save(showRoom);
     }
 
-    // public Optional<ShowInfo> getShowInfoByDate(String dateTime) {
-    //     Optional<ShowInfo> maybeShowInfo = showInfoRepository.findByDateTime(dateTime);
+    // public Optional<ShowInfo> getShowInfoByDate(String dateTime, Long movieID) {
+    //     Optional<ShowInfo> maybeShowInfo = showInfoRepository.findByDateTime(dateTime,movieID);
     //     return maybeShowInfo;
     // }
 
