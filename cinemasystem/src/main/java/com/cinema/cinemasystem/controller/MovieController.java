@@ -16,6 +16,7 @@ import com.cinema.cinemasystem.Proxy.MovieProxy;
 import com.cinema.cinemasystem.dto.ShowDateRequest;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
+import com.cinema.cinemasystem.model.Seat;
 import com.cinema.cinemasystem.model.ShowRoom;
 
 @RestController
@@ -69,4 +70,9 @@ public class MovieController {
     public List<Review> getReviews(@PathVariable Long movieID) {
         return movieFacade.getReviews(movieID);
     }
+
+    // @GetMapping("/{dateTime}/getSeats")
+    // public List<Seat> getSeats(@PathVariable String dateTime) {
+    //     return movieFacade.getSeats(dateTime);
+    // }
 }

@@ -5,11 +5,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function ShowtimeSelection() {
   const location = useLocation();
   const movie = location.state;
-  const movieTitle = movie.title;
-  const movieTime = movie.showTimes;
+  const movieTitle = movie.info.title;
+  const movieTime = movie.showTimes;  
+  console.log(location.state);
 
   let navigate = useNavigate();
   const routeChange = (selectedDate, selectedTime, movieTitle) => {
+   
     navigate('/TicketPage', {
       state: { selectedDate, selectedTime, movieTitle },
     });

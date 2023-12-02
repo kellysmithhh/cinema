@@ -9,10 +9,13 @@ function TheaterBooking() {
 
   const location = useLocation();
   const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets} = location.state;
-
+  
+  
   useEffect(() => {
     console.log(selectedDate);
     console.log(selectedTime);
+    const dateTime = selectedDate +" " + selectedTime;
+    console.log(dateTime)
     // fetch to get all seats and status
     // fetch to get all ticket types and count
   }, [selectedDate, selectedTime]);

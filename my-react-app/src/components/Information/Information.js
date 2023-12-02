@@ -49,7 +49,7 @@ function Information(props) {
                }
                return response.json();
            })
-           .then(data => {
+           .then(data => {               
                 const formattedShowTimes = data.map(time => formatTime(time));
                 setShowTimes(formattedShowTimes);
                 console.log(data)
@@ -63,7 +63,8 @@ function Information(props) {
    let navigate = useNavigate();
    const routeChange = () => {
        let path = `/ShowtimeSelection`;
-       navigate(path, {state: info});
+       const data = {info: info, showTimes: showTimes}
+       navigate(path, {state: data});
    };
 
 

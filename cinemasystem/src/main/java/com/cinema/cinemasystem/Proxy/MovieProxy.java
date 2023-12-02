@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
+import com.cinema.cinemasystem.model.ShowInfo;
 import com.cinema.cinemasystem.model.ShowRoom;
 import com.cinema.cinemasystem.service.MovieService;
 
@@ -19,6 +20,9 @@ public class MovieProxy {
 
 @Autowired
 private MovieService movieService;
+
+@Autowired
+
 
     public Movie add(Movie movie) {
         return movieService.add(movie);
@@ -66,5 +70,10 @@ private MovieService movieService;
         }
         return null;
     }
+
+    // public List<Seat> getSeats(String dateTime) {
+    //     Optional<ShowInfo> maybeShowInfo = movieService.getShowInfoByDate(dateTime);
+    //     return movieService.getAllSeats(maybeShowInfo);
+    // }
 
 }

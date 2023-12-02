@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.aspectj.internal.lang.annotation.ajcPrivileged;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cinema.cinemasystem.Repository.MovieRepository;
@@ -104,10 +105,16 @@ public class MovieService {
     }
 
     public List<String> getShowDates(Long movieID) {
-        Optional<Movie> maybeMovie = movieRepository.findById(movieID);
-        Movie movie = maybeMovie.get();
-        List<LocalDateTime> existingLocalDateTimes = movie.getShowTimes();
+        List<ShowInfo> maybeShowInfo = showInfoRepository.findAll();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        List<LocalDateTime> existingLocalDateTimes = new ArrayList<>();
+        for (int i = 0; i < maybeShowInfo.size(); i++) {
+            if (maybeShowInfo.get(i).getMovie().getId() == movieID) {
+                existingLocalDateTimes.add(maybeShowInfo.get(i).getDateTime());
+            }
+        }        
+        
+       // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         List<String> dateStringList = existingLocalDateTimes.stream()
                 .map(date -> date.format(formatter))
                 .toList(); // If using Java 16+, otherwise use Collectors.toList()
@@ -126,4 +133,20 @@ public class MovieService {
         return reviewsList;
     }
 
+    public void autoCreate (Long id, int numSeats) {
+        ShowRoom showRoom = new ShowRoom();
+        showRoom.setId(id);
+        showRoom.setNumSeats(numSeats);
+        showRoomRepository.save(showRoom);
+    }
+
+    // public Optional<ShowInfo> getShowInfoByDate(String dateTime) {
+    //     Optional<ShowInfo> maybeShowInfo = showInfoRepository.findByDateTime(dateTime);
+    //     return maybeShowInfo;
+    // }
+
+    // public List<Seat> getAllSeats (Optional<ShowInfo> showInfo) {
+    //     List<Seat> maybeSeats = seatRepository.findAllById(showInfo.get().getId());
+    //     return maybeSeats;
+    // }
 }

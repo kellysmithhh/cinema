@@ -6,7 +6,7 @@ function ManageMovies() {
 
     const [dateTimeSet,setDateTimeSet] = useState([]);
     const [dateTimeValue, setDateTimeValue] = useState('');
-    const [movies,setMovies] = useState([]);
+    const [movies,setMovies] = useState([]);    
     const movieList = movies.map((movie, k) => <EditMovie movie = {movie} key ={k}/>);
 
     const handleDate = (e) => {
@@ -48,6 +48,7 @@ function ManageMovies() {
                         value={dateTimeValue}
                         onChange={(e) => setDateTimeValue(e.target.value)}
                     />
+                    
                     <button type="submit">Send DateTime</button>
                 </form>
                 </td>
