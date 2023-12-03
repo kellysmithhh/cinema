@@ -130,6 +130,9 @@ public class MovieService {
     }
 
     public void autoCreate (Long id, int numSeats) {
+        Optional<ShowRoom> existing = showRoomRepository.findById(id);
+        if (existing.isPresent()) return;
+
         ShowRoom showRoom = new ShowRoom();
         showRoom.setId(id);
         showRoom.setNumSeats(numSeats);

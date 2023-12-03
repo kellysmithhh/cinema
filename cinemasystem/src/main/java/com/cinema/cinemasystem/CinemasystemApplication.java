@@ -29,10 +29,10 @@ public class CinemasystemApplication {
 		adminService.deleteAll();
 		adminService.autoCreate("Jonathan", "Dintino", "811049442", "password");
 		adminService.autoCreate("Tucker", "Copeland", "1234", "password");
-		// movieService.autoCreate((long) 1,20);
-		// movieService.autoCreate((long) 2,20);
-		// movieService.autoCreate((long) 3,20);
-		// movieService.autoCreate((long) 4,20);
+		movieService.autoCreate((long) 1,20);
+		movieService.autoCreate((long) 2,20);
+		movieService.autoCreate((long) 3,20);
+		movieService.autoCreate((long) 4,20);
 	}
 
 }
