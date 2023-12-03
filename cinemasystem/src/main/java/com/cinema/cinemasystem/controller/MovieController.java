@@ -17,7 +17,6 @@ import com.cinema.cinemasystem.dto.ShowDateRequest;
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
 import com.cinema.cinemasystem.model.Seat;
-import com.cinema.cinemasystem.model.ShowRoom;
 
 @RestController
 @RequestMapping("/movie")
@@ -71,8 +70,9 @@ public class MovieController {
         return movieFacade.getReviews(movieID);
     }
 
-    // @GetMapping("/{dateTime}/{movieID}/getSeats")
-    // public List<Seat> getSeats(@PathVariable String dateTime) {
-    //     return movieFacade.getSeats(dateTime);
-    // }
+    @GetMapping("/getSeats/{movieId}/{dateTime}")
+    public List<Seat> getSeats(@PathVariable Long movieId, @PathVariable LocalDateTime dateTime) {
+        return movieFacade.getSeats(movieId, dateTime);
+    }
+
 }

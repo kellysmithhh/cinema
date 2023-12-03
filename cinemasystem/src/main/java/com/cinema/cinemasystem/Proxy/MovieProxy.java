@@ -6,23 +6,18 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.Review;
-import com.cinema.cinemasystem.model.ShowInfo;
-import com.cinema.cinemasystem.model.ShowRoom;
+import com.cinema.cinemasystem.model.Seat;
 import com.cinema.cinemasystem.service.MovieService;
 
 
 @Component
 public class MovieProxy {
 
-@Autowired
-private MovieService movieService;
-
-@Autowired
-
+    @Autowired
+    private MovieService movieService;
 
     public Movie add(Movie movie) {
         return movieService.add(movie);
@@ -67,6 +62,14 @@ private MovieService movieService;
         Optional<Movie> maybeMovie = movieService.getMovieWithId(movieID);
         if (maybeMovie.isPresent()) {
             return movieService.getReviews(maybeMovie.get());
+        }
+        return null;
+    }
+
+    public List<Seat> getSeats(Long movieId, LocalDateTime dateTime) {
+        Optional<Movie> maybeMovie = movieService.getMovieWithId(movieId);
+        if (maybeMovie.isPresent()) {
+            return movieService.getSeats(dateTime);
         }
         return null;
     }

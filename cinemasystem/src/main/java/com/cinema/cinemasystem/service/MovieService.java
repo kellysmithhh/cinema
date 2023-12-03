@@ -85,7 +85,7 @@ public class MovieService {
 
         ShowInfo savedShow = showInfoRepository.save(newShow);
 
-        Set<Seat> seats = new HashSet<>();
+        List<Seat> seats = new ArrayList<Seat>();
         int numRows = 5;
         int numColumns = 4;
             for (int i = 1; i <= numRows; i++) {
@@ -99,7 +99,7 @@ public class MovieService {
                     //seatRepository.save(newSeat);
                 }
             }
-            seatRepository.saveAll(seats);
+        seatRepository.saveAll(seats);
         newShow.setSeats(seats);
         showInfoRepository.save(savedShow);
     }
@@ -112,8 +112,8 @@ public class MovieService {
             if (maybeShowInfo.get(i).getMovie().getId() == movieID) {
                 existingLocalDateTimes.add(maybeShowInfo.get(i).getDateTime());
             }
-        }        
-        
+        }
+
        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         List<String> dateStringList = existingLocalDateTimes.stream()
                 .map(date -> date.format(formatter))
@@ -140,13 +140,11 @@ public class MovieService {
         showRoomRepository.save(showRoom);
     }
 
-    // public Optional<ShowInfo> getShowInfoByDate(String dateTime, Long movieID) {
-    //     Optional<ShowInfo> maybeShowInfo = showInfoRepository.findByDateTime(dateTime,movieID);
-    //     return maybeShowInfo;
-    // }
-
-    // public List<Seat> getAllSeats (Optional<ShowInfo> showInfo) {
-    //     List<Seat> maybeSeats = seatRepository.findAllById(showInfo.get().getId());
-    //     return maybeSeats;
-    // }
+    public List<Seat> getSeats(LocalDateTime dateTime) {
+        Optional<ShowInfo> showInfo = showInfoRepository.findByDateTime(dateTime);
+        if (showInfo.isPresent()) {
+            return showInfo.get().getSeats();
+        }
+        return null;
+    }
 }
