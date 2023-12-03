@@ -1,5 +1,7 @@
 package com.cinema.cinemasystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,9 +21,11 @@ public class Seat {
     private Boolean status;
 
     @ManyToOne
+    @JsonIgnore
     private ShowInfo showInfo;
 
     @OneToOne
+    @JsonIgnore
     private Ticket ticket;
 
     public Boolean getStatus() {

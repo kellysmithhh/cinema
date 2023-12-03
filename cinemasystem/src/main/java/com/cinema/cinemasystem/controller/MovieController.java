@@ -4,12 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.cinemasystem.Proxy.MovieProxy;
@@ -70,8 +72,8 @@ public class MovieController {
         return movieFacade.getReviews(movieID);
     }
 
-    @GetMapping("/getSeats/{movieId}/{dateTime}")
-    public List<Seat> getSeats(@PathVariable Long movieId, @PathVariable LocalDateTime dateTime) {
+    @GetMapping("/getSeats/{movieId}")
+    public List<Seat> getSeats(@PathVariable Long movieId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime) {
         return movieFacade.getSeats(movieId, dateTime);
     }
 
