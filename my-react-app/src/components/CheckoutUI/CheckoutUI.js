@@ -9,7 +9,7 @@ function CheckoutUI() {
   const[email,setEmail] = useState('');
 
   const location = useLocation();
-  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, tickets } = location.state;
+  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, tickets, movieId } = location.state;
   const adultCost = 12.99 * adultTickets;
   const childCost = 10.99 * childTickets;
   const seniorCost = 11.99 * seniorTickets;
