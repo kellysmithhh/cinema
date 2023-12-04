@@ -19,6 +19,8 @@ public class Booking {
 
     private Integer bookingNumber;
 
+    private String cardNumber;
+
     @ManyToOne
     private Customer customer;
 
@@ -66,6 +68,14 @@ public class Booking {
 
     public void setShowInfo(ShowInfo showInfo) {
         this.showInfo = showInfo;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
 }

@@ -65,7 +65,22 @@ public class MovieService {
         return movieRepository.findByCategory(category);
     }
 
-    public void addShowDates(LocalDateTime dateTime, Long movieId, Long showRoomId) {
+    public boolean addShowDates(LocalDateTime dateTime, Long movieId, Long showRoomId) {
+
+        // prevent movie from being scheduled at same showroom at same time
+        Optional<Movie> alreadyMovie = getMovieFromShowRoomAndDateTime(showRoomId, dateTime);
+        if (alreadyMovie.isPresent()) {
+            System.out.println("SHOW ROOM ALREADY HAS MOVIE AT THAT TIME");
+            return false;
+        }
+
+        // prevent movie from being set again to the same showroom at same time
+        Optional<ShowInfo> maybeShowInfo = getInfoWithIdAndDateTime(movieId, dateTime);
+        if (maybeShowInfo.isPresent()) {
+            System.out.println("MOVIE AT TIME ALREADY EXISTS");
+            return false;
+        }
+
         ShowInfo newShow = new ShowInfo();
         newShow.setDateTime(dateTime);
         Optional<Movie> maybeMovie = movieRepository.findById(movieId);
@@ -98,6 +113,7 @@ public class MovieService {
         seatRepository.saveAll(seats);
         newShow.setSeats(seats);
         showInfoRepository.save(savedShow);
+        return true;
     }
 
     public List<String> getShowDates(Long movieID) {
@@ -139,17 +155,49 @@ public class MovieService {
         showRoomRepository.save(showRoom);
     }
 
-    public List<Seat> getSeats(LocalDateTime dateTime) {
-        Optional<ShowInfo> showInfo = showInfoRepository.findByDateTime(dateTime);
-        System.out.println(dateTime.toString());
-        if (showInfo.isPresent()) {
-            List<Seat> seats = showInfo.get().getSeats();
-            Long showInfoId = showInfo.get().getId();
-            seats.forEach(seat -> seat.setShowId(showInfoId));
-            return seats;
-            //return showInfo.get().getSeats();
+    public List<Seat> getSeats(Long movieId, LocalDateTime dateTime) {
+        // Optional<ShowInfo> showInfo = showInfoRepository.findByDateTime(dateTime);
+        // System.out.println(dateTime.toString());
+        // if (showInfo.isPresent()) {
+        //     return showInfo.get().getSeats();
+        // }
+        // System.out.print("NOT FOUND");
+        // return new ArrayList<Seat>();
+        Optional<ShowInfo> showInfo = getInfoWithIdAndDateTime(movieId, dateTime);
+        if (showInfo.isEmpty()) return new ArrayList<Seat>();
+
+        return showInfo.get().getSeats();
+    }
+
+    public Optional<ShowInfo> getInfoWithIdAndDateTime(Long movieId, LocalDateTime dateTime) {
+        Optional<Movie> maybeMovie = movieRepository.findById(movieId);
+        if (maybeMovie.isEmpty()) {
+            System.out.println("MOVIE DOES NOT EXIST");
+            return Optional.empty();
         }
-        System.out.print("NOT FOUND");
-        return new ArrayList<Seat>();
+
+        List<ShowInfo> infos = showInfoRepository.findAllByDateTime(dateTime);
+        for (ShowInfo info : infos) {
+            if (info.getMovie().getId() == movieId) {
+                return Optional.of(info);
+            }
+        }
+
+        System.out.println("MOVIE NOT FOUND AT THAT TIME");
+        return Optional.empty();
+    }
+
+    public Optional<Movie> getMovieFromShowRoomAndDateTime(Long showRoomId, LocalDateTime dateTime) {
+        Optional<ShowRoom> maybeShowRoom = showRoomRepository.findById(showRoomId);
+        if (maybeShowRoom.isEmpty()) return Optional.empty();
+
+        List<ShowInfo> infos = maybeShowRoom.get().getShows();
+        for (ShowInfo info : infos) {
+            if (info.getDateTime().equals(dateTime)) {
+                return Optional.of(info.getMovie());
+            }
+        }
+
+        return Optional.empty();
     }
 }

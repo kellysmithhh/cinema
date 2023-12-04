@@ -11,14 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.cinema.cinemasystem.Repository.AddressRepository;
 import com.cinema.cinemasystem.Repository.CustomerRepository;
-import com.cinema.cinemasystem.Repository.ShowInfoRepository;
+import com.cinema.cinemasystem.Repository.PaymentCardRepository;
 import com.cinema.cinemasystem.dto.CreateBooking;
 import com.cinema.cinemasystem.model.Address;
 import com.cinema.cinemasystem.model.Booking;
 import com.cinema.cinemasystem.model.Customer;
 import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.ShowInfo;
-import com.cinema.cinemasystem.model.Ticket;
 
 import jakarta.transaction.Transactional;
 
@@ -31,7 +30,10 @@ public class CustomerService {
     private AddressRepository addressRepository;
 
     @Autowired
-    private ShowInfoRepository showInfoRepository;
+    private PaymentCardRepository paymentCardRepository;
+
+    @Autowired
+    private MovieService movieService;
 
     @Autowired
     private PasswordEncoder security;
@@ -113,7 +115,7 @@ public class CustomerService {
                         card.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
                         card.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
                         realCustomer.getPaymentCards().add(card);
-                        card.setUser(realCustomer);
+                        card.setCustomer(realCustomer);
                     } else {
                         System.out.println("Already have 3 cards");
                     }
@@ -143,25 +145,38 @@ public class CustomerService {
         return customer.getBookings();
     }
 
+    public Optional<PaymentCard> getPaymentCardWithNumber(Customer customer, String cardNumber) {
+        List<PaymentCard> cards = paymentCardRepository.findAllByCardNumber(cardNumber);
+        for (PaymentCard card : cards) {
+            if (card.getCustomer().equals(customer)) {
+                return Optional.of(card);
+            }
+        }
+        return Optional.empty();
+    }
+
     @Transactional
     public Booking addBooking(Customer customer, CreateBooking booking) {
         Booking realBooking = new Booking();
+        // booking number
         realBooking.setBookingNumber(booking.getBookingNumber());
 
-        List<Ticket> tickets = booking.getTickets();
-        for (Ticket ticket : tickets) {
-            ticket.setBooking(realBooking);
+        // credit card
+        String cardNumber = booking.getCardNumber();
+        Optional<PaymentCard> card = getPaymentCardWithNumber(customer, cardNumber);
+        if (card.isEmpty()) {
+            System.out.println("CARD DOES NOT EXIST");
+            return null;
         }
-        realBooking.setTickets(tickets);
+        realBooking.setCardNumber(cardNumber);
 
-        Optional<ShowInfo> maybeInfo = showInfoRepository.findById(booking.getShowInfo());
-        if (maybeInfo.isEmpty()) return null;
-        realBooking.setShowInfo(maybeInfo.get());
+        // show info
+        Optional<ShowInfo> maybeShowInfo = movieService.getInfoWithIdAndDateTime(booking.getMovieId(), booking.getDateTime());
+        if (maybeShowInfo.isEmpty()) return null;
+        ShowInfo showInfo = maybeShowInfo.get();
+        realBooking.setShowInfo(showInfo);
 
-        List<Booking> bookings = customer.getBookings();
-        bookings.add(realBooking);
-        customer.setBookings(bookings);
-
+        // customer save
         realBooking.setCustomer(customer);
         customerRepository.save(customer);
 

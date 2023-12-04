@@ -18,7 +18,7 @@ public class PaymentCard {
 
     @ManyToOne
     @JsonIgnore
-    private Customer user;
+    private Customer customer;
 
     private String cardType;
 
@@ -43,12 +43,12 @@ public class PaymentCard {
         this.id = id;
     }
 
-    public Customer getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUser(Customer user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getCardType() {

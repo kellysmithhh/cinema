@@ -34,7 +34,7 @@ public class Customer extends User {
 
     // single user can have many payment cards
     // each payment card can only be associated with one user
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PaymentCard> paymentCards;
 
     // users can have only one shipping address
@@ -86,7 +86,7 @@ public class Customer extends User {
     public void setPaymentCards(List<PaymentCard> paymentCards) {
         this.paymentCards = paymentCards;
         for (PaymentCard paymentCard : paymentCards) {
-            paymentCard.setUser(this);
+            paymentCard.setCustomer(this);
         }
     }
 

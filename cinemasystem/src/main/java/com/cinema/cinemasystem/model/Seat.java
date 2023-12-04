@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -30,8 +31,12 @@ public class Seat {
     }
 
     @ManyToOne
-    @JsonIgnore
-    private ShowInfo showInfo;    
+    private ShowInfo showInfo;
+
+    @JsonGetter("showInfo")
+    public Long getShowInfoId() {
+        return showInfo != null ? showInfo.getId() : null;
+    }
 
     @OneToOne
     @JsonIgnore

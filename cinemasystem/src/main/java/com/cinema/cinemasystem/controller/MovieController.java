@@ -49,12 +49,12 @@ public class MovieController {
     }
 
     @PostMapping("/show-dates")
-    public void addShowDates(@RequestBody ShowDateRequest request) {
+    public boolean addShowDates(@RequestBody ShowDateRequest request) {
         LocalDateTime localDateTime = request.getDateTime();
         Long movieId = request.getMovieId();
         Long showRoomId = request.getShowRoomId();
 
-        movieFacade.addShowDates(localDateTime, movieId, showRoomId);
+        return movieFacade.addShowDates(localDateTime, movieId, showRoomId);
     }
 
     @GetMapping("/{movieID}/get/show-dates")

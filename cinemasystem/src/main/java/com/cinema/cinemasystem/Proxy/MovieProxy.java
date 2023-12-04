@@ -1,7 +1,6 @@
 package com.cinema.cinemasystem.Proxy;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,8 +42,8 @@ public class MovieProxy {
         }
     }
 
-    public void addShowDates(LocalDateTime dateTime, Long movieId, Long showRoomId) {
-        movieService.addShowDates(dateTime, movieId, showRoomId);
+    public boolean addShowDates(LocalDateTime dateTime, Long movieId, Long showRoomId) {
+        return movieService.addShowDates(dateTime, movieId, showRoomId);
     }
 
     public List<String> getShowDates(Long movieID) {
@@ -68,11 +67,12 @@ public class MovieProxy {
     }
 
     public List<Seat> getSeats(Long movieId, LocalDateTime dateTime) {
-        Optional<Movie> maybeMovie = movieService.getMovieWithId(movieId);
-        if (maybeMovie.isPresent()) {
-            return movieService.getSeats(dateTime);
-        }
-        return new ArrayList<Seat>();
+        // Optional<Movie> maybeMovie = movieService.getMovieWithId(movieId);
+        // if (maybeMovie.isPresent()) {
+        //     return movieService.getSeats(movieId, dateTime);
+        // }
+        // return new ArrayList<Seat>();
+        return movieService.getSeats(movieId, dateTime);
     }
 
     // public List<Seat> getSeats(String dateTime,Long movieID) {
