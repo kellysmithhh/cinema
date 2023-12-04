@@ -49,6 +49,7 @@ function EditMovie(props) {
 
 
     return (
+        <table>
         <tr>
             <td>{title}</td>
             <td>
@@ -70,6 +71,7 @@ function EditMovie(props) {
             </td>
             <td><button id='editInfo'>Edit Info</button><button>Delete</button></td>
         </tr>
+        </table>
     );
 }
 
