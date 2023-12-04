@@ -71,6 +71,7 @@
     border-radius: 5px; /* Add rounded corners */
     position: relative;
     margin-bottom: 10px;
+    margin-top: 9px;
   }
 
   .link{
@@ -79,6 +80,26 @@
     padding-top: -20px;
   }
 
+  #hey:hover {
+    background-color: #e98d7b;
+  }
+
+  .link button[type="Submit"] {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-decoration: none;
+    background-color: white; /* Set background color */
+    color: black; /* Set text color */
+    font-size: 20px; /* Set font size */
+    padding: 10px;
+    cursor: pointer; /* Change cursor on hover */
+    border-radius: 5px; /* Add rounded corners */
+    position: relative;
+
+  }
+
+  .link button[type="Submit"]:hover {
+    background-color: #e98d7b;
+  }
 
 
 
