@@ -9,10 +9,16 @@ function CheckoutUI() {
   const[email,setEmail] = useState('');
 
   const location = useLocation();
-  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets } = location.state;
+  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, tickets } = location.state;
   const adultCost = 12.99 * adultTickets;
   const childCost = 10.99 * childTickets;
   const seniorCost = 11.99 * seniorTickets;
+  const finalTickets = tickets;
+  const ticketTypesCount = {
+    child: childTickets,
+    adult: adultTickets,
+    senior: seniorTickets
+  };
   const[totalCost,setTotalCost] = useState(adultCost + childCost + seniorCost);
   const[promoInput,setPromoInput] = useState('');
   const[promoPercent,setPromoPercent] = useState('');
@@ -49,7 +55,6 @@ function CheckoutUI() {
        })
     }
 
-
   useEffect(() => {
     var session = localStorage.getItem('session');
     session = session.replace(/^"(.*)"$/, '$1');
@@ -66,7 +71,20 @@ function CheckoutUI() {
        })
        .catch(error => {
          console.error('Error fetching data:', error);
-     });        
+     });     
+     
+     // map ticket types
+     const mappedTickets = finalTickets.map((ticket, index) => {
+      let ticketType = '';
+      Object.keys(ticketTypesCount).some(type => {
+        if (ticketTypesCount[type] > 0) {
+          ticketTypesCount[type]--;
+          ticketType = type;
+        }
+        console.log(ticketType);
+      });
+      // Handle mapped tickets here if necessary
+    });
   }, []);
 
   useEffect(() => {
@@ -79,8 +97,34 @@ function CheckoutUI() {
     const handlePlaceOrder = (e) => {
       e.preventDefault();
 
+      // create ticket objects
+      const data = {
+        childTickets: childTickets,
+        adultTickets: adultTickets,
+        seniorTickets: seniorTickets
+      };
+      fetch('http://localhost:8080/showing/set/ticket/types', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          // Handle success
+          console.log('Request successful');
+        })
+        .catch(error => {
+          // Handle error
+          console.error('There was a problem with the fetch operation:', error);
+        });
+
       // fetch that sets seats to false and creats a booking with all needed data
 
+      // confirmation email
       fetch(`http://localhost:8080/email/send/order/confirmation/${email}`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -90,7 +134,7 @@ function CheckoutUI() {
 
       let path = `/OrderConfirmation`; 
       navigate(path);
-    }
+    } // handlePlaceOrder
 
     const handlePromoClick = (e) => {
       e.preventDefault();
