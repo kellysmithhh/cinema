@@ -30,6 +30,7 @@ function MovieInformation() {
       infoList = <p>Loading...</p>  
     } else {
       infoList = info.map((info, k) => <Information info = {info} key ={k}/>);
+      console.log(infoList)
     }
    
 

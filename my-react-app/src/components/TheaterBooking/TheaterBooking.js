@@ -8,64 +8,54 @@ function TheaterBooking() {
   const columns = 10;
   const totalSeats = rows.length * columns;
   const location = useLocation();
-  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, movieID} = location.state;
-  const[info,setInfo] = useState([]);  
-  let seatList = null;
-  const numTickets = parseInt(childTickets) + parseInt(adultTickets) + parseInt(seniorTickets);
-  const handleClick = () => {
-    console.log("Working");
-    console.log(numTickets);
+  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, movieID} = location.state;  
+  var seatList = []
+  const [seatInfo,setSeatInfo] = useState([])
+  var numTickets = parseInt(childTickets) + parseInt(adultTickets) + parseInt(seniorTickets);
+  var tickets = []
+  var count = 0
+
+
+  const handleClick = (row,col) => {
+    
+    if (numTickets > 0) {
+      console.log("Working");
+      //let ticket = {row:row, col:col}      
+      //tickets.push(ticket)
+      count++
+      //numTickets = numTickets - 1
+      console.log(count);
+    }
   }  
 
-  let newSeat = {seatRow:2, seatColumn: 3, status: true, seatFunction: handleClick }
-  let seat = <SeatComponent seat = {newSeat}/>
+  useEffect(() => {    
 
-
-  useEffect(() => {
-    //console.log(selectedDate);
-    //console.log(selectedTime);
-    const dateTime = selectedDate +" " + selectedTime;
+    const dateTime = selectedDate + " " + selectedTime + " Z";
+   
     const ISOString = new Date(dateTime).toISOString();
-    console.log(ISOString);
+   
     //2007-12-03T10:15:30
+    const url = `http://localhost:8080/movie/getSeats/${movieID}?dateTime=${encodeURIComponent(ISOString)}`;
+    
 
-    fetch(`http:localhost:8080/movie/getSeats/${movieID}?dateTime=${encodeURIComponent(ISOString)}`, {    
+    fetch(url, {    
+    //fetch('http://localhost:8080/movie/getSeats/1?dateTime=2023-12-28T17%3A30%3A00.000Z',{
+    
     method:"GET",
     headers:{"Content-Type":"application/json"}})
-    // .then(res=>res.json())
+    .then(res=>res.json())
     .then(data => {
-      setInfo(data)
-      console.log(data);
+      setSeatInfo(data)            
       console.log("finished")
-    }) 
-    // .then((response)=> response.json())
-    //      .then((data) => {             
-    //        setInfo(data);
-           
-    //        console.log("completed")
-    //      })
+    })    
 
     .catch(rejected => {
       console.log(rejected);
-    })
-
-    
+    })    
+      
     //fetch to get all seats and status
    //fetch to get all ticket types and count
-  }, [selectedDate, selectedTime]);
- 
-  const createSeatCheckboxes = () => {
-    const seatCheckboxes = [];
-    for (let i = 1; i <= totalSeats; i++) {
-      seatCheckboxes.push(
-        <label key={i} className="seat-checkbox">
-          <input type="checkbox" />
-          {i}
-        </label>
-      );
-    }
-    return seatCheckboxes;
-  };
+  }, [selectedDate, selectedTime]); 
 
   let navigate = useNavigate(); 
     const routeChange = () =>{ 
@@ -73,32 +63,20 @@ function TheaterBooking() {
       navigate(path, {
         state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets },
       });
+    }    
+    for (var i = 0; i < seatInfo.length;i++) {
+      seatInfo[i] = {seat:seatInfo[i], seatFunction: handleClick}       
     }
-
+    
+    seatList = seatInfo.map((newSeat,k) => <SeatComponent newSeat = {newSeat} key ={k}/>);    
+    
   return (
 
-    <div>
-      {seat}
+    <div> 
+      {seatList}
       <button onClick={routeChange}>Book Tickets</button>
     </div>
-    // <div className="TheaterBooking">
-    //    <div className="row-labels">
-    //     {rows.map((row) => (
-    //       <div key={row} className="row-label">
-    //         {row}
-    //       </div>
-    //     ))}
-    //   </div>
-    //   <div className="theater">
-    //     <div className="screen">Movie Screen</div>
-
-    //     <div className="seat-grid theater-border">{createSeatCheckboxes()}</div> {/* Apply the "theater-border" class */}
-    //   </div>
-    //     <div className="ticket-selector-border"> 
-            // <button onClick={routeChange}>Book Tickets</button>
-    //     </div>                  
-
-    //  </div>
+   
 );
 }
 
