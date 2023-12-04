@@ -13,18 +13,15 @@ function TheaterBooking() {
   const [seatInfo,setSeatInfo] = useState([])
   var numTickets = parseInt(childTickets) + parseInt(adultTickets) + parseInt(seniorTickets);
   var tickets = []
-  var count = 0
 
 
-  const handleClick = (row,col) => {
-    
+  const handleClick = (row,col, isTaken) => {
     if (numTickets > 0) {
-      console.log("Working");
-      //let ticket = {row:row, col:col}      
-      //tickets.push(ticket)
-      count++
-      //numTickets = numTickets - 1
-      console.log(count);
+      let ticket = {row:row, col:col}      
+      tickets.push(ticket)
+      numTickets = numTickets - 1
+    } else {
+      alert("No tickets remaining");
     }
   }  
 
@@ -58,12 +55,14 @@ function TheaterBooking() {
   }, [selectedDate, selectedTime]); 
 
   let navigate = useNavigate(); 
+
     const routeChange = () =>{ 
       let path = `/CheckOut`;
       navigate(path, {
         state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets },
       });
-    }    
+    }
+
     for (var i = 0; i < seatInfo.length;i++) {
       seatInfo[i] = {seat:seatInfo[i], seatFunction: handleClick}       
     }

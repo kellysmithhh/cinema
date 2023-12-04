@@ -41,17 +41,16 @@ function SignedInNavBar({handleSignOut}) {
             
                 <div className="navbar-buttons">
                         <ul>
-                        {isAdmin === 'true' &&
-                            <li>
-                            <Link to = "/ManagerView">Manager View</Link>
-                            </li>
-                        }
-                            <li>
-                             <Link to = "/OrderHistory">Order History</Link>
-                            </li> 
-                            <li>
-                                <Link to = "/OrderHistory">Order History</Link>
-                            </li>
+                        {isAdmin === 'true' && (
+                            <React.Fragment>
+                                <li>
+                                <Link to="/ManagerView">Manager View</Link>
+                                </li>
+                                <li>
+                                <Link to="/OrderHistory">Order History</Link>
+                                </li>
+                            </React.Fragment>
+                            )}
                             <li>
                                 <Link to = "/Browse">Browse</Link>
                             </li>
