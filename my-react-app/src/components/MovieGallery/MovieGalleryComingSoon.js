@@ -63,7 +63,6 @@ function MovieGalleryComingSoon() {
 
     return (
         <div className="MovieGallerySection">
-            <h2>Coming Soon</h2>
             <div className="MovieGallery">
                 {comingSoonMoviesList}
             </div>
