@@ -8,9 +8,9 @@ border: solid;
 border-width: 4px;
 border-radius: 7px;
 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-border-color: brown;
-color: brown;
-height: 100vh;
+border-color: #7f1515;
+color: #7f1515;
+height: auto;
 width: 100vh;
 margin: 10px;
 padding-bottom: 20px;
@@ -31,8 +31,6 @@ padding: 0 4px;
 }
 
 
-
-
 .MovieInformation h1{
 font-size: 80px;
 margin-bottom: -60px;
@@ -47,23 +45,23 @@ margin-bottom: -60px;
 
 .MovieImage{
   background-color: black;
-  width: 90vh;
-  height: 100vh;
+  width: 100vh;
+  height: 124vh;
   margin:  10px;
 }
 
 
 .buttonInfo button[type="Submit"] {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background-color: white; /* Set background color */
-  color: black; /* Set text color */
-  font-size: 40px; /* Set font size */
-  border: none; /* Remove default border */
-  padding: 10px 20px; /* Set padding */
+  background-color: white; 
+  color: black; 
+  font-size: 40px; 
+  border: none; 
+  padding: 10px 20px; 
   margin-left: 25%;
   margin-bottom: 3px;
-  cursor: pointer; /* Change cursor on hover */
-  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; 
+  border-radius: 5px; 
   position:relative;
 }
 
@@ -71,6 +69,7 @@ margin-bottom: -60px;
 .buttonInfo button[type="Submit"]{
   display: flex;
   justify-content: center;
+  margin-left: 235px;
 }
 
 
@@ -80,7 +79,28 @@ margin-bottom: -60px;
   object-fit: cover;
   margin-left: 15px;
   }
-
   
+  .MovieInfo div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .MovieInfo #reviewInput {
+    flex-grow: 1;
+    margin-right: 10px; 
+    margin-left: 10px;
+  }
+  
+  .MovieInfo button[type="button"] {
+    background-color: #7f1515;
+    color: white;
+    font-size: 14px; 
+    border: none;
+    padding: 10px 15px; 
+    margin-left: auto;
+    margin-bottom: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
 
-
+ 
