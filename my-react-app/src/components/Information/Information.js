@@ -70,12 +70,12 @@ function Information(props) {
    const ratingMap = {
        G: 'G',
        PG: 'PG',
-       PG_13: 'PG-13',
+       PG13: 'PG-13',
        R: 'R',
-       NC_17: 'NC-17'
+       NC17: 'NC-17'
    };
 
-
+   console.log(info.ratingMPAA);
    const mpaaRating = info.ratingMPAA ? ratingMap[info.ratingMPAA] : 'Unknown';
 
    const handleClick = (e) => {
