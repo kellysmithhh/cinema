@@ -30,6 +30,7 @@ function ManageMovies() {
     return (
              
         <div>
+            <h1>Showing Movies</h1>
             {movieList}
         </div>       
     )

@@ -4,8 +4,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import SeatComponent from '../SeatComponent/SeatComponent'
 
 function TheaterBooking() {
-  const rows = ['A', 'B', 'C', 'D', 'E'];
-  const columns = 10;
+  const rows = ['1', '2', '3', '4', '5'];
+  const columns = 4;
   const totalSeats = rows.length * columns;
   var tickets = []
   const location = useLocation();
@@ -77,8 +77,13 @@ function TheaterBooking() {
     
   return (
 
-    <div> 
-      {seatList}
+    <div className='TheaterBooking' > 
+      <br></br>
+      <div className='seat-grid'>
+        {seatList}
+      </div>
+      
+      <br></br>
       <button onClick={routeChange}>Book Tickets</button>
     </div>
    

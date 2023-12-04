@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50vh;
     font-family:'Play';
   }
   
@@ -116,8 +116,9 @@
   
   .seat-grid {
     display: grid;
-    grid-template-columns: repeat(10, 1fr); 
-    gap: 5px; 
+    grid-template-columns: repeat(4, 5em); 
+    gap: 1px; 
+    column-gap: 0px;
   }
   
   .seat-checkbox {

@@ -8,7 +8,6 @@ function SeatComponent(props) {
 
     const handleClick = () => {      
       if (isTaken === false) {
-        
          isTaken = true; 
       } else {
           isTaken = false;
@@ -21,7 +20,7 @@ function SeatComponent(props) {
       return (
         <div>
           {/* This seat is selectable */}
-          <button onClick={handleClick}>
+          <button style={{backgroundColor: "green"}} onClick={handleClick}>
             {row}, {column}
           </button>
         </div>
