@@ -57,7 +57,6 @@ function MovieGalleryCurrentlyShowing() {
 
     return (
         <div className="MovieGallerySection">
-            <h2>Currently Showing</h2>
             <div className="MovieGallery">
                 {currentlyShowingMoviesList}
             </div>

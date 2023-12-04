@@ -1,9 +1,10 @@
-h1{
+.HomePage .Gallery h1{
     padding: 5%;
     margin: 0;
-    color: #ff00008b;
+    color: white;
     text-align: center;
-    font-size: 3.5em;
+    font-size: 3em;
+    padding-bottom: 0px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
