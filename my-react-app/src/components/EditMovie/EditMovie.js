@@ -32,6 +32,7 @@ function EditMovie(props) {
                     console.log('Show dates added successfully');
                     // Update the state after successful API call
                     setDateTimeSet(updatedDateTimeSet);
+                    alert("Movie Added");
                 })
                 .catch(error => {
                     console.error('There was a problem adding show dates:', error);
