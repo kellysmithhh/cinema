@@ -1,0 +1,66 @@
+.manage-promotions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.promotions-section {
+    border: 1px solid #ddd; 
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.promotions-section h1 {
+    margin-bottom: 10px; 
+    white-space: nowrap; 
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #7f1515;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.all-promotions-section {
+    border: 1px solid #ddd; 
+    padding: 20px;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.promo-entry {
+    display: flex;
+    flex-wrap: nowrap; 
+    margin-bottom: 10px;
+    align-items: center; 
+}
+
+.all-promotions-section label {
+    color: #ff00008b;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.all-promotions-section span {
+    margin-left: 0px;
+    margin-right: 25px;
+}
