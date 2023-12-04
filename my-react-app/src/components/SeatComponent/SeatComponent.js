@@ -1,28 +1,31 @@
 
 
 function SeatComponent(props) {
+    const row = props.seat.seatRow;
+    const fun = props.seat.seatFunction;
+    const status = props.seat.status;
+    const column = props.seat.seatColumn;
 
-    const seat = props.seat;
-
-    if (seat.status === true) {
+    if (status === true) {
     return (
         <div>
             {/* This seat is selectable */}
-            {seat.seatRow}
-            {seat.seatColumn}
-            <button>Select</button>
+            {row}
+            {column}
+            <button onClick = {fun}>Select</button>
         </div>
     )
     } else {
         return (
             <div>
                 {/* Make this one non selectable */}
-                {seat.seatRow} 
-                {seat.seatColumn}
-                
+                {row}
+                {column}                
             </div>
 
         )
     }
 
-}
+    
+
+} export default SeatComponent

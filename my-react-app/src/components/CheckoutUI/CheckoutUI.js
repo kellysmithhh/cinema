@@ -78,6 +78,9 @@ function CheckoutUI() {
 
     const handlePlaceOrder = (e) => {
       e.preventDefault();
+
+      // fetch that sets seats to false and creats a booking with all needed data
+
       fetch(`http://localhost:8080/email/send/order/confirmation/${email}`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},

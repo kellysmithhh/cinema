@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function TicketPage() {
   const location = useLocation();
-  const { selectedDate, selectedTime, movieTitle} = location.state;
+  const { selectedDate, selectedTime, movieTitle,movieID} = location.state;
   const[childTickets,setChildTickets] = useState(0);
   const[adultTickets,setAdultTickets] = useState(0);
   const[seniorTickets,setSeniorTickets] = useState(0);
@@ -36,7 +36,7 @@ function TicketPage() {
         console.error('There was a problem with the fetch operation:', error);
       });
     navigate('/TheaterBooking', {
-      state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets},
+      state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets,movieID},
     });
   };
 

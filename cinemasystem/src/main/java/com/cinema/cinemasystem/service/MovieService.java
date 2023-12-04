@@ -141,9 +141,11 @@ public class MovieService {
 
     public List<Seat> getSeats(LocalDateTime dateTime) {
         Optional<ShowInfo> showInfo = showInfoRepository.findByDateTime(dateTime);
+        System.out.println(dateTime.toString());
         if (showInfo.isPresent()) {
             return showInfo.get().getSeats();
         }
+        System.out.print("NOT FOUND");
         return null;
     }
 }

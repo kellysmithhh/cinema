@@ -10,10 +10,10 @@ function ShowtimeSelection() {
   console.log(location.state);
 
   let navigate = useNavigate();
-  const routeChange = (selectedDate, selectedTime, movieTitle) => {
+  const routeChange = (selectedDate, selectedTime, movieTitle,movieID) => {
    
     navigate('/TicketPage', {
-      state: { selectedDate, selectedTime, movieTitle },
+      state: { selectedDate, selectedTime, movieTitle,movieID },
     });
   };
 
@@ -64,7 +64,7 @@ function ShowtimeSelection() {
           <div className="showtime-times">
             {showtime.times.map((time, idx) => (
               <button
-                onClick={() => routeChange(showtime.date, time, movieTitle)}
+                onClick={() => routeChange(showtime.date, time, movieTitle,movie.info.id)}
                 key={idx}
                 className="showtime-button"
               >
