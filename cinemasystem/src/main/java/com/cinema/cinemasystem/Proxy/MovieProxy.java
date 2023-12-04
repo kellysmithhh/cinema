@@ -1,6 +1,7 @@
 package com.cinema.cinemasystem.Proxy;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,7 +72,7 @@ public class MovieProxy {
         if (maybeMovie.isPresent()) {
             return movieService.getSeats(dateTime);
         }
-        return null;
+        return new ArrayList<Seat>();
     }
 
     // public List<Seat> getSeats(String dateTime,Long movieID) {

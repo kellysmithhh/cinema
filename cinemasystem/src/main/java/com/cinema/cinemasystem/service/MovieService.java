@@ -146,6 +146,6 @@ public class MovieService {
             return showInfo.get().getSeats();
         }
         System.out.print("NOT FOUND");
-        return null;
+        return new ArrayList<Seat>();
     }
 }
