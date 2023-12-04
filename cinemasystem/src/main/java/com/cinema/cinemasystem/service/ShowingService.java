@@ -1,10 +1,15 @@
 package com.cinema.cinemasystem.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cinema.cinemasystem.Repository.SeatRepository;
 import com.cinema.cinemasystem.Repository.TicketRepository;
+import com.cinema.cinemasystem.dto.UpdatedTicketCounts;
 import com.cinema.cinemasystem.enums.TTYPE;
+import com.cinema.cinemasystem.model.Seat;
 import com.cinema.cinemasystem.model.Ticket;
 
 @Service
@@ -13,24 +18,43 @@ public class ShowingService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    public void setTicketTypes(int childTickets, int adultTickets, int seniorTickets) {
-        for (int i = 0; i < childTickets; i++) {
-            Ticket childTicket = new Ticket();
-            childTicket.setTicketType(TTYPE.CHILD);
-            ticketRepository.save(childTicket);
-        }
+    @Autowired SeatRepository seatRepository;
 
-        for (int i = 0; i < adultTickets; i++) {
-            Ticket adultTicket = new Ticket();
-            adultTicket.setTicketType(TTYPE.ADULT);
-            ticketRepository.save(adultTicket);
+    public UpdatedTicketCounts setTicketTypes(int childTickets, int adultTickets, int seniorTickets, int row, int col, Long showId) {
+        UpdatedTicketCounts updatedTicketCounts = new UpdatedTicketCounts();
+        Optional<Seat> maybeSeat = seatRepository.findBySeatRowAndSeatColumnAndShowInfo_Id(row, col, showId);
+        if (maybeSeat.isPresent()) {
+            Seat seat = maybeSeat.get();
+            if (childTickets > 0) {
+                Ticket childTicket = new Ticket();
+                childTicket.setTicketType(TTYPE.CHILD);
+                Ticket savedTicket = ticketRepository.save(childTicket);
+                seat.setTicket(savedTicket);
+                seat.setStatus(true);
+                seatRepository.save(seat);
+                childTickets--;
+            } else if (adultTickets > 0) {
+                Ticket adultTicket = new Ticket();
+                adultTicket.setTicketType(TTYPE.ADULT);
+                Ticket savedTicket = ticketRepository.save(adultTicket);
+                seat.setTicket(savedTicket);
+                seat.setStatus(true);
+                seatRepository.save(seat);
+                adultTickets--;
+            } else if (seniorTickets > 0) {
+                Ticket seniorTicket = new Ticket();
+                seniorTicket.setTicketType(TTYPE.SENIOR);
+                Ticket savedTicket = ticketRepository.save(seniorTicket);
+                seat.setTicket(savedTicket);
+                seat.setStatus(true);
+                seatRepository.save(seat);
+                seniorTickets--;
+            }
+            updatedTicketCounts.setUpdatedChildTickets(childTickets);
+            updatedTicketCounts.setUpdatedAdultTickets(adultTickets);
+            updatedTicketCounts.setUpdatedSeniorTickets(seniorTickets);
         }
-
-        for (int i = 0; i < seniorTickets; i++) {
-            Ticket seniorTicket = new Ticket();
-            seniorTicket.setTicketType(TTYPE.SENIOR);
-            ticketRepository.save(seniorTicket);
-        }
+        return updatedTicketCounts;
     }
 
 }

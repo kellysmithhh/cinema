@@ -21,8 +21,6 @@ public class Seat {
     private Boolean status;
     private long showId;
 
-   
-
     public long getShowId() {
         return showId;
     }

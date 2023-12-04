@@ -98,11 +98,14 @@ function CheckoutUI() {
       e.preventDefault();
 
       // create ticket objects
-      const data = {
-        childTickets: childTickets,
-        adultTickets: adultTickets,
-        seniorTickets: seniorTickets
-      };
+      const data = tickets.map(ticket => ({
+        row: ticket.row,
+        col: ticket.col,
+        showId: ticket.showId,
+        childTickets: childTickets, 
+        adultTickets: adultTickets, 
+        seniorTickets: seniorTickets, 
+      }));
       fetch('http://localhost:8080/showing/set/ticket/types', {
         method: 'POST',
         headers: {
