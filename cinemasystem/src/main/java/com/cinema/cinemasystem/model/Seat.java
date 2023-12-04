@@ -19,10 +19,21 @@ public class Seat {
     private Integer seatRow;
     private Integer seatColumn;
     private Boolean status;
+    private long showId;
+
+   
+
+    public long getShowId() {
+        return showId;
+    }
+
+    public void setShowId(long showId) {
+        this.showId = showId;
+    }
 
     @ManyToOne
     @JsonIgnore
-    private ShowInfo showInfo;
+    private ShowInfo showInfo;    
 
     @OneToOne
     @JsonIgnore

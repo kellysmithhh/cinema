@@ -143,7 +143,11 @@ public class MovieService {
         Optional<ShowInfo> showInfo = showInfoRepository.findByDateTime(dateTime);
         System.out.println(dateTime.toString());
         if (showInfo.isPresent()) {
-            return showInfo.get().getSeats();
+            List<Seat> seats = showInfo.get().getSeats();
+            Long showInfoId = showInfo.get().getId();
+            seats.forEach(seat -> seat.setShowId(showInfoId));
+            return seats;
+            //return showInfo.get().getSeats();
         }
         System.out.print("NOT FOUND");
         return new ArrayList<Seat>();

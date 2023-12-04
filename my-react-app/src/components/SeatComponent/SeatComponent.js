@@ -3,17 +3,18 @@ function SeatComponent(props) {
     const fun = props.newSeat.seatFunction;
     const status = props.newSeat.seat.seat.status;
     const column = props.newSeat.seat.seat.seatColumn;
-    const isTaken = false;
+    const showId = props.newSeat.seat.seat.showId;
+    var isTaken = false;
 
-    const handleClick = () => {
-      if (status === false) {
-        if (isTaken === false) {
-            isTaken = true; 
-        } else {
-            isTaken = false;
-        }
-        fun(row, column, isTaken);
+    const handleClick = () => {      
+      if (isTaken === false) {
+        
+         isTaken = true; 
+      } else {
+          isTaken = false;
       }
+        fun(row, column, isTaken,showId);
+      
     };
   
     if (status === false) {

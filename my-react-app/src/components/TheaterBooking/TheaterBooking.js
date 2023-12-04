@@ -7,20 +7,25 @@ function TheaterBooking() {
   const rows = ['A', 'B', 'C', 'D', 'E'];
   const columns = 10;
   const totalSeats = rows.length * columns;
+  var tickets = []
   const location = useLocation();
   const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, movieID} = location.state;  
   var seatList = []
   const [seatInfo,setSeatInfo] = useState([])
   var numTickets = parseInt(childTickets) + parseInt(adultTickets) + parseInt(seniorTickets);
-  var tickets = []
+  
 
 
-  const handleClick = (row,col, isTaken) => {
-    if (numTickets > 0) {
-      let ticket = {row:row, col:col}      
+  const handleClick = (row,col,isTaken,showId) => { 
+    if (isTaken === true && numTickets > 0) {
+      let ticket = {row:row, col:col,showId: showId}   
+      console.log(ticket)   
       tickets.push(ticket)
       numTickets = numTickets - 1
-    } else {
+    } else if (isTaken === false) {
+      numTickets = numTickets + 1;
+      tickets = tickets.filter((element) => !(element.row === row && element.col === col));
+    } else {     
       alert("No tickets remaining");
     }
   }  
@@ -42,7 +47,8 @@ function TheaterBooking() {
     headers:{"Content-Type":"application/json"}})
     .then(res=>res.json())
     .then(data => {
-      setSeatInfo(data)            
+      console.log(data) 
+      setSeatInfo(data)                
       console.log("finished")
     })    
 
@@ -59,7 +65,7 @@ function TheaterBooking() {
     const routeChange = () =>{ 
       let path = `/CheckOut`;
       navigate(path, {
-        state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets },
+        state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets,tickets },
       });
     }
 
