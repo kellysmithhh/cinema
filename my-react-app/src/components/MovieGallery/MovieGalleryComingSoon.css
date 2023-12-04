@@ -1,7 +1,23 @@
-.MovieGalleryComingSoon{
-    height: 90vh;
-    margin: auto;
-    width: auto;
+/* MovieGallery.css */
+.MovieGallerySection {
+    margin: 20px 0;
+}
+
+.MovieGallery {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+}
+
+/* Ensure each movie has its own space */
+.MovieGallery .Movie {
+    flex: 0 0 30%; /* Adjust the percentage to control the width of each movie */
+    margin-bottom: 20px;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .MovieGallery .Movie {
+        flex: 0 0 48%; /* Adjust for smaller screens */
+    }
 }

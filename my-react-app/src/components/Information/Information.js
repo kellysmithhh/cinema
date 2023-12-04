@@ -1,4 +1,3 @@
-// Information.js
 import './Information.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -31,9 +30,25 @@ function Information(props) {
 
     const formatTime = (inputTime) => {
         const date = new Date(inputTime);
-        const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
-        return new Intl.DateTimeFormat('en-US', options).format(date);
+        console.log('Original Date:', inputTime);
+        console.log('Formatted Date:', date.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+        }));
+        return date.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+        });
     };
+    
 
     useEffect(() => {
         fetch(`http://localhost:8080/movie/${movieId}/get/show-dates`)
