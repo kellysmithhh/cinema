@@ -291,8 +291,6 @@ function CheckoutUI() {
             </>
           )}
 
-          {/* Rest of the form fields */}
-          {/* ... */}
         </form>
         
       </div>
