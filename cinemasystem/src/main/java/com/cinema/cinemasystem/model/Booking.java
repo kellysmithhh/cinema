@@ -3,6 +3,7 @@ package com.cinema.cinemasystem.model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -28,6 +29,7 @@ public class Booking {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
+    @JsonManagedReference
     private List<Ticket> tickets;
 
     @ManyToOne

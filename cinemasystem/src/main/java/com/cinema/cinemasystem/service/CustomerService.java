@@ -51,9 +51,6 @@ public class CustomerService {
     private TicketRepository ticketRepository;
 
     @Autowired
-    private MovieService movieService;
-
-    @Autowired
     private EncryptionService encryptionService;
 
     @Autowired

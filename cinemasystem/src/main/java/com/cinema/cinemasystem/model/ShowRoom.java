@@ -2,6 +2,8 @@ package com.cinema.cinemasystem.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class ShowRoom {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "showRoom")
+    @JsonManagedReference
     private List<ShowInfo> shows;
 
     private int numSeats;

@@ -3,6 +3,7 @@ package com.cinema.cinemasystem.model;
 import java.util.List;
 
 import com.cinema.cinemasystem.enums.STATUS;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -43,6 +44,7 @@ public class Customer extends User {
     private Address shippingAddress;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true)
+    @JsonManagedReference
     private List<Booking> bookings;
 
     private boolean promoEmail;

@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,6 +32,7 @@ public class Seat {
     }
 
     @ManyToOne
+    @JsonBackReference
     private ShowInfo showInfo;
 
     @JsonGetter("showInfo")
