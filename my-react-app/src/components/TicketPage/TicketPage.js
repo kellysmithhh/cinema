@@ -7,13 +7,15 @@ function TicketPage() {
   const[childTickets,setChildTickets] = useState(0);
   const[adultTickets,setAdultTickets] = useState(0);
   const[seniorTickets,setSeniorTickets] = useState(0);
-  console.log(movieTitle);
+  console.log(childTickets);
+  console.log(adultTickets);
+  console.log(seniorTickets);
   let navigate = useNavigate();
 
   const routeChange = (e) => {
     e.preventDefault();
     navigate('/TheaterBooking', {
-      state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets,movieID},
+      state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, movieID},
     });
   };
 

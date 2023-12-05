@@ -3,8 +3,10 @@ function SeatComponent(props) {
     const fun = props.newSeat.seatFunction;
     const status = props.newSeat.seat.seat.status;
     const column = props.newSeat.seat.seat.seatColumn;
-    const showId = props.newSeat.seat.seat.showId;
+    const showId = props.newSeat.seat.seat.showInfo;
     var isTaken = false;
+
+  //console.log(props.newSeat.seat.seat);
 
     const handleClick = () => {      
       if (isTaken === false) {
@@ -12,7 +14,7 @@ function SeatComponent(props) {
       } else {
           isTaken = false;
       }
-        fun(row, column, isTaken,showId);
+        fun(row, column, isTaken, showId);
       
     };
   
