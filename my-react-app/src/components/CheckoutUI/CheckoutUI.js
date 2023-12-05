@@ -126,11 +126,29 @@ function CheckoutUI() {
       const fetchedData = await response.json();
       const dbTickets = fetchedData;
 
-      // fetch that sets seats to false and creats a booking with all needed data
+     // Convert selectedDate to a JavaScript Date object
+     const dateObj = new Date(selectedDate);
+
+     // Parse selectedTime to get hours and minutes
+     const [time, meridiem] = selectedTime.split(' ');
+     const [hours, minutes] = time.split(':').map((part) => parseInt(part, 10));
+ 
+     // Convert 12-hour format to 24-hour format
+     const hours24 = meridiem === 'PM' ? hours + 12 : hours;
+     const formattedTime = `${hours24.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00`;
+ 
+     // Format the date and time to match the desired format
+     const formattedDateTime = `${dateObj.getFullYear()}-${(dateObj.getMonth() + 1)
+       .toString()
+       .padStart(2, '0')}-${dateObj
+       .getDate()
+       .toString()
+       .padStart(2, '0')}T${formattedTime}.000`;
+
       var sessionId = localStorage.getItem('session');
       sessionId = sessionId.replace(/^"(.*)"$/, '$1');
       const bookingNumber = Math.floor(Math.random() * 9000) + 1000;
-      const booking = {bookingNumber, movieId: movieID, tickets: dbTickets, cardNumber: selectedCardNumber};
+      const booking = {bookingNumber, movieId: movieID, tickets: dbTickets, cardNumber: selectedCardNumber, dateTime: formattedDateTime};
       console.log(booking);
       fetch(`http://localhost:8080/user/booking/add/${sessionId}`,{
           method:"POST",
