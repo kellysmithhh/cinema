@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 function SeatComponent(props) {
     const row = props.newSeat.seat.seat.seatRow;
     const fun = props.newSeat.seatFunction;
@@ -5,12 +7,16 @@ function SeatComponent(props) {
     const column = props.newSeat.seat.seat.seatColumn;
     const showId = props.newSeat.seat.seat.showInfo;
     var isTaken = false;
+  
+    const [isRed, setIsRed] = useState(true);
+    
 
   //console.log(props.newSeat.seat.seat);
 
     const handleClick = () => {      
       if (isTaken === false) {
-         isTaken = true; 
+        isTaken = true; 
+        setIsRed(false);
       } else {
           isTaken = false;
       }
@@ -19,10 +25,11 @@ function SeatComponent(props) {
     };
   
     if (status === false) {
+
       return (
         <div>
           {/* This seat is selectable */}
-          <button style={{backgroundColor: "green"}} onClick={handleClick}>
+          <button style={{backgroundColor: isRed === true ? "red": "green"}} onClick={handleClick}>
             {row}, {column}
           </button>
         </div>
