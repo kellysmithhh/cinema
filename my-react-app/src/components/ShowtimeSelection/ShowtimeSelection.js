@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function ShowtimeSelection() {
   const location = useLocation();
   const movie = location.state;
+  
   const movieTitle = movie.info.title;
   const movieTime = movie.showTimes;  
   console.log(location.state);
