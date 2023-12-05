@@ -36,6 +36,7 @@ function CheckoutUI() {
     const[cardExpiration,setExpiration] = useState('')
     const[cardCVV,setCardCVV] = useState('')
     const[cardName,setCardName] = useState('')
+    const[promoClick,setpromoClick] = useState(false)
 
     const handleAddCardClick = (e) => {
       e.preventDefault();
@@ -139,12 +140,17 @@ function CheckoutUI() {
         console.log("New movie added.")
     });
 
-      let path = `/OrderConfirmation`; 
+      let path = `/`; 
       navigate(path);
     } // handlePlaceOrder
 
     const handlePromoClick = (e) => {
       e.preventDefault();
+      if (promoClick === true) {
+        alert("Promo already applied.");
+        return;
+      }
+      setpromoClick(true);
       // fetch to check for promocode in db
   fetch(`http://localhost:8080/promotions/check/promo/${promoInput}`, {
     method: 'GET',
