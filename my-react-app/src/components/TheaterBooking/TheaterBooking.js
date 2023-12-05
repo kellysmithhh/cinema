@@ -18,7 +18,7 @@ function TheaterBooking() {
 
   const handleClick = (row,col,isTaken,showId) => { 
     if (isTaken === true && numTickets > 0) {
-      let ticket = {row:row, col:col,showId: showId}   
+      let ticket = {row:row, col:col, showId: showId}   
       console.log(ticket)   
       tickets.push(ticket)
       numTickets = numTickets - 1

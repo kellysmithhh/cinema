@@ -119,6 +119,10 @@ function CheckoutUI() {
           }
           // Handle success
           console.log('Request successful');
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
         })
         .catch(error => {
           // Handle error

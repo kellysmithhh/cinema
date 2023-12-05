@@ -33,6 +33,7 @@ public class ShowingService {
                 seat.setStatus(true);
                 seatRepository.save(seat);
                 childTickets--;
+                updatedTicketCounts.setTicket(savedTicket);
             } else if (adultTickets > 0) {
                 Ticket adultTicket = new Ticket();
                 adultTicket.setTicketType(TTYPE.ADULT);
@@ -41,6 +42,7 @@ public class ShowingService {
                 seat.setStatus(true);
                 seatRepository.save(seat);
                 adultTickets--;
+                updatedTicketCounts.setTicket(savedTicket);
             } else if (seniorTickets > 0) {
                 Ticket seniorTicket = new Ticket();
                 seniorTicket.setTicketType(TTYPE.SENIOR);
@@ -49,6 +51,7 @@ public class ShowingService {
                 seat.setStatus(true);
                 seatRepository.save(seat);
                 seniorTickets--;
+                updatedTicketCounts.setTicket(savedTicket);
             }
             updatedTicketCounts.setUpdatedChildTickets(childTickets);
             updatedTicketCounts.setUpdatedAdultTickets(adultTickets);

@@ -1,5 +1,7 @@
 package com.cinema.cinemasystem.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cinema.cinemasystem.Proxy.ShowingProxy;
 import com.cinema.cinemasystem.dto.TicketTypesRequest;
 import com.cinema.cinemasystem.dto.UpdatedTicketCounts;
+import com.cinema.cinemasystem.model.Ticket;
 
 @RestController
 @RequestMapping("/showing")
@@ -22,7 +25,8 @@ public class ShowingController {
     private ShowingProxy showingFacade;
 
     @PostMapping("/set/ticket/types")
-    public void setTicketTypes(@RequestBody List<TicketTypesRequest> requestList) {
+    public List<Ticket> setTicketTypes(@RequestBody List<TicketTypesRequest> requestList) {
+        List<Ticket> tickets = new ArrayList<>();
         TicketTypesRequest firstTicket = requestList.get(0);
         int childTickets = firstTicket.getChildTickets();
         int adultTickets = firstTicket.getAdultTickets();
@@ -38,7 +42,10 @@ public class ShowingController {
             childTickets = updatedTicketCounts.getUpdatedChildTickets();
             adultTickets = updatedTicketCounts.getUpdatedAdultTickets();
             seniorTickets = updatedTicketCounts.getUpdatedSeniorTickets();
+            Ticket ticket = updatedTicketCounts.getTicket();
+            tickets.add(ticket);
         }
+        return tickets;
     }
 
 }
