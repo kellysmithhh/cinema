@@ -309,9 +309,6 @@ function CheckoutUI() {
             <span>Time:</span> {selectedTime}
           </div>
           <div>
-            <span>Seats:</span>
-          </div>
-          <div>
             <span>Adult Tickets:</span> {adultTickets}
           </div>
           <div>

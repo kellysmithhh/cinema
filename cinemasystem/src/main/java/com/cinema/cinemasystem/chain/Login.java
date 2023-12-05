@@ -30,6 +30,6 @@ public class Login {
                 return userService.startSession(admin);
             }
         }
-        return "what";
+        return "error";
     }
 }
