@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.cinema.cinemasystem.chain.Login;
 import com.cinema.cinemasystem.dto.CreateBooking;
 import com.cinema.cinemasystem.enums.STATUS;
 import com.cinema.cinemasystem.model.Admin;
@@ -41,6 +42,9 @@ public class UserProxy {
     @Autowired
     private EncryptionService encryptionService;
 
+    @Autowired
+    private Login login2;
+
     public String register(Customer customer) {
         // Additional logic or validation can be added here
         Optional<Customer> existingCustomer = customerService.getWithEmail(customer.getEmail());
@@ -52,7 +56,8 @@ public class UserProxy {
         }
     }
 
-    public String customerLogin(String email, String password) {
+    public String login(String email, String password) {
+        // try to handle by itself based on object
         Optional<Customer> maybeCustomer = customerService.getWithEmail(email);
         if (maybeCustomer.isPresent()) {
             Customer customer = maybeCustomer.get();
@@ -60,21 +65,27 @@ public class UserProxy {
                 customer.setStatus(STATUS.ACTIVE);
                 return userService.startSession(customer);
             }
+        } 
+
+        // pass to next class down
+        Optional<Admin> maybeAdmin = adminService.getWithCode(email);
+        if (maybeAdmin.isPresent()) {
+            return login2.adminLogin(email, password);
         }
         return null;
     }
 
-    public String adminLogin(String adminId, String password) {
-        Optional<Admin> maybeAdmin = adminService.getWithCode(adminId);
-        if (maybeAdmin.isPresent()) {
-            Admin admin = maybeAdmin.get();
-            // TODO check if user session already exists
-            if (security.matches(password, admin.getPassword())) {
-                return userService.startSession(admin);
-            }
-        }
-        return null;
-    }
+    // public String adminLogin(String adminId, String password) {
+    //     Optional<Admin> maybeAdmin = adminService.getWithCode(adminId);
+    //     if (maybeAdmin.isPresent()) {
+    //         Admin admin = maybeAdmin.get();
+    //         // TODO check if user session already exists
+    //         if (security.matches(password, admin.getPassword())) {
+    //             return userService.startSession(admin);
+    //         }
+    //     }
+    //     return null;
+    // }
 
     public String logout(String sessionId) {
         Optional<User> maybeUser = userService.getWithSession(sessionId);

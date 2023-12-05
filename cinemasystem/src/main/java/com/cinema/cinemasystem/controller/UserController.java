@@ -34,13 +34,13 @@ public class UserController {
 
     @PostMapping("/login/{email}/{password}")
     public String login(@PathVariable String email, @PathVariable String password) {
-        return userFacade.customerLogin(email, password);
+        return userFacade.login(email, password);
     }
 
-    @PostMapping("/login/admin/{adminId}/{password}")
-    public String loginAdmin(@PathVariable String adminId, @PathVariable String password) {
-        return userFacade.adminLogin(adminId, password);
-    }
+    // @PostMapping("/login/admin/{adminId}/{password}")
+    // public String loginAdmin(@PathVariable String adminId, @PathVariable String password) {
+    //     return userFacade.adminLogin(adminId, password);
+    // }
 
     @PostMapping("/logout/{sessionId}")
     public String logout(@PathVariable String sessionId) {

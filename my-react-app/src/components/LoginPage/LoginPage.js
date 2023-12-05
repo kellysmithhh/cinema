@@ -11,15 +11,19 @@ function LoginPage() {
 
     const handleSignInClick = (e) => {
         e.preventDefault();
-        if(email.includes('@')) {
+        //if(email.includes('@')) {
             const apiUrl = `http://localhost:8080/user/login/${email}/${password}` // responds with sessionId if found in customer table else null
             fetch(apiUrl, {
                 method:"POST",
                 headers:{"Content-Type":"application/json"}})
                 .then((response)=>response.text())
                 .then((data) => {
+                    console.log(data);
                     if (data !== '') {
                         localStorage.setItem('session', JSON.stringify(data));
+                        if (!email.includes('@')) {
+                            localStorage.setItem('admin',true);
+                        }
                         let path = `/`;
                         navigate(path);
                         window.location.reload()
@@ -30,28 +34,29 @@ function LoginPage() {
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
-        } else {
-            const apiUrl = `http://localhost:8080/user/login/admin/${email}/${password}` // responds with sessionId if found in customer table else null
-            fetch(apiUrl, {
-                method:"POST",
-                headers:{"Content-Type":"application/json"}})
-                .then((response)=>response.text())
-                .then((data) => {
-                    if (data !== '') {
-                        localStorage.setItem('session', JSON.stringify(data));
-                        localStorage.setItem('admin',true);
-                        //change path
-                        let path = `/ManagerView`; 
-                        navigate(path);
-                        window.location.reload()
-                    } else {
-                        alert("Id or password incorrect. Please try again.")
-                    }
-                }) 
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        }
+        //    }
+        //  else {
+        //     const apiUrl = `http://localhost:8080/user/login/admin/${email}/${password}` // responds with sessionId if found in customer table else null
+        //     fetch(apiUrl, {
+        //         method:"POST",
+        //         headers:{"Content-Type":"application/json"}})
+        //         .then((response)=>response.text())
+        //         .then((data) => {
+        //             if (data !== '') {
+        //                 localStorage.setItem('session', JSON.stringify(data));
+        //                 localStorage.setItem('admin',true);
+        //                 //change path
+        //                 let path = `/ManagerView`; 
+        //                 navigate(path);
+        //                 window.location.reload()
+        //             } else {
+        //                 alert("Id or password incorrect. Please try again.")
+        //             }
+        //         }) 
+        //         .catch(error => {
+        //             console.error('Error fetching data:', error);
+        //         });
+        // }
         
     }
 
