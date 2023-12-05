@@ -27,7 +27,11 @@ function TheaterBooking() {
       tickets = tickets.filter((element) => !(element.row === row && element.col === col));
     } else {     
       alert("No tickets remaining");
+      return(-1);
     }
+    console.log("tickets left: " + numTickets)
+    return (numTickets)
+    
   }  
 
   useEffect(() => {    
