@@ -77,4 +77,9 @@ public class MovieController {
         return movieFacade.getSeats(movieId, dateTime);
     }
 
+    @PostMapping("/update-status/{movieId}")
+    public String updateStatus(@PathVariable Long movieId, @RequestParam Boolean comingSoon, @RequestParam Boolean nowShowing) {
+        return movieFacade.updateStatus(movieId, comingSoon, nowShowing);
+    }
+
 }

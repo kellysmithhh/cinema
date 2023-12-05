@@ -67,17 +67,15 @@ public class MovieProxy {
     }
 
     public List<Seat> getSeats(Long movieId, LocalDateTime dateTime) {
-        // Optional<Movie> maybeMovie = movieService.getMovieWithId(movieId);
-        // if (maybeMovie.isPresent()) {
-        //     return movieService.getSeats(movieId, dateTime);
-        // }
-        // return new ArrayList<Seat>();
         return movieService.getSeats(movieId, dateTime);
     }
 
-    // public List<Seat> getSeats(String dateTime,Long movieID) {
-    //     Optional<ShowInfo> maybeShowInfo = movieService.getShowInfoByDate(dateTime,movieID);
-    //     return movieService.getAllSeats(maybeShowInfo);
-    // }
+    public String updateStatus(Long movieId, Boolean comingSoon, Boolean nowShowing) {
+        Optional<Movie> maybeMovie = movieService.getMovieWithId(movieId);
+        if (maybeMovie.isPresent()) {
+            return movieService.updateStatus(maybeMovie.get(), comingSoon, nowShowing);
+        }
+        return "movie does not exist";
+    }
 
 }

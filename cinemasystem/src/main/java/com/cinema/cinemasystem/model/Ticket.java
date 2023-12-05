@@ -3,6 +3,7 @@ package com.cinema.cinemasystem.model;
 import com.cinema.cinemasystem.enums.TTYPE;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -24,7 +25,7 @@ public class Ticket {
     private Booking booking;
 
     @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonManagedReference
     private Seat seat;
 
     private TTYPE ticketType;

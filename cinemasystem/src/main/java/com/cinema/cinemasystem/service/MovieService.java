@@ -156,13 +156,6 @@ public class MovieService {
     }
 
     public List<Seat> getSeats(Long movieId, LocalDateTime dateTime) {
-        // Optional<ShowInfo> showInfo = showInfoRepository.findByDateTime(dateTime);
-        // System.out.println(dateTime.toString());
-        // if (showInfo.isPresent()) {
-        //     return showInfo.get().getSeats();
-        // }
-        // System.out.print("NOT FOUND");
-        // return new ArrayList<Seat>();
         Optional<ShowInfo> showInfo = getInfoWithIdAndDateTime(movieId, dateTime);
         if (showInfo.isEmpty()) return new ArrayList<Seat>();
 
@@ -199,5 +192,12 @@ public class MovieService {
         }
 
         return Optional.empty();
+    }
+
+    public String updateStatus(Movie movie, Boolean comingSoon, Boolean nowShowing) {
+        movie.setComingSoon(comingSoon);
+        movie.setNowShowing(nowShowing);
+        movieRepository.save(movie);
+        return "movie update status success";
     }
 }
