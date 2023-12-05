@@ -209,6 +209,7 @@ function CheckoutUI() {
           ) : cardNames.length > 0 ? (
             // Render the card names dropdown when available
             <select value = {selectedCardNumber} onChange={(e) => setSelectedCardNumber(e.target.value)}>
+              <option value="">Select a card</option> {/* Empty option */}
               {cardNames.map((cardName, index) => (
                 <option key={index}>{cardName}</option>
               ))}
