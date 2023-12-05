@@ -2,6 +2,8 @@ package com.cinema.cinemasystem.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class Booking {
     private String cardNumber;
 
     @ManyToOne
+    @JsonIgnore
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")

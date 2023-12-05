@@ -103,7 +103,7 @@ public class UserController {
     }
 
     @PostMapping("/booking/add/{sessionId}")
-    public Booking addBooking(@PathVariable String sessionId, @RequestBody CreateBooking booking) {
+    public String addBooking(@PathVariable String sessionId, @RequestBody CreateBooking booking) {
         return userFacade.addBooking(sessionId, booking);
     }
 

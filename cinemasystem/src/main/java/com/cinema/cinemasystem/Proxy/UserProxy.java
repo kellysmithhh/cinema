@@ -177,9 +177,9 @@ public class UserProxy {
         return customerService.getBookings(maybeCustomer.get());
     }
 
-    public Booking addBooking(String sessionId, CreateBooking booking) {
+    public String addBooking(String sessionId, CreateBooking booking) {
         Optional<Customer> maybeCustomer = customerService.getWithSession(sessionId);
-        if (maybeCustomer.isEmpty()) return null;
+        if (maybeCustomer.isEmpty()) return "customer does not exist";
         return customerService.addBooking(maybeCustomer.get(), booking);
     }
 }

@@ -1,17 +1,22 @@
 package com.cinema.cinemasystem.service;
 
+import org.springframework.stereotype.Service;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.Base64;
 
-import org.springframework.stereotype.Service;
-
 @Service
 public class EncryptionService {
 
     private static final String ALGORITHM = "AES";
-    private static final byte[] KEY = "CINEMA-SECRET-KEY".getBytes(); // Use a strong key
+    private static final byte[] KEY = new byte[16]; // 128-bit key. Ensure this is securely generated and stored.
+
+    static {
+        // Example key initialization - in production, use a secure key management approach
+        System.arraycopy("CINEMA-SECRET-KEY".getBytes(), 0, KEY, 0, Math.min(KEY.length, "CINEMA-SECRET-KEY".getBytes().length));
+    }
 
     public String encrypt(String value) {
         try {
@@ -22,8 +27,8 @@ public class EncryptionService {
             byte[] encryptedByteValue = cipher.doFinal(value.getBytes("utf-8"));
             return Base64.getEncoder().encodeToString(encryptedByteValue);
         } catch (Exception e) {
-            System.out.println("[ENCRYPTION SERVICE]: ENCRYPT FAILED");
-            return null;
+            e.printStackTrace();
+            return null; // Consider a better error handling strategy
         }
     }
 
@@ -37,9 +42,8 @@ public class EncryptionService {
             byte[] decryptedByteValue = cipher.doFinal(decryptedValue64);
             return new String(decryptedByteValue, "utf-8");
         } catch (Exception e) {
-            System.out.println("[ENCRYPTION SERVICE]: DECRYPT FAILED");
-            return null;
+            e.printStackTrace();
+            return null; // Consider a better error handling strategy
         }
     }
-
 }

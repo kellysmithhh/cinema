@@ -1,5 +1,6 @@
 package com.cinema.cinemasystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -9,14 +10,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cinema.cinemasystem.Repository.AddressRepository;
+import com.cinema.cinemasystem.Repository.BookingRepository;
 import com.cinema.cinemasystem.Repository.CustomerRepository;
+import com.cinema.cinemasystem.Repository.MovieRepository;
 import com.cinema.cinemasystem.Repository.PaymentCardRepository;
+import com.cinema.cinemasystem.Repository.ShowInfoRepository;
+import com.cinema.cinemasystem.Repository.TicketRepository;
 import com.cinema.cinemasystem.dto.CreateBooking;
 import com.cinema.cinemasystem.model.Address;
 import com.cinema.cinemasystem.model.Booking;
 import com.cinema.cinemasystem.model.Customer;
+import com.cinema.cinemasystem.model.Movie;
 import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.ShowInfo;
+import com.cinema.cinemasystem.model.Ticket;
 
 import jakarta.transaction.Transactional;
 
@@ -30,6 +37,18 @@ public class CustomerService {
 
     @Autowired
     private PaymentCardRepository paymentCardRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
+
+    @Autowired
+    private ShowInfoRepository showInfoRepository;
+
+    @Autowired
+    private MovieRepository movieRepository;
+
+    @Autowired
+    private TicketRepository ticketRepository;
 
     @Autowired
     private MovieService movieService;
@@ -158,7 +177,11 @@ public class CustomerService {
     }
 
     public List<Booking> getBookings(Customer customer) {
-        return customer.getBookings();
+        List<Booking> bookings = customer.getBookings();
+        for (Booking booking : bookings) {
+            booking.setCardNumber(encryptionService.decrypt(booking.getCardNumber()));
+        }
+        return bookings;
     }
 
     public Optional<PaymentCard> getPaymentCardWithNumber(Customer customer, String cardNumber) {
@@ -173,34 +196,43 @@ public class CustomerService {
     }
 
     @Transactional
-    public Booking addBooking(Customer customer, CreateBooking booking) {
+    public String addBooking(Customer customer, CreateBooking booking) {
         Booking realBooking = new Booking();
+        bookingRepository.save(realBooking);
         // booking number
         realBooking.setBookingNumber(booking.getBookingNumber());
 
         // credit card
         String cardNumber = booking.getCardNumber();
-        Optional<PaymentCard> card = getPaymentCardWithNumber(customer, encryptionService.encrypt(cardNumber));
-        if (card.isEmpty()) {
-            System.out.println("CARD DOES NOT EXIST");
-            return null;
-        }
-        realBooking.setCardNumber(cardNumber);
+        Optional<PaymentCard> card = getPaymentCardWithNumber(customer, cardNumber);
+        if (card.isEmpty()) return "card does not exist";
+        realBooking.setCardNumber(encryptionService.encrypt(cardNumber));
 
         // show info
-        Optional<ShowInfo> maybeShowInfo = movieService.getInfoWithIdAndDateTime(booking.getMovieId(), booking.getDateTime());
-        if (maybeShowInfo.isEmpty()) return null;
+        Optional<Movie> maybeMovie = movieRepository.findById(booking.getMovieId());
+        if (maybeMovie.isEmpty()) return "movie does not exist";
+
+        Optional<ShowInfo> maybeShowInfo = showInfoRepository.findByMovieAndDateTime(maybeMovie.get(), booking.getDateTime());
+        if (maybeShowInfo.isEmpty()) return "show info does not exist";
         ShowInfo showInfo = maybeShowInfo.get();
         realBooking.setShowInfo(showInfo);
 
         // tickets
-        realBooking.setTickets(booking.getTickets());
+        List<Ticket> tickets = new ArrayList<>();
+        for (Ticket ticket : booking.getTickets()) {
+            ticket.setBooking(realBooking);
+            Ticket realTicket = ticketRepository.save(ticket);
+            tickets.add(realTicket);
+        }
+        realBooking.setTickets(tickets);
 
-        // customer save
+        // customer
         realBooking.setCustomer(customer);
-        customerRepository.save(customer);
+        customer.getBookings().add(realBooking);
 
-        return realBooking;
+        bookingRepository.save(realBooking);
+        customerRepository.save(customer);
+        return "booking create success";
     }
 
 }

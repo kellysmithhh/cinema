@@ -27,6 +27,9 @@ public class AdminService {
     }
 
     public void autoCreate(String first, String last, String code, String password) {
+        Optional<Admin> maybeAdmin = repository.findByCode(code);
+        if (maybeAdmin.isPresent()) return;
+
         Admin newAdmin = new Admin();
         newAdmin.setFirstName(first);
         newAdmin.setLastName(last);

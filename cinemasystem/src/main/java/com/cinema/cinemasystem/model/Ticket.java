@@ -1,7 +1,9 @@
 package com.cinema.cinemasystem.model;
 
 import com.cinema.cinemasystem.enums.TTYPE;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,9 +19,11 @@ public class Ticket {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private Booking booking;
 
-    @OneToOne(mappedBy = "ticket")
+    @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Seat seat;
 
     private TTYPE ticketType;
