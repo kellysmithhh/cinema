@@ -176,6 +176,9 @@ public class CustomerService {
         ShowInfo showInfo = maybeShowInfo.get();
         realBooking.setShowInfo(showInfo);
 
+        // tickets
+        realBooking.setTickets(booking.getTickets());
+
         // customer save
         realBooking.setCustomer(customer);
         customerRepository.save(customer);
