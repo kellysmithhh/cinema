@@ -11,10 +11,10 @@ function ShowtimeSelection() {
   console.log(location.state);
 
   let navigate = useNavigate();
-  const routeChange = (selectedDate, selectedTime, movieTitle,movieID) => {
+  const routeChange = (selectedDate, selectedTime, movieTitle, movieID) => {
    
     navigate('/TicketPage', {
-      state: { selectedDate, selectedTime, movieTitle,movieID },
+      state: { selectedDate, selectedTime, movieTitle, movieID },
     });
   };
 

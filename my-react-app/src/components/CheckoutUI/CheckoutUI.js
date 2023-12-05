@@ -9,7 +9,8 @@ function CheckoutUI() {
   const[email,setEmail] = useState('');
 
   const location = useLocation();
-  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, tickets, movieId } = location.state;
+  const { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, tickets, movieID } = location.state;
+  console.log(location.state);
   const adultCost = 12.99 * adultTickets;
   const childCost = 10.99 * childTickets;
   const seniorCost = 11.99 * seniorTickets;
@@ -25,6 +26,7 @@ function CheckoutUI() {
   //const[paymentCards,setPaymentCards] = useState([]);  
   const [loading, setLoading] = useState(true);
   const [cardNames, setCardNames] = useState([]);
+  const [selectedCardNumber, setSelectedCardNumber] = useState('');
 
   const[Newstreet,setNewStreet] = useState('')
     const[Newcity,setNewCity] = useState('')
@@ -37,6 +39,8 @@ function CheckoutUI() {
     const[cardCVV,setCardCVV] = useState('')
     const[cardName,setCardName] = useState('')
     const[promoClick,setpromoClick] = useState(false)
+
+    const dbTickets = null;
 
     const handleAddCardClick = (e) => {
       e.preventDefault();
@@ -67,7 +71,7 @@ function CheckoutUI() {
        .then((data) => { 
           setEmail(data.email)
           console.log(data.paymentCards)
-          setCardNames(data.paymentCards.map(card => card.cardName));
+          setCardNames(data.paymentCards.map(card => card.cardNumber));
           setLoading(false);
        })
        .catch(error => {
@@ -95,7 +99,7 @@ function CheckoutUI() {
     }
   }, [promoPercent]);
 
-    const handlePlaceOrder = (e) => {
+    const handlePlaceOrder = async (e) => {
       e.preventDefault();
 
       // create ticket objects
@@ -107,30 +111,34 @@ function CheckoutUI() {
         adultTickets: adultTickets, 
         seniorTickets: seniorTickets, 
       }));
-      fetch('http://localhost:8080/showing/set/ticket/types', {
+
+      const response = await fetch('http://localhost:8080/showing/set/ticket/types', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          // Handle success
-          console.log('Request successful');
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          // Handle error
-          console.error('There was a problem with the fetch operation:', error);
-        });
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const fetchedData = await response.json();
+      const dbTickets = fetchedData;
 
       // fetch that sets seats to false and creats a booking with all needed data
+      var sessionId = localStorage.getItem('session');
+      sessionId = sessionId.replace(/^"(.*)"$/, '$1');
+      const bookingNumber = Math.floor(Math.random() * 9000) + 1000;
+      const booking = {bookingNumber, movieId: movieID, tickets: dbTickets, cardNumber: selectedCardNumber};
+      console.log(booking);
+      fetch(`http://localhost:8080/user/booking/add/${sessionId}`,{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body: JSON.stringify(booking)
+      }).then(()=>{
+          console.log("New movie added.")
+      });
 
       // confirmation email
       fetch(`http://localhost:8080/email/send/order/confirmation/${email}`,{
@@ -200,7 +208,7 @@ function CheckoutUI() {
             <p>Loading payment details...</p>
           ) : cardNames.length > 0 ? (
             // Render the card names dropdown when available
-            <select>
+            <select value = {selectedCardNumber} onChange={(e) => setSelectedCardNumber(e.target.value)}>
               {cardNames.map((cardName, index) => (
                 <option key={index}>{cardName}</option>
               ))}

@@ -29,6 +29,7 @@ public class ShowingService {
             if (childTickets > 0) {
                 Ticket childTicket = new Ticket();
                 childTicket.setTicketType(TTYPE.CHILD);
+                childTicket.setSeat(seat);
                 Ticket savedTicket = ticketRepository.save(childTicket);
                 seat.setTicket(savedTicket);
                 seat.setStatus(true);
@@ -38,6 +39,7 @@ public class ShowingService {
             } else if (adultTickets > 0) {
                 Ticket adultTicket = new Ticket();
                 adultTicket.setTicketType(TTYPE.ADULT);
+                adultTicket.setSeat(seat);
                 Ticket savedTicket = ticketRepository.save(adultTicket);
                 seat.setTicket(savedTicket);
                 seat.setStatus(true);
@@ -47,6 +49,7 @@ public class ShowingService {
             } else if (seniorTickets > 0) {
                 Ticket seniorTicket = new Ticket();
                 seniorTicket.setTicketType(TTYPE.SENIOR);
+                seniorTicket.setSeat(seat);
                 Ticket savedTicket = ticketRepository.save(seniorTicket);
                 seat.setTicket(savedTicket);
                 seat.setStatus(true);
