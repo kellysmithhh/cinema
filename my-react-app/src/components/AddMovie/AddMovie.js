@@ -34,9 +34,21 @@ function AddMovie() {
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(movie)
-        }).then(()=>{
+        }).then((resonse)=>{
+            if(resonse.ok) {
             console.log("New movie added.")
+            alert("Movie has been added!")
+            window.location.reload();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(rejected => {
+            console.log(rejected)
+            alert("Error adding movie, make sure duration is an number")
+            
         });
+        
     }
 
     useEffect(() => {
