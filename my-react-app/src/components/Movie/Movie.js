@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Movie(props) {
 
-    const movie = props.movie;
-
+    const movie = props.movie;  
     const ratingMap = {
         G: 'G',
         PG: 'PG',
@@ -17,11 +16,12 @@ function Movie(props) {
 
     const mpaaRating = movie.ratingMPAA ? ratingMap[movie.ratingMPAA] : 'Unknown';
 
-    let navigate = useNavigate();
-   const routeChange = () => {
-       let path = `/ShowtimeSelection`;
-       navigate(path, {state: movie});
-   };
+//     let navigate = useNavigate();
+//    const routeChange = () => {
+//        let path = `/ShowtimeSelection`;
+//        var info = movie      
+//        navigate(path, {state: info });
+//    };
 
     return (
         <div className="Movie">
@@ -44,9 +44,9 @@ function Movie(props) {
                     </div>
 
                     <div className='link'>
-                        <Link id ="hey" to ='/MovieInformation' state={{from: movie.title}}>More Information</Link>
+                        <Link id ="hey" to ='/MovieInformation' state={{from: movie.title}}>Booking and Information</Link>
                         
-                        <button onClick={routeChange} type='submit'>Book Ticket</button>
+                        {/* <button onClick={routeChange} type='submit'>Book Ticket</button> */}
                         
                     </div>
                     

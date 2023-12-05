@@ -11,6 +11,7 @@ function EditMovie(props) {
         e.preventDefault();
         if (dateTimeValue !== "" ) {
             console.log(dateTimeValue);
+            
         if (!dateTimeSet.includes(dateTimeValue)) {
             const updatedDateTimeSet = [...dateTimeSet, dateTimeValue];
             const movieId = String(movie.movie.id);
@@ -25,14 +26,19 @@ function EditMovie(props) {
             };
 
             fetch(`http://localhost:8080/movie/show-dates`, requestOptions)
-                .then(response => {
+                .then(response => {                   
                     if (!response.ok) {
+                        console.log("NO WORK")
                         throw new Error('Network response was not ok');
                     }
-                    console.log('Show dates added successfully');
-                    // Update the state after successful API call
-                    setDateTimeSet(updatedDateTimeSet);
-                    alert("Movie Added");
+                    return response.text();                    
+                })
+                .then(data => {
+                    if (data == "true") {
+                        alert("Movie has been scheduled")
+                    } else {
+                        alert("Time slot not available please choose another time");
+                    }
                 })
                 .catch(error => {
                     console.error('There was a problem adding show dates:', error);
