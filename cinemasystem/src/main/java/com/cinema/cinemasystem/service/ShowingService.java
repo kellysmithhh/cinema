@@ -18,7 +18,8 @@ public class ShowingService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    @Autowired SeatRepository seatRepository;
+    @Autowired
+    private SeatRepository seatRepository;
 
     public UpdatedTicketCounts setTicketTypes(int childTickets, int adultTickets, int seniorTickets, int row, int col, Long showId) {
         UpdatedTicketCounts updatedTicketCounts = new UpdatedTicketCounts();

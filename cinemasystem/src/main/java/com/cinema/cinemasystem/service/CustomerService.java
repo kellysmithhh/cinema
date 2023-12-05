@@ -1,6 +1,5 @@
 package com.cinema.cinemasystem.service;
 
-import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,6 +33,9 @@ public class CustomerService {
 
     @Autowired
     private MovieService movieService;
+
+    @Autowired
+    private EncryptionService encryptionService;
 
     @Autowired
     private PasswordEncoder security;
@@ -95,25 +97,39 @@ public class CustomerService {
 
                     if (matchingCard != null) {
                         // Modify existing card
-                        matchingCard.setCardName(security.encode(card.getCardName()));
-                        matchingCard.setCardCVV(security.encode(card.getCardCVV()));
-                        matchingCard.setCardNumber(security.encode(card.getCardNumber()));
-                        matchingCard.setBillingAddress(card.getBillingAddress());
-                        matchingCard.setCardExpiration(security.encode(card.getCardExpiration()));
-                        matchingCard.setCardType(security.encode(card.getCardType()));
+                        // matchingCard.setCardName(security.encode(card.getCardName()));
+                        // matchingCard.setCardCVV(security.encode(card.getCardCVV()));
+                        // matchingCard.setCardNumber(security.encode(card.getCardNumber()));
+                        // matchingCard.setBillingAddress(card.getBillingAddress());
+                        // matchingCard.setCardExpiration(security.encode(card.getCardExpiration()));
+                        // matchingCard.setCardType(security.encode(card.getCardType()));
 
-                        matchingCard.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
-                        matchingCard.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
-                        matchingCard.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
-                        matchingCard.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
-                        matchingCard.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
+                        // matchingCard.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
+                        // matchingCard.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
+                        // matchingCard.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
+                        // matchingCard.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
+                        // matchingCard.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
+                        matchingCard.setCardName(encryptionService.encrypt(card.getCardName()));
+                        matchingCard.setCardCVV(encryptionService.encrypt(card.getCardCVV()));
+                        matchingCard.setCardNumber(encryptionService.encrypt(card.getCardNumber()));
+                        matchingCard.setBillingAddress(card.getBillingAddress());
+                        matchingCard.setCardExpiration(encryptionService.encrypt(card.getCardExpiration()));
+                        matchingCard.setCardType(encryptionService.encrypt(card.getCardType()));
                     } else if (currentCards.size() != 3) {
                         // Add a new card
-                        card.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
-                        card.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
-                        card.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
-                        card.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
-                        card.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
+                        // card.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
+                        // card.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
+                        // card.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
+                        // card.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
+                        // card.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
+
+                        card.setCardName(encryptionService.encrypt(card.getCardName()));
+                        card.setCardCVV(encryptionService.encrypt(card.getCardCVV()));
+                        card.setCardNumber(encryptionService.encrypt(card.getCardNumber()));
+                        card.setBillingAddress(card.getBillingAddress());
+                        card.setCardExpiration(encryptionService.encrypt(card.getCardExpiration()));
+                        card.setCardType(encryptionService.encrypt(card.getCardType()));
+
                         realCustomer.getPaymentCards().add(card);
                         card.setCustomer(realCustomer);
                     } else {
@@ -146,7 +162,8 @@ public class CustomerService {
     }
 
     public Optional<PaymentCard> getPaymentCardWithNumber(Customer customer, String cardNumber) {
-        List<PaymentCard> cards = paymentCardRepository.findAllByCardNumber(cardNumber);
+        String encrypted = encryptionService.encrypt(cardNumber);
+        List<PaymentCard> cards = paymentCardRepository.findAllByCardNumber(encrypted);
         for (PaymentCard card : cards) {
             if (card.getCustomer().equals(customer)) {
                 return Optional.of(card);
@@ -163,7 +180,7 @@ public class CustomerService {
 
         // credit card
         String cardNumber = booking.getCardNumber();
-        Optional<PaymentCard> card = getPaymentCardWithNumber(customer, cardNumber);
+        Optional<PaymentCard> card = getPaymentCardWithNumber(customer, encryptionService.encrypt(cardNumber));
         if (card.isEmpty()) {
             System.out.println("CARD DOES NOT EXIST");
             return null;

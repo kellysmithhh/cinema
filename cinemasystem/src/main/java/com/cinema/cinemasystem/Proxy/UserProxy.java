@@ -1,9 +1,9 @@
 package com.cinema.cinemasystem.Proxy;
 
-import java.util.Base64;
+// import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-import java.util.Base64.Decoder;
+// import java.util.Base64.Decoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +20,7 @@ import com.cinema.cinemasystem.model.PaymentCard;
 import com.cinema.cinemasystem.model.User;
 import com.cinema.cinemasystem.service.AdminService;
 import com.cinema.cinemasystem.service.CustomerService;
+import com.cinema.cinemasystem.service.EncryptionService;
 import com.cinema.cinemasystem.service.UserService;
 
 @Component
@@ -36,6 +37,9 @@ public class UserProxy {
 
     @Autowired
     private PasswordEncoder security;
+
+    @Autowired
+    private EncryptionService encryptionService;
 
     public String register(Customer customer) {
         // Additional logic or validation can be added here
@@ -140,22 +144,29 @@ public class UserProxy {
             return null;
         }
         Customer customer = maybeCustomer.get();
-        Decoder decoder = Base64.getDecoder();
+        // Decoder decoder = Base64.getDecoder();
+        // for (PaymentCard card : customer.getPaymentCards()) {
+        //     String cardType = new String (decoder.decode(card.getCardType()));
+        //     card.setCardType(cardType);
+
+        //     String cardCVV = new String (decoder.decode(card.getCardCVV()));
+        //     card.setCardCVV(cardCVV);
+
+        //     String cardExp = new String (decoder.decode(card.getCardExpiration()));
+        //     card.setCardExpiration(cardExp);
+
+        //     String cardName = new String (decoder.decode(card.getCardName()));
+        //     card.setCardName(cardName);
+
+        //     String cardNum = new String (decoder.decode(card.getCardNumber()));
+        //     card.setCardNumber(cardNum);
+        // }
         for (PaymentCard card : customer.getPaymentCards()) {
-            String cardType = new String (decoder.decode(card.getCardType()));
-            card.setCardType(cardType);
-
-            String cardCVV = new String (decoder.decode(card.getCardCVV()));
-            card.setCardCVV(cardCVV);
-
-            String cardExp = new String (decoder.decode(card.getCardExpiration()));
-            card.setCardExpiration(cardExp);
-
-            String cardName = new String (decoder.decode(card.getCardName()));
-            card.setCardName(cardName);
-
-            String cardNum = new String (decoder.decode(card.getCardNumber()));
-            card.setCardNumber(cardNum);
+            card.setCardType(encryptionService.decrypt(card.getCardType()));
+            card.setCardCVV(encryptionService.decrypt(card.getCardCVV()));
+            card.setCardExpiration(encryptionService.decrypt(card.getCardExpiration()));
+            card.setCardName(encryptionService.decrypt(card.getCardName()));
+            card.setCardNumber(encryptionService.decrypt(card.getCardNumber()));
         }
         return customer;
     }
