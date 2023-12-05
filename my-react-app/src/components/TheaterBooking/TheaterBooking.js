@@ -73,7 +73,7 @@ function TheaterBooking() {
 
       let path = `/CheckOut`;
       navigate(path, {
-        state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets,tickets },
+        state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets, tickets, movieID },
       });
       }
     }
