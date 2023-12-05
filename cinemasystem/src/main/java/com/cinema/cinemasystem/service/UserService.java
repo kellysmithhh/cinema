@@ -3,7 +3,6 @@ package com.cinema.cinemasystem.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +27,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder security;
+
+    @Autowired
+    private EncryptionService encryptionService;
 
     private String generateSessionId() {
         return UUID.randomUUID().toString();
@@ -62,11 +64,16 @@ public class UserService {
         if (paymentCards != null) {
             // encode card information
             for (PaymentCard card : paymentCards) {
-                card.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
-                card.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
-                card.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
-                card.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
-                card.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
+                // card.setCardName(Base64.getEncoder().encodeToString(card.getCardName().trim().getBytes()));
+                // card.setCardType(Base64.getEncoder().encodeToString(card.getCardType().trim().getBytes()));
+                // card.setCardNumber(Base64.getEncoder().encodeToString(card.getCardNumber().trim().getBytes()));
+                // card.setCardExpiration(Base64.getEncoder().encodeToString(card.getCardExpiration().trim().getBytes()));
+                // card.setCardCVV(Base64.getEncoder().encodeToString(card.getCardCVV().trim().getBytes()));
+                card.setCardName(encryptionService.encrypt(card.getCardName()));
+                card.setCardType(encryptionService.encrypt(card.getCardType()));
+                card.setCardNumber(encryptionService.encrypt(card.getCardNumber()));
+                card.setCardExpiration(encryptionService.encrypt(card.getCardExpiration()));
+                card.setCardCVV(encryptionService.encrypt(card.getCardCVV()));
             }
         }
         customerRepository.save(customer);

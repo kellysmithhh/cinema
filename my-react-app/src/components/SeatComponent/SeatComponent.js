@@ -14,14 +14,24 @@ function SeatComponent(props) {
   //console.log(props.newSeat.seat.seat);
 
     const handleClick = () => {      
-      if (isTaken === false) {
-        isTaken = true; 
-        setIsRed(false);
-      } else {
-          isTaken = false;
+      if (isRed === true) {        
+        isTaken = true
+        const num = fun(row,column,isTaken,showId)
+        if (num != -1) {
+          console.log("1")
+          setIsRed(false)
+        } else {
+          console.log("2")
+        }
+      } else {        
+        isTaken = false
+        const num = fun(row,column,isTaken,showId)
+        if (num != -1) {
+          setIsRed(true)          
+        }
       }
-        fun(row, column, isTaken, showId);
-      
+        //const num = fun(row, column, isTaken, showId);
+       
     };
   
     if (status === false) {
