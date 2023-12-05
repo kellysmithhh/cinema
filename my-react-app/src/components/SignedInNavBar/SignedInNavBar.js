@@ -46,11 +46,11 @@ function SignedInNavBar({handleSignOut}) {
                                 <li>
                                 <Link to="/ManagerView">Manager View</Link>
                                 </li>
-                                <li>
-                                <Link to="/OrderHistory">Order History</Link>
-                                </li>
                             </React.Fragment>
                             )}
+                            <li>
+                                <Link to="/OrderHistory">Order History</Link>
+                            </li>
                             <li>
                                 <Link to = "/Browse">Browse</Link>
                             </li>
