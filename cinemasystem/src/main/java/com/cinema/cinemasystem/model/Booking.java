@@ -2,8 +2,8 @@ package com.cinema.cinemasystem.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Booking {
 
     @Id
@@ -25,11 +26,11 @@ public class Booking {
     private String cardNumber;
 
     @ManyToOne
-    @JsonIgnore
+    // @JsonBackReference("customer-bookings")
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
-    @JsonManagedReference
+    // @JsonManagedReference("booking-tickets")
     private List<Ticket> tickets;
 
     @ManyToOne

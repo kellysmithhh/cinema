@@ -3,9 +3,7 @@ package com.cinema.cinemasystem.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
@@ -32,11 +30,11 @@ public class ShowInfo {
     private Movie movie;
 
     @ManyToOne
-    @JsonBackReference
+    // @JsonBackReference("shows")
     private ShowRoom showRoom;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "showInfo")
-    @JsonManagedReference
+    // @JsonManagedReference("info-seats")
     private List<Seat> seats;
 
     public Long getId() {

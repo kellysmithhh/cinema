@@ -1,9 +1,8 @@
 package com.cinema.cinemasystem.model;
 
 import com.cinema.cinemasystem.enums.TTYPE;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -14,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Ticket {
 
     @Id
@@ -21,11 +21,11 @@ public class Ticket {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    // @JsonBackReference("booking-tickets")
     private Booking booking;
 
     @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    // @JsonManagedReference("ticket-seat")
     private Seat seat;
 
     private TTYPE ticketType;

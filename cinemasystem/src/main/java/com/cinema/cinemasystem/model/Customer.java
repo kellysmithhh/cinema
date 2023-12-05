@@ -3,10 +3,10 @@ package com.cinema.cinemasystem.model;
 import java.util.List;
 
 import com.cinema.cinemasystem.enums.STATUS;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,6 +19,7 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Customer extends User {
 
     @Id
@@ -27,7 +28,7 @@ public class Customer extends User {
 
     private String phone;
 
-    @Column(unique = true)
+    // @Column(unique = true)
     private String email;
 
     @Enumerated(EnumType.STRING)
@@ -44,7 +45,7 @@ public class Customer extends User {
     private Address shippingAddress;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true)
-    @JsonManagedReference
+    // @JsonManagedReference("customer-bookings")
     private List<Booking> bookings;
 
     private boolean promoEmail;
