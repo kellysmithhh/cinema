@@ -63,10 +63,15 @@ function TheaterBooking() {
   let navigate = useNavigate(); 
 
     const routeChange = () =>{ 
+      if (numTickets > 0) {
+        alert("You still have " + numTickets + " tickets remaining")
+      } else {
+
       let path = `/CheckOut`;
       navigate(path, {
         state: { selectedDate, selectedTime, movieTitle, childTickets, adultTickets, seniorTickets,tickets },
       });
+      }
     }
 
     for (var i = 0; i < seatInfo.length;i++) {
