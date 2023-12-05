@@ -36,6 +36,9 @@ public class CustomerService {
     private MovieService movieService;
 
     @Autowired
+    private EncryptionService encryptionService;
+
+    @Autowired
     private PasswordEncoder security;
 
     public Optional<Customer> getWithEmail(String email) {
@@ -146,7 +149,8 @@ public class CustomerService {
     }
 
     public Optional<PaymentCard> getPaymentCardWithNumber(Customer customer, String cardNumber) {
-        List<PaymentCard> cards = paymentCardRepository.findAllByCardNumber(cardNumber);
+        String encrypted = encryptionService.encrypt(cardNumber);
+        List<PaymentCard> cards = paymentCardRepository.findAllByCardNumber(encrypted);
         for (PaymentCard card : cards) {
             if (card.getCustomer().equals(customer)) {
                 return Optional.of(card);
@@ -163,7 +167,7 @@ public class CustomerService {
 
         // credit card
         String cardNumber = booking.getCardNumber();
-        Optional<PaymentCard> card = getPaymentCardWithNumber(customer, cardNumber);
+        Optional<PaymentCard> card = getPaymentCardWithNumber(customer, encryptionService.encrypt(cardNumber));
         if (card.isEmpty()) {
             System.out.println("CARD DOES NOT EXIST");
             return null;
