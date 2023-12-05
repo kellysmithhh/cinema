@@ -34,7 +34,7 @@ function Browse() {
       <div className = "browse">
 
         <div className = "searchBar">
-          <label>Search By:</label>
+          <label>Search By: </label>
           <select value={searchBy} onChange={handleSelectChange}>
             <option value="">Select...</option>
             <option value="title">Title</option>

@@ -10,6 +10,15 @@
 .Results{
     background-color: black;
 }
+
+.searchBar label {
+    font-size: 36px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.searchBar select {
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
 .searchBar{
     padding-top: 20px;
     padding-bottom: 20px;

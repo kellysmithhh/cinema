@@ -24,6 +24,7 @@ import ManageUsers from './components/ManageUsers/ManageUsers';
 import ManageMovies from './components/ManageMovies/ManageMovies';
 import TicketPage from './components/TicketPage/TicketPage';
 import OrderHistory from './components/Orderhistory/OrderHistory';
+import AddMovie from './components/AddMovie/AddMovie';
 import { useEffect, useState } from 'react';
 
 function App() { 
@@ -79,6 +80,7 @@ const[isSessionNull,setIsSessionNull] = useState(true)
             <Route path = "/ManageUsers" element = {<ManageUsers/>}/>
             <Route path = "/TicketPage" element = {<TicketPage/>}/>
             <Route path = "/OrderHistory" element = {<OrderHistory/>}/>
+            <Route path = "/AddMovie" element = {<AddMovie/>}/>
           </Routes>
         </div>
       </div>

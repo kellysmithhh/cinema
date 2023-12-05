@@ -1,23 +1,12 @@
-.ManagerView {
+.MVbuttons {
     display: flex;
-    justify-content: space-between ;
+    justify-content: center;
     background-color: black;
     margin-left: 20px;
-
+    align-Items: 'center';
 }
 
-#MVRight{
-    border: 1px;
-    border-color: aliceblue;
+.input-containerMV{
+    height: 100vh;
 }
 
-#MVLeft{
-    display: flex;
-    flex-direction: column;
-    width: 700px;
-}
-
-
-#editInfo{
-    margin-right: 10px;
-}
