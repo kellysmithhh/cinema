@@ -19,14 +19,27 @@ function ManagePromotions() {
             })
     }, [])
 
+    // const promoList = allPromoCodes.map((promo, k) => (
+    //     <div className="promo-entry" key={k}>
+    //         <label>Promotion code:</label>
+    //         <span>{promo.promoCode}</span>
+    //         <label>Percent off:</label>
+    //         <span>{promo.percentOff}</span>
+    //     </div>
+    // ));
     const promoList = allPromoCodes.map((promo, k) => (
         <div className="promo-entry" key={k}>
-            <label>Promotion code:</label>
-            <span>{promo.promoCode}</span>
-            <label>Percent off:</label>
-            <span>{promo.percentOff}</span>
+            <div className="promo-column">
+                <label>Promotion code:</label>
+                <span>{promo.promoCode}</span>
+            </div>
+            <div className="promo-column">
+                <label>Percent off:</label>
+                <span>{promo.percentOff}</span>
+            </div>
         </div>
     ));
+    
 
     const handleClick = (e) => {
         e.preventDefault();

@@ -40,27 +40,44 @@ button:hover {
     background-color: #0056b3;
 }
 
+
+.all-promotions-section label {
+    color: #ddd;
+    font-weight: bold;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    
+}
+
+.all-promotions-section span {
+    margin-left: 3px;
+    margin-right: 35px; 
+
+}
+
 .all-promotions-section {
-    border: 1px solid #ddd; 
+    border: 1px solid #ddd;
     padding: 20px;
     margin-top: 20px;
     padding-top: 10px;
+    display: grid;
+    grid-template-columns: max-content; 
+    gap: 10px;
 }
 
 .promo-entry {
     display: flex;
-    flex-wrap: nowrap; 
+    justify-content: space-between; 
     margin-bottom: 10px;
-    align-items: center; 
+    align-items: center;
 }
 
 .all-promotions-section label {
-    color: #ff00008b;
+    color: #ddd;
     font-weight: bold;
     margin-right: 5px;
 }
 
 .all-promotions-section span {
-    margin-left: 0px;
-    margin-right: 25px;
+    margin-left: auto;
 }
